@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MoneyInput } from '../src/MoneyInput'
+import { MoneyInput } from '../../src/MoneyInput.tsx'
 import './App.css'
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <MoneyInput
             label="Monto de la Transacción"
             value={amount}
-            onChange={(val) => setAmount(val)}
+            onChange={(val: number) => setAmount(val)}
             currencySymbol="$"
           />
         </div>
