@@ -1,39 +1,22 @@
 {
-  "name": "money-input-react-rtl",
-  "version": "1.0.0",
-  "description": "Un componente de entrada de moneda para React con formato de derecha a izquierda.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "dev": "tsup src/index.ts --watch --dts",
-    "build": "tsup",
-    "lint": "tsc"
-  },
-  "keywords": [
-    "react",
-    "currency",
-    "input",
-    "money",
-    "formatting",
-    "rtl"
-  ],
-  "author": "",
-  "license": "MIT",
-  "type": "module",
-  "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
-  }
+    "name": "byteflow-ui",
+    "private": true,
+    "description": "Ecosistema de componentes ByteFlow UI",
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "scripts": {
+        "build": "npm run build --workspaces --if-present",
+        "dev": "npm run dev --workspaces --if-present",
+        "lint": "npm run lint --workspaces --if-present"
+    },
+    "keywords": [
+        "byteflow",
+        "ui-kit",
+        "components",
+        "monorepo"
+    ],
+    "author": "",
+    "license": "MIT"
 }
