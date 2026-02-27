@@ -9,6 +9,16 @@
 }
 
 .money-input-container {
+  /* API de Personalización - Variables que el desarrollador puede sobrescribir */
+  --mi-primary: var(--money-input-primary-color, #3b82f6);
+  --mi-bg: var(--money-input-bg-color, rgba(255, 255, 255, 0.8));
+  --mi-border: var(--money-input-border-color, #e2e8f0);
+  --mi-text: var(--money-input-text-color, #1e293b);
+  --mi-label: var(--money-input-label-color, #64748b);
+  --mi-radius: var(--money-input-border-radius, 0.75rem);
+  --mi-shadow: var(--money-input-shadow-style, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+  --mi-focus-ring: var(--money-input-focus-color, rgba(59, 130, 246, 0.2));
+
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -19,7 +29,7 @@
 .money-input-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--money-input-label);
+  color: var(--mi-label);
 }
 
 .money-input-wrapper {
@@ -33,24 +43,26 @@
   padding: 0.75rem 1rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--money-input-text);
-  background-color: var(--money-input-bg);
-  border: 1px solid var(--money-input-border);
-  border-radius: 0.75rem;
+  color: var(--mi-text);
+  background-color: var(--mi-bg);
+  border: 1px solid var(--mi-border);
+  border-radius: var(--mi-radius);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(8px);
-  box-shadow: var(--money-input-shadow);
+  box-shadow: var(--mi-shadow);
 }
 
 .money-input-field:focus {
   outline: none;
-  border-color: var(--money-input-primary);
-  box-shadow: 0 0 0 4px var(--money-input-focus), var(--money-input-shadow);
+  border-color: var(--mi-primary);
+  box-shadow: 0 0 0 4px var(--mi-focus-ring), var(--mi-shadow);
   transform: translateY(-1px);
 }
 
 .money-input-field:disabled {
   background-color: #f1f5f9;
+  filter: grayscale(1);
+  opacity: 0.6;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
@@ -60,7 +72,6 @@
   color: #94a3b8;
 }
 
-/* Efecto Hover sutil */
 .money-input-field:hover:not(:disabled) {
   border-color: #cbd5e1;
 }

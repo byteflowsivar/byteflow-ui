@@ -1,63 +1,95 @@
-# Money Input React RTL 💸
+# 💰 Money Input React RTL
 
-Un componente de entrada de moneda para React elegante, premium y ligero, con comportamiento de derecha a izquierda (RTL). Perfecto para aplicaciones financieras donde la precisión y la experiencia de usuario son primordiales.
+**El componente de entrada de moneda más elegante, ligero e intuitivo para React.**
 
-## Características
+[![NPM Version](https://img.shields.io/npm/v/money-input-react-rtl.svg)](https://www.npmjs.com/package/money-input-react-rtl)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
--   **Entrada de derecha a izquierda**: Los números se desplazan desde los centavos hacia las unidades automáticamente.
--   **Máscara de moneda en tiempo real**: Formatea mientras escribes (ej: 1250 -> $12.50).
--   **Diseño Premium**: Estética moderna con soporte para modo deshabilitado y estados de enfoque.
--   **Ligero**: < 1kb minificado y comprimido.
--   **TypeScript**: Totalmente tipado para una mejor experiencia de desarrollo.
+Diseñado específicamente para ofrecer una experiencia de usuario financiera premium mediante una máscara de entrada de **derecha a izquierda (RTL)**.
 
-## Instalación
+---
+
+## ✨ ¿Por qué elegir `money-input-react-rtl`?
+
+1.  **DX Superior**: API intuitiva, totalmente tipado y sin dependencias pesadas.
+2.  **Rendimiento**: < 1.5kb minificado. Carga instantánea.
+3.  **Ultra Personalizable**: Control total mediante variables CSS y props de estilo.
+4.  **Localización**: Soporte nativo para diferentes configuraciones regionales (`locale`).
+
+## 🚀 Instalación rápida
 
 ```bash
 npm install money-input-react-rtl
+# o
+yarn add money-input-react-rtl
 ```
 
-## Uso
+## 🛠️ Uso Básico
 
 ```tsx
 import { MoneyInput } from 'money-input-react-rtl';
 import 'money-input-react-rtl/dist/index.css';
 
-function App() {
-  const [value, setValue] = useState(0); // Valor en centavos
+function PaymentForm() {
+  const [total, setTotal] = useState(1500); // Equivale a $15.00
 
   return (
     <MoneyInput
-      label="Monto de pago"
-      value={value}
-      onChange={(amount) => setValue(amount)}
-      currencySymbol="$"
+      label="Monto de Inscripción"
+      value={total}
+      onChange={setTotal}
+      currencySymbol="€"
+      locale="de-DE"
     />
   );
 }
 ```
 
-## Guía de Publicación (Aprende a publicar en NPM)
+## 🎨 Personalización Avanzada (Experience First)
 
-Si quieres publicar este componente tú mismo, sigue estos pasos:
+### 1. Variables CSS (Recomendado)
+Puedes cambiar la estética global de los componentes simplemente definiendo estas variables en tu CSS:
 
-1.  **Crea una cuenta en npmjs.com** (si no la tienes).
-2.  **Inicia sesión en tu terminal**:
-    ```bash
-    npm login
-    ```
-3.  **Asegúrate de que el nombre en `package.json` esté disponible**.
-4.  **Genera el build final**:
-    ```bash
-    npm run build
-    ```
-5.  **Publicar**:
-    ```bash
-    npm publish --access public
-    ```
+```css
+:root {
+  --money-input-primary-color: #ff5722; /* Color de enfoque */
+  --money-input-bg-color: #f9f9f9;      /* Fondo */
+  --money-input-border-radius: 4px;     /* Bordes rectos */
+}
+```
 
-> [!TIP]
-> Recuerda que cada vez que hagas un cambio, debes subir la versión en el `package.json` (ej: de `1.0.0` a `1.0.1`) antes de volver a publicar.
+### 2. Integración con Tailwind CSS
+El componente acepta `className` para el contenedor y pronto soportará clases directas para el input.
 
-## Licencia
+```tsx
+<MoneyInput
+  className="my-8 max-w-sm font-mono"
+  label="Custom Tailwind Style"
+/>
+```
 
-MIT
+## 📋 Propiedades (API Reference)
+
+| Prop | Tipo | Defecto | Descripción |
+| :--- | :--- | :--- | :--- |
+| `value` | `number` | `0` | Valor en centavos (ej: 100 = $1.00) |
+| `currencySymbol` | `string` | `$` | Símbolo de la moneda |
+| `locale` | `string` | `en-US` | Configuración regional para formatos numéricos |
+| `onChange` | `function` | `-` | Recibe el nuevo valor en centavos |
+| `label` | `string` | `-` | Etiqueta superior opcional |
+| `disabled` | `boolean` | `false` | Deshabilitar interacción |
+| `containerStyle` | `CSSProperties` | `-` | Estilos inline para el contenedor |
+| `inputStyle` | `CSSProperties` | `-` | Estilos inline para el input |
+
+---
+
+## 🏗️ Cómo contribuir
+Si quieres extender este componente para tu uso personal o público:
+
+1. Clona el repositorio.
+2. `npm install`
+3. `npm run dev` para ver los cambios en tiempo real en la carpeta `example`.
+4. `npm run build` para generar la distribución final.
+
+## 📄 Licencia
+MIT © Realizado con ❤️ para la comunidad de React.

@@ -2,32 +2,41 @@ import React, { useState, useCallback } from 'react';
 import './styles.css';
 
 export interface MoneyInputProps {
-    /** Valor opcional en centavos (ej: 100 para $1.00) */
+    /** Valor en centavos (ej: 100 para $1.00). Si se omite, el componente maneja su propio estado interno. */
     value?: number;
-    /** Símbolo de moneda, por defecto '$' */
+    /** Símbolo de moneda que se mostrará. Por defecto '$'. */
     currencySymbol?: string;
-    /** Callback cuando el valor cambia, recibe el valor en centavos */
+    /** Configuración regional para el formato de miles (ej: 'es-MX', 'en-US'). Por defecto 'en-US'. */
+    locale?: string;
+    /** Callback que se dispara al cambiar el valor. Recibe el monto exacto en centavos. */
     onChange?: (value: number) => void;
-    /** Etiqueta para el input */
+    /** Texto opcional que aparece arriba del campo de entrada. */
     label?: string;
-    /** Clase CSS adicional para el contenedor */
+    /** Clase CSS para el contenedor principal. Útil para integración con frameworks como Tailwind. */
     className?: string;
-    /** Nombre para el input */
+    /** Estilos en línea para el contenedor principal. */
+    containerStyle?: React.CSSProperties;
+    /** Estilos en línea directamente para el elemento input. */
+    inputStyle?: React.CSSProperties;
+    /** Atributo 'name' estándar para formularios. */
     name?: string;
-    /** Indica si el input está deshabilitado */
+    /** Si es true, el usuario no podrá interactuar con el campo. */
     disabled?: boolean;
 }
 
 /**
- * Componente MoneyInput que formatea la entrada de derecha a izquierda.
- * Útil para ingresar montos financieros de manera intuitiva.
+ * MoneyInput: Un componente de alto rendimiento para entrada de moneda.
+ * Implementa una máscara de derecha a izquierda para una experiencia financiera premium.
  */
 export const MoneyInput: React.FC<MoneyInputProps> = ({
     value: controlledValue,
     currencySymbol = '$',
+    locale = 'en-US',
     onChange,
     label,
     className = '',
+    containerStyle,
+    inputStyle,
     name,
     disabled = false,
 }) => {
@@ -43,9 +52,9 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
      */
     const formatValue = useCallback((amount: number): string => {
         const decimalPart = (amount % 100).toString().padStart(2, '0');
-        const wholePart = Math.floor(amount / 100).toLocaleString('en-US'); // Podría ser locale-aware en el futuro
+        const wholePart = Math.floor(amount / 100).toLocaleString(locale);
         return `${currencySymbol}${wholePart}.${decimalPart}`;
-    }, [currencySymbol]);
+    }, [currencySymbol, locale]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // 1. Obtener solo los dígitos del valor actual (eliminando símbolos y puntos)
@@ -65,18 +74,22 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
     };
 
     return (
-        <div className={`money-input-container ${className} ${disabled ? 'disabled' : ''}`}>
+        <div
+            className={`money-input-container ${className} ${disabled ? 'disabled' : ''}`}
+            style={containerStyle}
+        >
             {label && <label className="money-input-label">{label}</label>}
             <div className="money-input-wrapper">
                 <input
                     type="text"
                     name={name}
                     className="money-input-field"
+                    style={inputStyle}
                     value={formatValue(currentValue)}
                     onChange={handleInputChange}
                     placeholder={`${currencySymbol}0.00`}
                     disabled={disabled}
-                    inputMode="numeric" // Mejora la experiencia en móviles (teclado numérico)
+                    inputMode="numeric"
                 />
             </div>
         </div>
