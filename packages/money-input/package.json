@@ -2,9 +2,17 @@
   "name": "@byteflow-ui/money-input",
   "version": "1.0.0",
   "description": "Un componente de entrada de moneda para React con formato de derecha a izquierda.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
   "files": [
     "dist"
   ],

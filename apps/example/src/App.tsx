@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MoneyInput } from '@byteflow-ui/money-input'
-import '@byteflow-ui/money-input/src/styles.css'
+import '@byteflow-ui/money-input/dist/index.css'
 import './App.css'
 
 function App() {
