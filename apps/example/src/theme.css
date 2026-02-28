@@ -1,39 +1,72 @@
-/**
- * Byteflow UI - Adaptive Theme Template
- * 
- * Este archivo demuestra la configuración de un tema adaptativo completo:
- * - Soporte nativo para Modo Claro y Modo Oscuro.
- * - Sincronización de componentes, barras laterales y tarjetas.
- */
-
 :root {
-    /* Modo Claro (Default) */
+    /* Layout Global */
+    background-color: var(--bf-canvas, #ffffff);
+    color: var(--bf-text-primary, #0f172a);
+}
+
+.dark-theme {
+    background-color: var(--bf-canvas, #0f172a);
+    color: var(--bf-text-primary, #f1f5f9);
+}
+
+/* Tokens de Tematización (Template para el usuario) */
+:root {
+    /* MoneyInput */
     --bf-money-input-primary-color: #2563eb;
     --bf-money-input-bg-color: #ffffff;
     --bf-money-input-border-color: #e2e8f0;
     --bf-money-input-text-color: #0f172a;
     --bf-money-input-label-color: #475569;
+
+    /* Button */
+    --bf-button-primary-bg: #2563eb;
+    --bf-button-primary-text: #ffffff;
+    --bf-button-radius: 8px;
+
+    /* Input & Textarea */
+    --bf-input-bg: #f8fafc;
+    --bf-input-border: #e2e8f0;
+    --bf-input-radius: 0.5rem;
+
+    /* Checkbox & Radio */
+    --bf-accent: #2563eb;
 }
 
 .dark-theme {
-    /* Modo Oscuro */
+    /* MoneyInput */
     --bf-money-input-primary-color: #3b82f6;
     --bf-money-input-bg-color: #1e293b;
     --bf-money-input-border-color: #334155;
     --bf-money-input-text-color: #f1f5f9;
     --bf-money-input-label-color: #94a3b8;
+
+    /* Button */
+    --bf-button-primary-bg: #3b82f6;
+
+    /* Input & Textarea */
+    --bf-input-bg: #1e293b;
+    --bf-textarea-min-height: 120px;
+
+    /* Select */
+    --bf-select-bg: var(--bf-canvas-subtle);
+    --bf-select-radius: var(--bf-radius-md);
+    --bf-select-height: 2.75rem;
+    --bf-select-chevron: var(--bf-text-muted);
+
+    /* Switch */
+    --bf-switch-bg-checked: var(--bf-accent);
+    --bf-switch-width: 2.75rem;
+
+    /* Tooltip */
+    --bf-tooltip-bg: var(--bf-text-primary);
+    --bf-tooltip-radius: var(--bf-radius-sm);
+    --bf-input-border: #334155;
 }
 
-/* Aplicación de efectos sutiles */
-.bf-money-input__field {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bf-money-input__field:focus {
-    border-color: var(--bf-money-input-primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.dark-theme .bf-money-input__field:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+/* Estilos de Utilidad para la Demo (No rompen el diseño original) */
+.custom-theme-example {
+    padding: 2rem;
+    border: 1px dashed var(--bf-accent);
+    border-radius: var(--bf-radius-lg);
+    margin-top: 2rem;
 }

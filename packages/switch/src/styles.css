@@ -1,0 +1,95 @@
+:root {
+    --bf-switch-width: 2.75rem;
+    --bf-switch-height: 1.5rem;
+    --bf-switch-thumb-size: 1.125rem;
+    --bf-switch-bg: var(--bf-canvas-subtle, #e2e8f0);
+    --bf-switch-bg-checked: var(--bf-accent, #3b82f6);
+    --bf-switch-thumb-bg: #ffffff;
+    --bf-switch-ring: rgba(59, 130, 246, 0.2);
+    --bf-switch-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bf-switch-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    font-family: var(--bf-font-sans, inherit);
+    font-size: 0.875rem;
+    color: var(--bf-text-primary, #0f172a);
+}
+
+.bf-switch-container--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.bf-switch-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.bf-switch-track {
+    position: relative;
+    width: var(--bf-switch-width);
+    height: var(--bf-switch-height);
+    background-color: var(--bf-switch-bg);
+    border-radius: 9999px;
+    transition: var(--bf-switch-transition);
+    display: flex;
+    align-items: center;
+    padding: 0 0.1875rem;
+    box-sizing: border-box;
+}
+
+.bf-switch-thumb {
+    width: var(--bf-switch-thumb-size);
+    height: var(--bf-switch-thumb-size);
+    background-color: var(--bf-switch-thumb-bg);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--bf-switch-transition);
+    transform: translateX(0);
+}
+
+/* Checked State */
+.bf-switch-input:checked+.bf-switch-track {
+    background-color: var(--bf-switch-bg-checked);
+}
+
+.bf-switch-input:checked+.bf-switch-track .bf-switch-thumb {
+    transform: translateX(calc(var(--bf-switch-width) - var(--bf-switch-thumb-size) - 0.375rem));
+}
+
+/* Focus State */
+.bf-switch-input:focus-visible+.bf-switch-track {
+    box-shadow: 0 0 0 2px var(--bf-switch-ring);
+    outline: 2px solid transparent;
+}
+
+/* Tamaños */
+.bf-switch-container--sm {
+    --bf-switch-width: 2.25rem;
+    --bf-switch-height: 1.25rem;
+    --bf-switch-thumb-size: 0.875rem;
+    font-size: 0.75rem;
+}
+
+.bf-switch-container--lg {
+    --bf-switch-width: 3.5rem;
+    --bf-switch-height: 2rem;
+    --bf-switch-thumb-size: 1.625rem;
+    font-size: 1rem;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-switch-container {
+    color: var(--bf-text-primary, #f1f5f9);
+}
+
+.dark-theme .bf-switch-track {
+    --bf-switch-bg: var(--bf-surface-border, #334155);
+}

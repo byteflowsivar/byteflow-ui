@@ -1,0 +1,88 @@
+:root {
+    --bf-select-bg: var(--bf-canvas-subtle, #f8fafc);
+    --bf-select-border: var(--bf-surface-border, #e2e8f0);
+    --bf-select-border-focus: var(--bf-accent, #3b82f6);
+    --bf-select-ring: rgba(59, 130, 246, 0.2);
+    --bf-select-text: var(--bf-text-primary, #0f172a);
+    --bf-select-placeholder: var(--bf-text-muted, #94a3b8);
+    --bf-select-radius: var(--bf-radius-md, 0.5rem);
+    --bf-select-height: 2.75rem;
+    --bf-select-chevron: var(--bf-text-muted, #94a3b8);
+}
+
+.bf-select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    font-family: var(--bf-font-sans, inherit);
+}
+
+.bf-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.bf-select {
+    appearance: none;
+    width: 100%;
+    height: var(--bf-select-height);
+    padding: 0 2.5rem 0 1rem;
+    background-color: var(--bf-select-bg);
+    border: 1px solid var(--bf-select-border);
+    border-radius: var(--bf-select-radius);
+    color: var(--bf-select-text);
+    font-family: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.bf-select:focus {
+    border-color: var(--bf-select-border-focus);
+    box-shadow: 0 0 0 3px var(--bf-select-ring);
+}
+
+.bf-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--bf-canvas-subtle);
+}
+
+.bf-select--error {
+    border-color: #ef4444;
+}
+
+.bf-select--error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Chevron Icon */
+.bf-select-chevron {
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    width: 1rem;
+    height: 1rem;
+    color: var(--bf-select-chevron);
+    transition: transform 0.2s ease;
+}
+
+.bf-select:focus+.bf-select-chevron {
+    color: var(--bf-select-border-focus);
+    transform: translateY(-1px);
+}
+
+.bf-select__error-msg {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-select {
+    --bf-select-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-select-border: var(--bf-surface-border, #334155);
+}

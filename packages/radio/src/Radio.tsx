@@ -17,6 +17,7 @@ export interface RadioGroupProps {
     children: React.ReactNode;
     name?: string;
     value?: string;
+    defaultValue?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     orientation?: 'vertical' | 'horizontal';
@@ -26,12 +27,23 @@ export interface RadioGroupProps {
 export const RadioGroup: React.FC<RadioGroupProps> = ({
     children,
     name,
-    value,
+    value: controlledValue,
+    defaultValue,
     onChange,
     disabled,
     orientation = 'vertical',
     className = ''
 }) => {
+    const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue);
+    const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
+
+    const handleInternalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (controlledValue === undefined) {
+            setUncontrolledValue(e.target.value);
+        }
+        onChange?.(e);
+    };
+
     const containerClasses = [
         'bf-radio-group',
         orientation === 'horizontal' ? 'bf-radio-group--horizontal' : '',
@@ -39,7 +51,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     ].filter(Boolean).join(' ');
 
     return (
-        <RadioContext.Provider value={{ name, value, onChange, disabled }}>
+        <RadioContext.Provider value={{ name, value, onChange: handleInternalChange, disabled }}>
             <div className={containerClasses} role="radiogroup">
                 {children}
             </div>

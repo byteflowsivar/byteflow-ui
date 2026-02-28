@@ -18,6 +18,9 @@
     "@byteflow-ui/checkbox": "*",
     "@byteflow-ui/radio": "*",
     "@byteflow-ui/textarea": "*",
+    "@byteflow-ui/select": "*",
+    "@byteflow-ui/switch": "*",
+    "@byteflow-ui/tooltip": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

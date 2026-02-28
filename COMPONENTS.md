@@ -11,3 +11,6 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/checkbox` | `1.0.0` | Componente de casilla de verificación. | - [Checkbox](./packages/checkbox/README.md) - v1.0.0 |
 | `@byteflow-ui/radio` | `1.0.0` | Componente de selección de radio. | - [Radio](./packages/radio/README.md) - v1.0.0 |
 | `@byteflow-ui/textarea` | `1.0.0` | Campo de entrada de texto multilínea. | - [Textarea](./packages/textarea/README.md) - v1.0.0 |
+| `@byteflow-ui/select` | `1.0.0` | Componente de selección genérico (Dropdown). | - [Select](./packages/select/README.md) - v1.0.0 |
+| `@byteflow-ui/switch` | `1.0.0` | Interruptor (Toggle) animado. | - [Switch](./packages/switch/README.md) - v1.0.0 |
+| `@byteflow-ui/tooltip` | `1.0.0` | Información flotante (Tooltip) con 4 posiciones. | - [Tooltip](./packages/tooltip/README.md) - v1.0.0 |
