@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react'
 import { MoneyInput } from '@byteflow-ui/money-input'
 import { Button } from '@byteflow-ui/button'
 import { Label } from '@byteflow-ui/label'
+import { Input } from '@byteflow-ui/input'
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
 import '@byteflow-ui/label/dist/index.css'
+import '@byteflow-ui/input/dist/index.css'
 import './App.css'
 import './theme.css'
 
-type ComponentType = 'money-input' | 'button' | 'label';
+type ComponentType = 'money-input' | 'button' | 'label' | 'input';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState<ComponentType>('label')
+  const [activeComponent, setActiveComponent] = useState<ComponentType>('input')
   const [amount, setAmount] = useState(125050) // $1,250.50
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview')
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -38,7 +40,7 @@ function MyComponent() {
       locale="es-MX"
     />
   );
-} `;
+}`;
 
   const buttonCode = `/* Implementación de Button */
 import { Button } from '@byteflow-ui/button';
@@ -52,7 +54,7 @@ function MyComponent() {
       <Button isLoading>Cargando...</Button>
     </div>
   );
-} `;
+}`;
 
   const labelCode = `/* Implementación de Label */
 import { Label } from '@byteflow-ui/label';
@@ -66,7 +68,7 @@ function MyComponent() {
           Input Placeholder...
         </div>
       </div>
-
+      
       <div>
         <Label disabled>Campo Deshabilitado</Label>
         <div style={{ padding: '0.5rem', border: '1px solid var(--bf-surface-border)', borderRadius: '4px', opacity: 0.5 }}>
@@ -75,7 +77,35 @@ function MyComponent() {
       </div>
     </div>
   );
-} `;
+}`;
+
+  const inputCode = `/* Implementación de Input */
+import { Input } from '@byteflow-ui/input';
+
+function MyComponent() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}>
+      <Input
+        label="Nombre de Usuario"
+        placeholder="@usuario"
+        required
+      />
+      
+      <Input
+        label="Contraseña"
+        type="password"
+        placeholder="••••••••"
+        error="La contraseña debe tener al menos 8 caracteres"
+      />
+      
+      <Input
+        label="Email (Deshabilitado)"
+        disabled
+        value="victor@byteflow.com"
+      />
+    </div>
+  );
+}`;
 
   return (
     <div className="app-layout">
@@ -102,24 +132,30 @@ function MyComponent() {
           <div className="nav-group" style={{ marginTop: '1.5rem' }}>
             <span className="nav-label" style={{ color: 'var(--bf-text-muted)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem', display: 'block' }}>Componentes</span>
             <div
-              className={`nav - item ${activeComponent === 'money-input' ? 'active' : ''} `}
+              className={`nav-item ${activeComponent === 'money-input' ? 'active' : ''}`}
               onClick={() => setActiveComponent('money-input')}
             >
               Money Input
             </div>
             <div
-              className={`nav - item ${activeComponent === 'button' ? 'active' : ''} `}
+              className={`nav-item ${activeComponent === 'button' ? 'active' : ''}`}
               onClick={() => setActiveComponent('button')}
             >
               Button
             </div>
             <div
-              className={`nav - item ${activeComponent === 'label' ? 'active' : ''} `}
+              className={`nav-item ${activeComponent === 'label' ? 'active' : ''}`}
               onClick={() => setActiveComponent('label')}
             >
               Label
             </div>
-            <div className="nav-item">Input (Próximamente)</div>
+            <div
+              className={`nav-item ${activeComponent === 'input' ? 'active' : ''}`}
+              onClick={() => setActiveComponent('input')}
+            >
+              Input
+            </div>
+            <div className="nav-item">Checkbox (Próximamente)</div>
           </div>
         </nav>
       </aside>
@@ -141,13 +177,13 @@ function MyComponent() {
 
                 <div className="preview-tabs">
                   <button
-                    className={`tab - btn ${activeTab === 'preview' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
                     onClick={() => setActiveTab('preview')}
                   >
                     Vista Previa
                   </button>
                   <button
-                    className={`tab - btn ${activeTab === 'code' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`}
                     onClick={() => setActiveTab('code')}
                   >
                     Código
@@ -191,29 +227,6 @@ function MyComponent() {
                   </p>
                 </footer>
               </div>
-
-              <div className="preview-card">
-                <div className="preview-header">
-                  <h3>Estados Especiales</h3>
-                </div>
-                <div className="preview-body" style={{ gap: '2rem', flexWrap: 'wrap' }}>
-                  <div style={{ width: '100%', maxWidth: '280px' }}>
-                    <MoneyInput
-                      label="Solo Lectura (Disabled)"
-                      disabled={true}
-                      value={500000}
-                      currencySymbol="€"
-                    />
-                  </div>
-                  <div style={{ width: '100%', maxWidth: '280px' }}>
-                    <MoneyInput
-                      label="Sin Label (Placeholder)"
-                      value={0}
-                      currencySymbol="¥"
-                    />
-                  </div>
-                </div>
-              </div>
             </section>
           </>
         )}
@@ -233,13 +246,13 @@ function MyComponent() {
 
                 <div className="preview-tabs">
                   <button
-                    className={`tab - btn ${activeTab === 'preview' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
                     onClick={() => setActiveTab('preview')}
                   >
                     Vista Previa
                   </button>
                   <button
-                    className={`tab - btn ${activeTab === 'code' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`}
                     onClick={() => setActiveTab('code')}
                   >
                     Código
@@ -296,13 +309,13 @@ function MyComponent() {
 
                 <div className="preview-tabs">
                   <button
-                    className={`tab - btn ${activeTab === 'preview' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
                     onClick={() => setActiveTab('preview')}
                   >
                     Vista Previa
                   </button>
                   <button
-                    className={`tab - btn ${activeTab === 'code' ? 'active' : ''} `}
+                    className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`}
                     onClick={() => setActiveTab('code')}
                   >
                     Código
@@ -335,6 +348,71 @@ function MyComponent() {
                 <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
                   <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
                     Propiedades soportadas: <code>htmlFor</code>, <code>required</code>, <code>disabled</code>, <code>children</code>.
+                  </p>
+                </footer>
+              </div>
+            </section>
+          </>
+        )}
+
+        {activeComponent === 'input' && (
+          <>
+            <header className="content-header">
+              <h2>Input</h2>
+              <p>El componente de entrada de texto versátil con soporte nativo para etiquetas avanzadas y gestión de estados de error.</p>
+            </header>
+
+            <section className="component-section">
+              <div className="preview-card">
+                <div className="preview-header">
+                  <h3>Variantes & Estados</h3>
+                </div>
+
+                <div className="preview-tabs">
+                  <button
+                    className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('preview')}
+                  >
+                    Vista Previa
+                  </button>
+                  <button
+                    className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('code')}
+                  >
+                    Código
+                  </button>
+                </div>
+
+                {activeTab === 'preview' ? (
+                  <div className="preview-body" style={{ flexDirection: 'column', gap: '2rem', alignItems: 'flex-start', maxWidth: '400px', margin: '0 auto' }}>
+                    <Input
+                      label="Nombre de Usuario"
+                      placeholder="@usuario"
+                      required
+                    />
+
+                    <Input
+                      label="Contraseña"
+                      type="password"
+                      placeholder="••••••••"
+                      error="La contraseña debe tener al menos 8 caracteres"
+                    />
+
+                    <Input
+                      label="Email (Deshabilitado)"
+                      disabled
+                      value="victor@byteflow.com"
+                    />
+                  </div>
+                ) : (
+                  <pre className="code-block">
+                    <code>{inputCode}</code>
+                  </pre>
+                )}
+
+                <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
+                  <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
+                    Propiedades soportadas: <code>label</code>, <code>error</code>, <code>required</code>, <code>disabled</code>, <code>placeholder</code>, <code>type</code>.
                   </p>
                 </footer>
               </div>
