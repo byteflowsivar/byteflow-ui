@@ -1,0 +1,36 @@
+:root {
+    /* Label Tokens */
+    --bf-label-text: var(--bf-text-primary, #0f172a);
+    --bf-label-font-size: 0.875rem;
+    --bf-label-font-weight: 500;
+    --bf-label-required-color: #ef4444;
+    /* Red 500 */
+}
+
+.bf-label {
+    display: inline-block;
+    font-family: var(--bf-font-sans, inherit);
+    font-size: var(--bf-label-font-size);
+    font-weight: var(--bf-label-font-weight);
+    color: var(--bf-label-text);
+    line-height: 1;
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.bf-label--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.bf-label__required {
+    color: var(--bf-label-required-color);
+    margin-left: 0.25rem;
+    font-weight: 700;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-label {
+    --bf-label-text: var(--bf-text-primary, #f4f4f5);
+}

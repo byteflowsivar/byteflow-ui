@@ -13,6 +13,7 @@
   "dependencies": {
     "@byteflow-ui/money-input": "*",
     "@byteflow-ui/button": "*",
+    "@byteflow-ui/label": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
