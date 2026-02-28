@@ -1,44 +1,39 @@
 /**
- * Byteflow UI - Custom Theme Template
+ * Byteflow UI - Adaptive Theme Template
  * 
- * Este archivo demuestra cómo un desarrollador puede personalizar la estética 
- * de los componentes de Byteflow UI utilizando las variables CSS expuestas.
- * 
- * Para aplicar este tema, simplemente importa este archivo después de los 
- * estilos base de los componentes.
+ * Este archivo demuestra la configuración de un tema adaptativo completo:
+ * - Soporte nativo para Modo Claro y Modo Oscuro.
+ * - Sincronización de componentes, barras laterales y tarjetas.
  */
 
-/* 1. Definición de tokens de marca (Nivel Global) */
 :root {
-    /* Marca: Azul Royal con Glassmorphism */
+    /* Modo Claro (Default) */
     --bf-money-input-primary-color: #2563eb;
-    --bf-money-input-bg-color: rgba(255, 255, 255, 0.7);
-    --bf-money-input-border-color: #d1d5db;
-    --bf-money-input-text-color: #111827;
-    --bf-money-input-label-color: #4b5563;
-    --bf-money-input-border-radius: 12px;
-    --bf-money-input-shadow-style: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --bf-money-input-bg-color: #ffffff;
+    --bf-money-input-border-color: #e2e8f0;
+    --bf-money-input-text-color: #0f172a;
+    --bf-money-input-label-color: #475569;
 }
 
-/* 2. Personalización por instancia o contexto (Opcional) */
-.theme-dark {
-    --bf-money-input-bg-color: rgba(31, 41, 55, 0.8);
-    --bf-money-input-text-color: #f9fafb;
-    --bf-money-input-border-color: #4b5563;
-    --bf-money-input-label-color: #9ca3af;
+.dark-theme {
+    /* Modo Oscuro */
+    --bf-money-input-primary-color: #3b82f6;
+    --bf-money-input-bg-color: #1e293b;
+    --bf-money-input-border-color: #334155;
+    --bf-money-input-text-color: #f1f5f9;
+    --bf-money-input-label-color: #94a3b8;
 }
 
-/* 3. Ejemplo de sobreescritura CSS directa (Uso de selectores bf-) */
+/* Aplicación de efectos sutiles */
 .bf-money-input__field {
-    /* Añadimos un efecto de desenfoque de fondo (glassmorphism) */
-    backdrop-filter: blur(12px);
-    border-width: 2px;
-    font-family: 'JetBrains Mono', monospace;
-    /* Tipografía técnica para finanzas */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bf-money-input__field:focus {
-    /* Animación personalizada al enfoque */
-    transform: scale(1.02);
-    transition: transform 0.2s ease;
+    border-color: var(--bf-money-input-primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.dark-theme .bf-money-input__field:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
