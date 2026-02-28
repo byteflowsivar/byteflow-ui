@@ -68,6 +68,7 @@ Byteflow-UI utiliza espacios de trabajo (`workspaces`) para mantener una arquite
 
 *   **Docstrings:** Cada archivo, clase y función compleja que se agregue debe estar justificada y tener comentarios JSDoc claros explicando su propósito.
 *   **README:** Cada paquete de componente dentro de `packages/` debe tener su propio `README.md` que muestre ejemplos de uso e instalación.
+*   **CHANGELOG:** Cada componente debe documentar todos sus cambios, mejoras o arreglos en un archivo `CHANGELOG.md` dentro de su carpeta, agrupados por versiones (ej: `## [1.0.0]`).
 *   **Registro Centralizado:** Se debe mantener actualizado el archivo [`COMPONENTS.md`](./COMPONENTS.md) en la raíz del proyecto. Este archivo actúa como un índice de todos los componentes disponibles, su versión actual y un breve resumen de su funcionalidad.
 
 ## 7. Convenciones de Commits
