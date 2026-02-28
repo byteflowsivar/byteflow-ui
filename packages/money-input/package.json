@@ -29,7 +29,7 @@
     "formatting",
     "rtl"
   ],
-  "author": "",
+  "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
   "license": "MIT",
   "type": "module",
   "peerDependencies": {
