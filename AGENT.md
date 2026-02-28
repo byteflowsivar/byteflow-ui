@@ -47,6 +47,7 @@ Byteflow-UI utiliza espacios de trabajo (`workspaces`) para mantener una arquite
 ## 3. Estilos y Diseño (UI/UX)
 
 *   **Agnosticismo o Framework Definido:** Asegúrate de seguir la tecnología de estilos establecida en el proyecto (por ejemplo, Tailwind CSS, CSS Modules, Styled Components o Vanilla CSS). Si no se especifica, prioriza soluciones modulares para evitar colisiones.
+*   **Convención de Nombres CSS:** Todas las clases base o clases personalizadas que definan estructura visual DEBEN usar una convención estándar y prefijada (ej. `bf-` para "Byteflow") combinada con BEM o utilería legible (por ejemplo: `bf-button`, `bf-button--primary`, `bf-card__header`). Esto mitiga colisiones CSS y hace que la estructura sea sumamente predecible para que otros desarrolladores modifiquen estilos.
 *   **Diseño Premium y Moderno:** Los componentes deben lucir modernos, con soporte para interactividad (estados de hover, focus, active) y accesibilidad visual.
 *   **Tematización:** Soporta variables CSS (Custom Properties) para colores, tipografías y espaciados, permitiendo temas dinámicos (Light/Dark mode) cuando sea necesario.
 *   **Responsividad:** Los componentes deben de ser fluidos o adaptarse mediante media queries (o clases utilitarias de *mobile-first*) para funcionar correctamente tanto en móviles como escritorios.
