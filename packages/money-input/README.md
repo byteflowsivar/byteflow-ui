@@ -2,14 +2,14 @@
 
 **El componente de entrada de moneda más elegante, ligero e intuitivo para React.**
 
-[![NPM Version](https://img.shields.io/npm/v/money-input-react-rtl.svg)](https://www.npmjs.com/package/money-input-react-rtl)
+[![NPM Version](https://img.shields.io/npm/v/@byteflow-ui/money-input.svg)](https://www.npmjs.com/package/@byteflow-ui/money-input)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Diseñado específicamente para ofrecer una experiencia de usuario financiera premium mediante una máscara de entrada de **derecha a izquierda (RTL)**.
 
 ---
 
-## ✨ ¿Por qué elegir `money-input-react-rtl`?
+## ✨ ¿Por qué elegir Byteflow UI Money Input?
 
 1.  **DX Superior**: API intuitiva, totalmente tipado y sin dependencias pesadas.
 2.  **Rendimiento**: < 1.5kb minificado. Carga instantánea.
@@ -19,16 +19,16 @@ Diseñado específicamente para ofrecer una experiencia de usuario financiera pr
 ## 🚀 Instalación rápida
 
 ```bash
-npm install money-input-react-rtl
+npm install @byteflow-ui/money-input
 # o
-yarn add money-input-react-rtl
+yarn add @byteflow-ui/money-input
 ```
 
 ## 🛠️ Uso Básico
 
 ```tsx
-import { MoneyInput } from 'money-input-react-rtl';
-import 'money-input-react-rtl/dist/index.css';
+import { MoneyInput } from '@byteflow-ui/money-input';
+import '@byteflow-ui/money-input/dist/index.css';
 
 function PaymentForm() {
   const [total, setTotal] = useState(1500); // Equivale a $15.00
@@ -52,9 +52,9 @@ Puedes cambiar la estética global de los componentes simplemente definiendo est
 
 ```css
 :root {
-  --money-input-primary-color: #ff5722; /* Color de enfoque */
-  --money-input-bg-color: #f9f9f9;      /* Fondo */
-  --money-input-border-radius: 4px;     /* Bordes rectos */
+  --bf-money-input-primary-color: #ff5722; /* Color de enfoque */
+  --bf-money-input-bg-color: #f9f9f9;      /* Fondo */
+  --bf-money-input-border-radius: 4px;     /* Bordes rectos */
 }
 ```
 

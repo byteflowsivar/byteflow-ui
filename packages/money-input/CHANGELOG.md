@@ -10,3 +10,5 @@ Todos los cambios notables de este componente serán documentados en este archiv
 - Soporte de configuración regional (`locale`) y símbolos de moneda.
 - Propiedades para estilos en línea y clases CSS (`className`).
 - Documentación inicial (`README.md`).
+- Refactorización de clases CSS y variables con el prefijo `bf-` (Byteflow) para cumplir con el estándar `AGENT.md`.
+- Mejoras de accesibilidad mediante `htmlFor` e `aria-label`.

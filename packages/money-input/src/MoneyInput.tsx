@@ -75,21 +75,30 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
 
     return (
         <div
-            className={`money-input-container ${className} ${disabled ? 'disabled' : ''}`}
+            className={`bf-money-input ${className} ${disabled ? 'bf-money-input--disabled' : ''}`}
             style={containerStyle}
         >
-            {label && <label className="money-input-label">{label}</label>}
-            <div className="money-input-wrapper">
+            {label && (
+                <label
+                    htmlFor={name}
+                    className="bf-money-input__label"
+                >
+                    {label}
+                </label>
+            )}
+            <div className="bf-money-input__wrapper">
                 <input
+                    id={name}
                     type="text"
                     name={name}
-                    className="money-input-field"
+                    className="bf-money-input__field"
                     style={inputStyle}
                     value={formatValue(currentValue)}
                     onChange={handleInputChange}
                     placeholder={`${currencySymbol}0.00`}
                     disabled={disabled}
                     inputMode="numeric"
+                    aria-label={label || 'Entrada de moneda'}
                 />
             </div>
         </div>
