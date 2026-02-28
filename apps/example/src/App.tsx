@@ -43,6 +43,7 @@ import {
 import { Item, ItemPrefix, ItemContent, ItemSuffix } from '@byteflow-ui/item'
 import { Field, FieldLabel, FieldDescription, FieldError } from '@byteflow-ui/field'
 
+// Estilos de los componentes
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
 import '@byteflow-ui/label/dist/index.css'
@@ -69,7 +70,12 @@ import '@byteflow-ui/field/dist/index.css'
 import './App.css'
 import './theme.css'
 
-type ComponentType = 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea' | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton' | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio' | 'empty' | 'item' | 'field';
+type ComponentType =
+  | 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea'
+  | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton'
+  | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
+  | 'empty' | 'item' | 'field';
+
 type TabType = 'preview' | 'code' | 'styles';
 
 const categories = [
@@ -92,11 +98,12 @@ function App() {
   const [activeTab, setActiveTab] = useState<TabType>('preview')
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
-  // State for demos
-  const [amount, setAmount] = useState(250000)
+  // States para los demos interactivos
+  const [amount, setAmount] = useState(125050) // $1,250.50 en centavos
   const [radioValue, setRadioValue] = useState('opcion1')
   const [inputValue, setInputValue] = useState('')
   const [switchState, setSwitchState] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark-theme', theme === 'dark')
@@ -108,214 +115,382 @@ function App() {
         return (
           <Card style={{ width: '400px' }}>
             <CardHeader>
-              <CardTitle>Simulador de Transferencia</CardTitle>
-              <CardDescription>Establece el monto para tu próxima inversión Byteflow.</CardDescription>
+              <CardTitle>Simulador de Suscripción</CardTitle>
+              <CardDescription>Ajusta el monto para ver el desglose de beneficios.</CardDescription>
             </CardHeader>
             <CardContent>
               <MoneyInput
-                label="Monto a Transferir"
+                label="Presupuesto Mensual"
                 value={amount}
                 onChange={setAmount}
-                className="custom-money-input"
+                name="amount-demo"
               />
-              <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--bf-canvas-subtle)', borderRadius: '8px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                  <span style={{ color: 'var(--bf-text-muted)' }}>Comisión (0.5%)</span>
-                  <span style={{ fontWeight: 600 }}>${(amount * 0.005 / 100).toFixed(2)}</span>
+              <div style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'var(--bf-canvas-subtle)', borderRadius: '12px', border: '1px solid var(--bf-surface-border)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                  <span style={{ color: 'var(--bf-text-muted)', fontSize: '0.85rem' }}>Beneficio Estimado</span>
+                  <Badge variant="success" size="sm">+{Math.floor(amount / 500)}ptos</Badge>
                 </div>
-                <Separator style={{ margin: '0.75rem 0' }} />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700 }}>
-                  <span>Total Neto</span>
-                  <span style={{ color: 'var(--bf-accent)' }}>${(amount / 100 + (amount * 0.005 / 100)).toLocaleString()}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '1.1rem' }}>
+                  <span>Créditos Byteflow</span>
+                  <span style={{ color: 'var(--bf-accent)' }}>{(amount / 10).toLocaleString()}</span>
                 </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button variant="primary" style={{ width: '100%' }}>Confirmar Transacción</Button>
+              <Button style={{ width: '100%' }} onClick={() => {
+                setIsLoading(true);
+                setTimeout(() => setIsLoading(false), 2000);
+              }} isLoading={isLoading}>
+                Actualizar Plan
+              </Button>
             </CardFooter>
           </Card>
         );
 
       case 'button':
         return (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
-            <Button variant="primary">Principal</Button>
-            <Button variant="secondary">Secundario</Button>
-            <Button variant="outline">Esquema</Button>
-            <Button variant="ghost">Fantasma</Button>
-            <Button variant="danger">Peligro</Button>
-            <Button variant="success">Éxito</Button>
-            <div style={{ width: '100%', height: '1px' }} />
-            <Button size="small">Pequeño</Button>
-            <Button size="large">Grande</Button>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Label>Variantes</Label>
+              <Button variant="primary">Principal</Button>
+              <Button variant="secondary">Secundario</Button>
+              <Button variant="ghost">Fantasma</Button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Label>Tamaños</Label>
+              <Button size="sm">Pequeño</Button>
+              <Button size="md">Mediano</Button>
+              <Button size="lg">Grande</Button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Label>Estados</Label>
+              <Button isLoading>Cargando</Button>
+              <Button disabled>Deshabilitado</Button>
+            </div>
+          </div>
+        );
+
+      case 'label':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Label>Etiqueta Estándar</Label>
+            <Label required>Etiqueta Requerida</Label>
+            <Label disabled>Etiqueta Deshabilitada</Label>
+          </div>
+        );
+
+      case 'input':
+        return (
+          <div style={{ width: '350px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <Input label="Búsqueda" placeholder="Buscar archivos..." />
+            <Input label="Email" type="email" defaultValue="victor@byteflow.ui" />
+            <Input label="Contraseña" type="password" error="La contraseña es demasiado débil" />
+          </div>
+        );
+
+      case 'checkbox':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Checkbox label="Acepto los términos de servicio" defaultChecked />
+            <Checkbox label="Suscribirme al newsletter" />
+            <Checkbox label="Opción deshabilitada" disabled />
+          </div>
+        );
+
+      case 'radio':
+        return (
+          <RadioGroup value={radioValue} onChange={(e) => setRadioValue(e.target.value)}>
+            <Label style={{ marginBottom: '1rem', display: 'block' }}>Selecciona tu rol</Label>
+            <Radio label="Desarrollador" value="opcion1" />
+            <Radio label="Diseñador" value="opcion2" />
+            <Radio label="Product Manager" value="opcion3" />
+          </RadioGroup>
+        );
+
+      case 'textarea':
+        return (
+          <div style={{ width: '400px' }}>
+            <Textarea label="Comentario" placeholder="Escribe tu mensaje aquí..." rows={4} />
+          </div>
+        );
+
+      case 'select':
+        return (
+          <div style={{ width: '300px' }}>
+            <Select
+              label="Idioma"
+              placeholder="Seleccionar..."
+              options={[
+                { label: 'Español (ES)', value: 'es' },
+                { label: 'English (EN)', value: 'en' },
+                { label: 'Português (PT)', value: 'pt' }
+              ]}
+            />
+          </div>
+        );
+
+      case 'switch':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Switch label="Notificaciones de sistema" checked={switchState} onChange={() => setSwitchState(!switchState)} />
+            <Switch label="Modo Desarrollador" size="sm" />
+            <Switch label="Bloqueo parental" disabled />
+          </div>
+        );
+
+      case 'tooltip':
+        return (
+          <div style={{ display: 'flex', gap: '2rem' }}>
+            <Tooltip content="Información extra">
+              <Button variant="outline">Hover para ver Tooltip</Button>
+            </Tooltip>
+            <Tooltip content="Acción destructiva">
+              <Button variant="ghost">🗑️ Borrar</Button>
+            </Tooltip>
+          </div>
+        );
+
+      case 'badge':
+        return (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <Badge variant="primary">Beta</Badge>
+            <Badge variant="success">Online</Badge>
+            <Badge variant="warning">Revision</Badge>
+            <Badge variant="error">Error</Badge>
+            <Badge variant="outline">Estandard</Badge>
+            <Badge size="lg">Grande</Badge>
+          </div>
+        );
+
+      case 'avatar':
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" alt="JD" size="xl" />
+            <Avatar alt="Victor Hugo" size="lg" />
+            <Avatar shape="square" size="md" />
+            <Avatar alt="S" size="sm" />
+          </div>
+        );
+
+      case 'separator':
+        return (
+          <div style={{ width: '300px', textAlign: 'center' }}>
+            <p>Sección Superior</p>
+            <Separator />
+            <p>Sección Inferior</p>
+            <div style={{ height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span>L</span>
+              <Separator orientation="vertical" />
+              <span>R</span>
+            </div>
+          </div>
+        );
+
+      case 'skeleton':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <Skeleton circle />
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <Skeleton width="100%" height={12} />
+                <Skeleton width="60%" height={12} />
+              </div>
+            </div>
+            <Skeleton width="100%" height={150} />
+          </div>
+        );
+
+      case 'spinner':
+        return (
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <Spinner size="sm" />
+            <Spinner size="md" />
+            <Spinner size="lg" />
           </div>
         );
 
       case 'card':
         return (
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            <Card style={{ width: '300px' }}>
-              <AspectRatio ratio={16 / 9}>
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" alt="Abstract" />
-              </AspectRatio>
-              <CardHeader>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <Badge variant="secondary">Diseño</Badge>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--bf-text-muted)' }}>Hace 2h</span>
-                </div>
-                <CardTitle>Ecosistemas Digitales</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--bf-text-secondary)', lineHeight: 1.5 }}>
-                  Explorando la frontera del diseño modular y sistemas escalables.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Avatar alt="VH" size="small" />
-                  <span style={{ fontSize: '0.85rem', fontWeight: 500 }}>Victor Hugo</span>
-                </div>
-              </CardFooter>
-            </Card>
-          </div>
-        );
-
-      case 'field':
-        return (
-          <Card style={{ width: '450px' }}>
+          <Card style={{ width: '350px' }}>
+            <AspectRatio ratio={16 / 9}>
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" alt="Landscape" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </AspectRatio>
             <CardHeader>
-              <CardTitle>Crear Nueva Cuenta</CardTitle>
-              <CardDescription>Únete a la comunidad de Byteflow UI hoy mismo.</CardDescription>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Badge variant="primary" size="sm">Artículo</Badge>
+                <span style={{ fontSize: '0.75rem', color: 'var(--bf-text-muted)' }}>5 min lectura</span>
+              </div>
+              <CardTitle style={{ marginTop: '0.5rem' }}>El Futuro de Byteflow UI</CardTitle>
             </CardHeader>
-            <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <Field isInvalid={inputValue === '' && activeTab === 'preview'}>
-                <FieldLabel required>Nombre de Usuario</FieldLabel>
-                <Input
-                  placeholder="ej. @byteflow_wizard"
-                  value={inputValue}
-                  onChange={(e: any) => setInputValue(e.target.value)}
-                />
-                <FieldDescription>Usa un nombre único que te represente.</FieldDescription>
-                {inputValue === '' && <FieldError>El nombre de usuario es obligatorio.</FieldError>}
-              </Field>
-              <Field>
-                <FieldLabel>Biografía Corta</FieldLabel>
-                <Textarea placeholder="Cuéntanos sobre ti..." />
-              </Field>
-              <Field>
-                <FieldLabel>Plan de Suscripción</FieldLabel>
-                <Select options={[
-                  { label: 'Básico (Gratis)', value: 'free' },
-                  { label: 'Pro ($19/mes)', value: 'pro' },
-                  { label: 'Enterprise', value: 'corp' }
-                ]} />
-              </Field>
+            <CardContent>
+              <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--bf-text-secondary)', lineHeight: 1.6 }}>
+                Descubre cómo estamos redefiniendo la construcción de interfaces premium con React y CSS moderno.
+              </p>
             </CardContent>
             <CardFooter>
-              <Button variant="primary" style={{ width: '100%' }}>Registrar Cuenta</Button>
+              <Button variant="ghost" size="sm">Leer más</Button>
             </CardFooter>
+          </Card>
+        );
+
+      case 'scroll-area':
+        return (
+          <Card style={{ width: '350px', padding: 0 }}>
+            <CardHeader style={{ padding: '1.5rem' }}>
+              <CardTitle>Historial de Cambios</CardTitle>
+            </CardHeader>
+            <ScrollArea maxHeight={200} style={{ padding: '0 1.5rem 1.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {[...Array(10)].map((_, i) => (
+                  <Item key={i}>
+                    <ItemContent>
+                      <div style={{ fontWeight: 600 }}>v1.0.{10 - i}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>Corregido error en {activeComponent}</div>
+                    </ItemContent>
+                  </Item>
+                ))}
+              </div>
+            </ScrollArea>
           </Card>
         );
 
       case 'tabs':
         return (
-          <Tabs defaultValue="perfil" style={{ width: '500px' }}>
-            <TabsList style={{ width: '100%', justifyContent: 'center' }}>
+          <Tabs defaultValue="perfil" style={{ width: '450px' }}>
+            <TabsList>
               <TabsTrigger value="perfil">Perfil</TabsTrigger>
               <TabsTrigger value="seguridad">Seguridad</TabsTrigger>
-              <TabsTrigger value="notif">Notificaciones</TabsTrigger>
+              <TabsTrigger value="notif">Alertas</TabsTrigger>
             </TabsList>
-            <Card style={{ marginTop: '1rem' }}>
+            <div style={{ marginTop: '1rem' }}>
               <TabsContent value="perfil">
-                <CardHeader><CardTitle>Información de Perfil</CardTitle></CardHeader>
-                <CardContent style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                  <Avatar size="large" alt="User" />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                    <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>Victor Hugo Cornejo</span>
-                    <span style={{ color: 'var(--bf-text-muted)', fontSize: '0.9rem' }}>Arquitecto de Soluciones</span>
-                  </div>
-                </CardContent>
-                <CardFooter><Button variant="outline" size="small">Editar Perfil</Button></CardFooter>
+                <Card>
+                  <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
+                    <Avatar size="xl" alt="VH" style={{ margin: '0 auto 1rem' }} />
+                    <h3 style={{ margin: 0 }}>Victor Hugo</h3>
+                    <p style={{ color: 'var(--bf-text-muted)', fontSize: '0.9rem' }}>Arquitecto UI</p>
+                  </CardContent>
+                </Card>
               </TabsContent>
               <TabsContent value="seguridad">
-                <CardHeader><CardTitle>Seguridad de la Cuenta</CardTitle></CardHeader>
-                <CardContent>
-                  <Item>
-                    <ItemContent>Autenticación de dos pasos</ItemContent>
-                    <ItemSuffix><Switch checked={switchState} onChange={setSwitchState} /></ItemSuffix>
-                  </Item>
-                  <Separator style={{ margin: '0.5rem 0' }} />
-                  <Item>
-                    <ItemContent>Historial de sesiones</ItemContent>
-                    <ItemSuffix><Button size="small" variant="ghost">Ver más</Button></ItemSuffix>
-                  </Item>
-                </CardContent>
+                <Item>
+                  <ItemContent>Verificación en dos pasos</ItemContent>
+                  <ItemSuffix><Switch defaultChecked /></ItemSuffix>
+                </Item>
               </TabsContent>
-            </Card>
+              <TabsContent value="notif">
+                <Empty>
+                  <EmptyIcon>🔔</EmptyIcon>
+                  <EmptyTitle>Sin alertas</EmptyTitle>
+                </Empty>
+              </TabsContent>
+            </div>
           </Tabs>
+        );
+
+      case 'breadcrumb':
+        return (
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem><BreadcrumbLink href="#">Inicio</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem><BreadcrumbLink href="#">Componentes</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem><BreadcrumbPage>{activeComponent}</BreadcrumbPage></BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        );
+
+      case 'aspect-ratio':
+        return (
+          <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Label>Ratio 16:9 (Video)</Label>
+            <AspectRatio ratio={16 / 9} style={{ background: 'var(--bf-surface-hover)', borderRadius: '12px', overflow: 'hidden' }}>
+              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bf-text-muted)' }}>Contenido 16:9</div>
+            </AspectRatio>
+            <Label>Ratio 1:1 (Cuadrado)</Label>
+            <div style={{ width: '150px' }}>
+              <AspectRatio ratio={1 / 1} style={{ background: 'var(--bf-surface-hover)', borderRadius: '12px', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bf-text-muted)' }}>1:1</div>
+              </AspectRatio>
+            </div>
+          </div>
         );
 
       case 'empty':
         return (
-          <div style={{ padding: '2rem', border: '2px dashed var(--bf-surface-border)', borderRadius: '20px', width: '100%', maxWidth: '500px' }}>
+          <div style={{ padding: '4rem', border: '2px dashed var(--bf-surface-border)', borderRadius: '24px', width: '100%', maxWidth: '500px' }}>
             <Empty>
-              <EmptyIcon>🔍</EmptyIcon>
-              <EmptyTitle>Búsqueda sin resultados</EmptyTitle>
-              <EmptyDescription>
-                No encontramos coincidencias para "<strong>{inputValue || 'tus criterios'}</strong>".
-                Intenta con otros términos o limpia los filtros.
-              </EmptyDescription>
+              <EmptyIcon>📁</EmptyIcon>
+              <EmptyTitle>No hay archivos</EmptyTitle>
+              <EmptyDescription>Sube tu primer componente para empezar la demostración.</EmptyDescription>
               <EmptyAction>
-                <Button variant="secondary" onClick={() => setInputValue('')}>Limpiar Búsqueda</Button>
+                <Button variant="secondary">Subir Archivo</Button>
               </EmptyAction>
             </Empty>
           </div>
         );
 
-      default:
+      case 'item':
         return (
-          <div className="placeholder-demo">
-            <Badge variant="secondary" style={{ marginBottom: '1rem' }}>Vista Previa</Badge>
-            <p style={{ color: 'var(--bf-text-muted)' }}>El demo de <strong>{activeComponent}</strong> está siendo optimizado.</p>
-          </div>
+          <Card style={{ width: '350px', padding: '0.5rem' }}>
+            <Item selected><ItemPrefix>🏠</ItemPrefix><ItemContent>Escritorio</ItemContent><ItemSuffix><Badge size="sm">3</Badge></ItemSuffix></Item>
+            <Item><ItemPrefix>⚙️</ItemPrefix><ItemContent>Configuración</ItemContent></Item>
+            <Item disabled><ItemPrefix>🔒</ItemPrefix><ItemContent>Seguridad</ItemContent><ItemSuffix>🔑</ItemSuffix></Item>
+          </Card>
         );
+
+      case 'field':
+        return (
+          <Card style={{ width: '400px' }}>
+            <CardHeader><CardTitle>Formulario Accesible</CardTitle></CardHeader>
+            <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <Field isInvalid={inputValue === ''}>
+                <FieldLabel required>Nombre de Proyecto</FieldLabel>
+                <Input
+                  placeholder="ej. Byteflow Pro"
+                  value={inputValue}
+                  onChange={(e: any) => setInputValue(e.target.value)}
+                />
+                <FieldDescription>Usa un nombre descriptivo para identificarlo.</FieldDescription>
+                <FieldError>El nombre es obligatorio para continuar.</FieldError>
+              </Field>
+              <Field>
+                <FieldLabel>Tipo de Repositorio</FieldLabel>
+                <Select options={[{ label: 'Público', value: 'pub' }, { label: 'Privado', value: 'priv' }]} />
+              </Field>
+            </CardContent>
+            <CardFooter>
+              <Button style={{ width: '100%' }}>Crear Repositorio</Button>
+            </CardFooter>
+          </Card>
+        );
+
+      default: return null;
     }
   }
 
-  const renderCodeDemo = () => {
-    return (
-      <pre><code>{`import { ${activeComponent.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')} } from '@byteflow-ui/${activeComponent}';
+  const getCodeString = () => {
+    const ComponentName = activeComponent.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
+    return `import { ${ComponentName} } from '@byteflow-ui/${activeComponent}';
 
-function Demo() {
+function App() {
   return (
-    <${activeComponent.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')}
-      /* Propiedades de ejemplo */
+    <${ComponentName}
+      label="Ejemplo"
+      // ... otras propiedades
     />
   );
-}`}</code></pre>
-    );
+}`;
   }
 
-  const renderStylesDemo = () => {
-    // This is a simplified version, ideally you'd have a list of vars per component
-    return (
-      <div className="styles-doc">
-        <div className="style-item">
-          <h4>Personalización CSS</h4>
-          <p className="style-desc">Puedes personalizar la apariencia de <code>{activeComponent}</code> usando estas variables CSS:</p>
-          <table className="vars-table">
-            <thead>
-              <tr><th>Variable</th><th>Default</th><th>Propósito</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>--bf-{activeComponent}-bg</code></td><td>var(--bf-surface)</td><td>Fondo del componente</td></tr>
-              <tr><td><code>--bf-{activeComponent}-radius</code></td><td>var(--bf-radius-md)</td><td>Radio de borde</td></tr>
-              <tr><td><code>--bf-{activeComponent}-accent</code></td><td>var(--bf-accent)</td><td>Color de resaltado</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
+  const getStylesData = () => {
+    return [
+      { var: `--bf-${activeComponent}-bg`, def: 'var(--bf-surface)', desc: 'Color de fondo principal' },
+      { var: `--bf-${activeComponent}-border`, def: 'var(--bf-surface-border)', desc: 'Color del borde' },
+      { var: `--bf-${activeComponent}-text`, def: 'var(--bf-text-primary)', desc: 'Color de texto' },
+      { var: `--bf-${activeComponent}-radius`, def: 'var(--bf-radius-md)', desc: 'Radio de las esquinas' }
+    ];
   }
 
   return (
@@ -341,10 +516,13 @@ function Demo() {
                   <Item
                     key={comp}
                     selected={activeComponent === comp}
-                    onClick={() => setActiveComponent(comp)}
+                    onClick={() => {
+                      setActiveComponent(comp);
+                      setActiveTab('preview');
+                    }}
                   >
                     <ItemContent>{comp.replace('-', ' ')}</ItemContent>
-                    {['card', 'tabs', 'field'].includes(comp) && <ItemSuffix><Badge variant="outline" style={{ scale: '0.8' }}>New</Badge></ItemSuffix>}
+                    {['field', 'empty', 'money-input'].includes(comp) && <ItemSuffix><div style={{ width: 6, height: 6, background: 'var(--bf-accent)', borderRadius: '50%' }} /></ItemSuffix>}
                   </Item>
                 ))}
               </div>
@@ -356,7 +534,7 @@ function Demo() {
       <main className="main-content">
         <ScrollArea>
           <header className="content-header">
-            <Breadcrumb style={{ marginBottom: '0.5rem' }}>
+            <Breadcrumb style={{ marginBottom: '0.75rem' }}>
               <BreadcrumbList>
                 <BreadcrumbItem><BreadcrumbLink href="#">Librería</BreadcrumbLink></BreadcrumbItem>
                 <BreadcrumbSeparator />
@@ -376,9 +554,38 @@ function Demo() {
                 </nav>
 
                 <div className="preview-viewport">
-                  {activeTab === 'preview' && <div className="preview-body">{renderComponentDemo()}</div>}
-                  {activeTab === 'code' && <div className="code-block-wrapper">{renderCodeDemo()}</div>}
-                  {activeTab === 'styles' && <div className="styles-doc-wrapper">{renderStylesDemo()}</div>}
+                  {activeTab === 'preview' && (
+                    <div className="preview-body">
+                      {renderComponentDemo()}
+                    </div>
+                  )}
+                  {activeTab === 'code' && (
+                    <div className="code-block-wrapper">
+                      <pre><code>{getCodeString()}</code></pre>
+                    </div>
+                  )}
+                  {activeTab === 'styles' && (
+                    <div className="styles-doc-wrapper">
+                      <div className="styles-doc">
+                        <h4>Variables CSS de {activeComponent}</h4>
+                        <p className="style-desc">Personaliza el componente modificando estas variables en tu archivo de estilos global.</p>
+                        <table className="vars-table">
+                          <thead>
+                            <tr><th>Variable</th><th>Valor Base</th><th>Descripción</th></tr>
+                          </thead>
+                          <tbody>
+                            {getStylesData().map(s => (
+                              <tr key={s.var}>
+                                <td><code>{s.var}</code></td>
+                                <td><code>{s.def}</code></td>
+                                <td>{s.desc}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -386,7 +593,7 @@ function Demo() {
                 <Card style={{ background: 'var(--bf-canvas-subtle)', borderStyle: 'dashed' }}>
                   <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
                     <p style={{ margin: 0, color: 'var(--bf-text-secondary)', fontSize: '0.9rem' }}>
-                      ¿Necesitas ayuda con este componente? Consulta la <a href="#" style={{ color: 'var(--bf-accent)', fontWeight: 600 }}>documentación técnica completa</a>.
+                      Este componente sigue los estándares WCAG 2.1 para accesibilidad universal.
                     </p>
                   </CardContent>
                 </Card>
