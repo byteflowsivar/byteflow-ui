@@ -1,0 +1,54 @@
+:root {
+    --bf-empty-padding: 3rem 1rem;
+    --bf-empty-icon-size: 3rem;
+    --bf-empty-icon-color: var(--bf-text-muted, #94a3b8);
+    --bf-empty-title-color: var(--bf-text-primary, #0f172a);
+    --bf-empty-description-color: var(--bf-text-muted, #64748b);
+    --bf-empty-gap: 1rem;
+}
+
+.bf-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--bf-empty-padding);
+    width: 100%;
+}
+
+.bf-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--bf-empty-gap);
+    color: var(--bf-empty-icon-color);
+}
+
+.bf-empty-icon svg {
+    width: var(--bf-empty-icon-size);
+    height: var(--bf-empty-icon-size);
+}
+
+.bf-empty-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--bf-empty-title-color);
+}
+
+.bf-empty-description {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: var(--bf-empty-description-color);
+    max-width: 320px;
+}
+
+.bf-empty-action {
+    margin-top: 1.5rem;
+}
+
+.dark-theme .bf-empty {
+    --bf-empty-title-color: #f1f5f9;
+    --bf-empty-description-color: #94a3b8;
+}

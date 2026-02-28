@@ -1,0 +1,69 @@
+:root {
+    --bf-item-padding: 0.75rem 1rem;
+    --bf-item-radius: var(--bf-radius-md, 8px);
+    --bf-item-bg-hover: var(--bf-canvas-subtle, #f8fafc);
+    --bf-item-bg-selected: var(--bf-canvas-subtle, #f1f5f9);
+    --bf-item-text-selected: var(--bf-accent, #2563eb);
+    --bf-item-gap: 0.75rem;
+}
+
+.bf-item {
+    display: flex;
+    align-items: center;
+    padding: var(--bf-item-padding);
+    border-radius: var(--bf-item-radius);
+    gap: var(--bf-item-gap);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+    min-height: 44px;
+}
+
+.bf-item:hover:not(.bf-item--disabled):not(.bf-item--selected) {
+    background-color: var(--bf-item-bg-hover);
+}
+
+.bf-item--selected {
+    background-color: var(--bf-item-bg-selected);
+    color: var(--bf-item-text-selected);
+    font-weight: 500;
+}
+
+.bf-item--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.bf-item-prefix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--bf-text-muted);
+}
+
+.bf-item--selected .bf-item-prefix {
+    color: inherit;
+}
+
+.bf-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.bf-item-suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--bf-text-muted);
+    gap: 0.5rem;
+}
+
+.dark-theme .bf-item {
+    --bf-item-bg-hover: var(--bf-surface-border, #334155);
+    --bf-item-bg-selected: var(--bf-accent-subtle, rgba(37, 99, 235, 0.1));
+    --bf-item-text-selected: #60a5fa;
+}

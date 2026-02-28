@@ -20,3 +20,10 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/skeleton` | `1.0.0` | Marcadores de posición animados para estados de carga. | - [Skeleton](./packages/skeleton/README.md) - v1.0.0 |
 | `@byteflow-ui/spinner` | `1.0.0` | Indicador de carga animado (Spinner) vectorial. | - [Spinner](./packages/spinner/README.md) - v1.0.0 |
 | `@byteflow-ui/card` | `1.0.0` | Contenedores estructurados para contenido relacionado. | - [Card](./packages/card/README.md) - v1.0.0 |
+| `@byteflow-ui/scroll-area` | `1.0.0` | Contenedor con barras de desplazamiento personalizadas. | - [Scroll Area](./packages/scroll-area/README.md) - v1.0.0 |
+| `@byteflow-ui/tabs` | `1.0.0` | Navegación por pestañas modular y accesible. | - [Tabs](./packages/tabs/README.md) - v1.0.0 |
+| `@byteflow-ui/breadcrumb` | `1.0.0` | Navegación jerárquica modular y accesible. | - [Breadcrumb](./packages/breadcrumb/README.md) - v1.0.0 |
+| `@byteflow-ui/aspect-ratio` | `1.0.0` | Control de proporciones para elementos multimedia. | - [Aspect Ratio](./packages/aspect-ratio/README.md) - v1.0.0 |
+| `@byteflow-ui/empty` | `1.0.0` | Gestión elegante de estados vacíos y feedback. | - [Empty](./packages/empty/README.md) - v1.0.0 |
+| `@byteflow-ui/item` | `1.0.0` | Elemento base para listas y menús dinámicos. | - [Item](./packages/item/README.md) - v1.0.0 |
+| `@byteflow-ui/field` | `1.0.0` | Componente compuesto para formularios con validación. | - [Field](./packages/field/README.md) - v1.0.0 |

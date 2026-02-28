@@ -1,0 +1,56 @@
+:root {
+    --bf-scroll-area-thumb: var(--bf-text-muted, #94a3b8);
+    --bf-scroll-area-thumb-hover: var(--bf-text-secondary, #475569);
+    --bf-scroll-area-track: transparent;
+    --bf-scroll-area-width: 8px;
+}
+
+.bf-scroll-area {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bf-scroll-area-thumb) var(--bf-scroll-area-track);
+}
+
+/* Custom scrollbar for Webkit browsers */
+.bf-scroll-area::-webkit-scrollbar {
+    width: var(--bf-scroll-area-width);
+    height: var(--bf-scroll-area-width);
+}
+
+.bf-scroll-area::-webkit-scrollbar-track {
+    background: var(--bf-scroll-area-track);
+}
+
+.bf-scroll-area::-webkit-scrollbar-thumb {
+    background: var(--bf-scroll-area-thumb);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.bf-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: var(--bf-scroll-area-thumb-hover);
+    background-clip: content-box;
+}
+
+.bf-scroll-area--hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.bf-scroll-area--hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.bf-scroll-area-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.dark-theme .bf-scroll-area {
+    --bf-scroll-area-thumb: var(--bf-surface-border, #334155);
+    --bf-scroll-area-thumb-hover: var(--bf-text-muted, #64748b);
+}

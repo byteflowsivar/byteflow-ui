@@ -1,0 +1,46 @@
+{
+    "name": "@byteflow-ui/tabs",
+    "version": "1.0.0",
+    "description": "Componente Tabs modular para navegación por pestañas en Byteflow-UI.",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./dist/index.css": "./dist/index.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsup src/index.ts --watch --dts",
+        "build": "tsup",
+        "lint": "tsc"
+    },
+    "keywords": [
+        "react",
+        "tabs",
+        "navigation",
+        "ui",
+        "component"
+    ],
+    "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
+    "license": "MIT",
+    "type": "module",
+    "peerDependencies": {
+        "react": ">=16",
+        "react-dom": ">=16"
+    },
+    "devDependencies": {
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "react": "^19.2.4",
+        "react-dom": "^19.2.4",
+        "tsup": "^8.5.1",
+        "typescript": "^5.9.3"
+    }
+}

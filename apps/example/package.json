@@ -27,6 +27,13 @@
     "@byteflow-ui/skeleton": "*",
     "@byteflow-ui/spinner": "*",
     "@byteflow-ui/card": "*",
+    "@byteflow-ui/scroll-area": "*",
+    "@byteflow-ui/tabs": "*",
+    "@byteflow-ui/breadcrumb": "*",
+    "@byteflow-ui/aspect-ratio": "*",
+    "@byteflow-ui/empty": "*",
+    "@byteflow-ui/item": "*",
+    "@byteflow-ui/field": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

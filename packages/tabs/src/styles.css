@@ -1,0 +1,64 @@
+:root {
+    --bf-tabs-bg: var(--bf-canvas-subtle, #f8fafc);
+    --bf-tabs-radius: var(--bf-radius-md, 8px);
+    --bf-tabs-trigger-radius: calc(var(--bf-tabs-radius) - 2px);
+    --bf-tabs-active-bg: var(--bf-canvas, #ffffff);
+    --bf-tabs-active-text: var(--bf-accent, #2563eb);
+    --bf-tabs-padding: 2px;
+}
+
+.bf-tabs {
+    width: 100%;
+}
+
+.bf-tabs-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--bf-tabs-padding);
+    background-color: var(--bf-tabs-bg);
+    border-radius: var(--bf-tabs-radius);
+    color: var(--bf-text-secondary);
+}
+
+.bf-tabs-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: var(--bf-tabs-trigger-radius);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: inherit;
+}
+
+.bf-tabs-trigger:hover:not(:disabled) {
+    color: var(--bf-text-primary);
+}
+
+.bf-tabs-trigger--active {
+    background-color: var(--bf-tabs-active-bg);
+    color: var(--bf-tabs-active-text);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.bf-tabs-trigger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.bf-tabs-content {
+    margin-top: 1rem;
+    outline: none;
+}
+
+.dark-theme .bf-tabs {
+    --bf-tabs-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-tabs-active-bg: var(--bf-surface-border, #334155);
+    --bf-tabs-active-text: #ffffff;
+}

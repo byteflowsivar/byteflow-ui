@@ -1,0 +1,44 @@
+:root {
+    --bf-field-gap: 0.5rem;
+    --bf-field-label-size: 0.875rem;
+    --bf-field-label-weight: 500;
+    --bf-field-description-size: 0.75rem;
+    --bf-field-description-color: var(--bf-text-muted, #64748b);
+    --bf-field-error-size: 0.75rem;
+    --bf-field-error-color: var(--bf-error, #ef4444);
+}
+
+.bf-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bf-field-gap);
+    width: 100%;
+}
+
+.bf-field-label {
+    font-size: var(--bf-field-label-size);
+    font-weight: var(--bf-field-label-weight);
+    color: var(--bf-text-primary);
+    cursor: pointer;
+}
+
+.bf-field-description {
+    margin: 0;
+    font-size: var(--bf-field-description-size);
+    color: var(--bf-field-description-color);
+}
+
+.bf-field-error {
+    margin: 0;
+    font-size: var(--bf-field-error-size);
+    color: var(--bf-field-error-color);
+    font-weight: 500;
+}
+
+.dark-theme .bf-field-label {
+    color: #f1f5f9;
+}
+
+.dark-theme .bf-field-description {
+    color: #94a3b8;
+}
