@@ -3,17 +3,19 @@ import { MoneyInput } from '@byteflow-ui/money-input'
 import { Button } from '@byteflow-ui/button'
 import { Label } from '@byteflow-ui/label'
 import { Input } from '@byteflow-ui/input'
+import { Checkbox } from '@byteflow-ui/checkbox'
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
 import '@byteflow-ui/label/dist/index.css'
 import '@byteflow-ui/input/dist/index.css'
+import '@byteflow-ui/checkbox/dist/index.css'
 import './App.css'
 import './theme.css'
 
-type ComponentType = 'money-input' | 'button' | 'label' | 'input';
+type ComponentType = 'money-input' | 'button' | 'label' | 'input' | 'checkbox';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState<ComponentType>('input')
+  const [activeComponent, setActiveComponent] = useState<ComponentType>('checkbox')
   const [amount, setAmount] = useState(125050) // $1,250.50
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview')
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -97,12 +99,19 @@ function MyComponent() {
         placeholder="••••••••"
         error="La contraseña debe tener al menos 8 caracteres"
       />
-      
-      <Input
-        label="Email (Deshabilitado)"
-        disabled
-        value="victor@byteflow.com"
-      />
+    </div>
+  );
+}`;
+
+  const checkboxCode = `/* Implementación de Checkbox */
+import { Checkbox } from '@byteflow-ui/checkbox';
+
+function MyComponent() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Checkbox label="Acepto los términos" required />
+      <Checkbox label="Suscribirme al newsletter" defaultChecked />
+      <Checkbox label="Opción deshabilitada" disabled />
     </div>
   );
 }`;
@@ -155,7 +164,13 @@ function MyComponent() {
             >
               Input
             </div>
-            <div className="nav-item">Checkbox (Próximamente)</div>
+            <div
+              className={`nav-item ${activeComponent === 'checkbox' ? 'active' : ''}`}
+              onClick={() => setActiveComponent('checkbox')}
+            >
+              Checkbox
+            </div>
+            <div className="nav-item">Radio (Próximamente)</div>
           </div>
         </nav>
       </aside>
@@ -220,12 +235,6 @@ function MyComponent() {
                     <code>{moneyInputCode}</code>
                   </pre>
                 )}
-
-                <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
-                  <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
-                    Propiedades soportadas: <code>label</code>, <code>value</code>, <code>onChange</code>, <code>currencySymbol</code>, <code>locale</code>.
-                  </p>
-                </footer>
               </div>
             </section>
           </>
@@ -283,12 +292,6 @@ function MyComponent() {
                     <code>{buttonCode}</code>
                   </pre>
                 )}
-
-                <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
-                  <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
-                    Propiedades soportadas: <code>variant</code>, <code>size</code>, <code>isLoading</code>, <code>disabled</code>, <code>onClick</code>.
-                  </p>
-                </footer>
               </div>
             </section>
           </>
@@ -329,7 +332,6 @@ function MyComponent() {
                       <div id="input-demo" style={{ padding: '0.75rem 1rem', background: 'var(--bf-canvas-subtle)', border: '1px solid var(--bf-surface-border)', borderRadius: 'var(--bf-radius-md)', color: 'var(--bf-text-muted)', fontSize: '0.875rem' }}>
                         Input Placeholder...
                       </div>
-                      <p style={{ fontSize: '0.75rem', color: 'var(--bf-text-muted)', marginTop: '0.5rem' }}>El asterisco indica que este campo es obligatorio.</p>
                     </div>
 
                     <div style={{ width: '100%' }}>
@@ -344,12 +346,6 @@ function MyComponent() {
                     <code>{labelCode}</code>
                   </pre>
                 )}
-
-                <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
-                  <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
-                    Propiedades soportadas: <code>htmlFor</code>, <code>required</code>, <code>disabled</code>, <code>children</code>.
-                  </p>
-                </footer>
               </div>
             </section>
           </>
@@ -397,22 +393,62 @@ function MyComponent() {
                       placeholder="••••••••"
                       error="La contraseña debe tener al menos 8 caracteres"
                     />
-
-                    <Input
-                      label="Email (Deshabilitado)"
-                      disabled
-                      value="victor@byteflow.com"
-                    />
                   </div>
                 ) : (
                   <pre className="code-block">
                     <code>{inputCode}</code>
                   </pre>
                 )}
+              </div>
+            </section>
+          </>
+        )}
+
+        {activeComponent === 'checkbox' && (
+          <>
+            <header className="content-header">
+              <h2>Checkbox</h2>
+              <p>El componente de selección múltiple con estética premium y soporte para estados de interacción avanzados.</p>
+            </header>
+
+            <section className="component-section">
+              <div className="preview-card">
+                <div className="preview-header">
+                  <h3>Uso Básico & Estados</h3>
+                </div>
+
+                <div className="preview-tabs">
+                  <button
+                    className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('preview')}
+                  >
+                    Vista Previa
+                  </button>
+                  <button
+                    className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('code')}
+                  >
+                    Código
+                  </button>
+                </div>
+
+                {activeTab === 'preview' ? (
+                  <div className="preview-body" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start', maxWidth: '400px', margin: '0 auto' }}>
+                    <Checkbox label="Acepto los términos y condiciones" required />
+                    <Checkbox label="Suscribirme al periódico semanal" defaultChecked />
+                    <Checkbox label="Guardar información de pago para la próxima vez" />
+                    <Checkbox label="Opción deshabilitada" disabled />
+                    <Checkbox label="Opción deshabilitada y seleccionada" disabled defaultChecked />
+                  </div>
+                ) : (
+                  <pre className="code-block">
+                    <code>{checkboxCode}</code>
+                  </pre>
+                )}
 
                 <footer className="preview-footer" style={{ padding: '1rem 2rem', background: 'rgba(0,0,0,0.1)' }}>
                   <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>
-                    Propiedades soportadas: <code>label</code>, <code>error</code>, <code>required</code>, <code>disabled</code>, <code>placeholder</code>, <code>type</code>.
+                    Propiedades soportadas: <code>label</code>, <code>required</code>, <code>disabled</code>, <code>checked</code>, <code>onChange</code>.
                   </p>
                 </footer>
               </div>

@@ -1,0 +1,92 @@
+:root {
+    --bf-checkbox-size: 1.25rem;
+    --bf-checkbox-radius: var(--bf-radius-sm, 0.25rem);
+    --bf-checkbox-bg: var(--bf-canvas-subtle, #f8fafc);
+    --bf-checkbox-border: var(--bf-surface-border, #e2e8f0);
+    --bf-checkbox-checked-bg: var(--bf-accent, #3b82f6);
+    --bf-checkbox-checked-border: var(--bf-accent, #3b82f6);
+    --bf-checkbox-check-color: #ffffff;
+    --bf-checkbox-ring: rgba(59, 130, 246, 0.2);
+}
+
+.bf-checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    user-select: none;
+    font-family: var(--bf-font-sans, inherit);
+    font-size: 0.875rem;
+    color: var(--bf-text-primary, #0f172a);
+}
+
+.bf-checkbox-container--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.bf-checkbox-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.bf-checkbox-custom {
+    position: relative;
+    width: var(--bf-checkbox-size);
+    height: var(--bf-checkbox-size);
+    background-color: var(--bf-checkbox-bg);
+    border: 1px solid var(--bf-checkbox-border);
+    border-radius: var(--bf-checkbox-radius);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.bf-checkbox-input:focus-visible+.bf-checkbox-custom {
+    box-shadow: 0 0 0 2px var(--bf-checkbox-ring);
+    border-color: var(--bf-checkbox-checked-border);
+}
+
+.bf-checkbox-input:checked+.bf-checkbox-custom {
+    background-color: var(--bf-checkbox-checked-bg);
+    border-color: var(--bf-checkbox-checked-border);
+}
+
+.bf-checkbox-checkmark {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bf-checkbox-check-color);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bf-checkbox-input:checked+.bf-checkbox-custom .bf-checkbox-checkmark {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.bf-checkbox-checkmark svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    stroke: currentColor;
+    stroke-width: 3;
+    fill: none;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-checkbox-container {
+    color: var(--bf-text-primary, #f1f5f9);
+}
+
+.dark-theme .bf-checkbox-custom {
+    --bf-checkbox-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-checkbox-border: var(--bf-surface-border, #334155);
+}

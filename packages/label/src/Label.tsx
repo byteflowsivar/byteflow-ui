@@ -2,12 +2,13 @@ import React from 'react';
 import './styles.css';
 
 export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+    as?: 'label' | 'span';
     required?: boolean;
     disabled?: boolean;
 }
 
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-    ({ className = '', required, disabled, children, ...props }, ref) => {
+    ({ className = '', as: Component = 'label', required, disabled, children, ...props }, ref) => {
         const baseClass = 'bf-label';
         const disabledClass = disabled ? `${baseClass}--disabled` : '';
 
@@ -18,8 +19,8 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         ].filter(Boolean).join(' ');
 
         return (
-            <label
-                ref={ref}
+            <Component
+                ref={ref as any}
                 className={combinedClasses}
                 {...props}
             >
@@ -29,7 +30,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
                         *
                     </span>
                 )}
-            </label>
+            </Component>
         );
     }
 );

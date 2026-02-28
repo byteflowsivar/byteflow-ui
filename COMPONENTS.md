@@ -8,3 +8,4 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/button` | `1.0.0` | Botón interactivo para acciones de usuario. | - [Button](./packages/button/README.md) - v1.0.0 |
 | `@byteflow-ui/label` | `1.0.0` | Etiqueta para identificar elementos de la interfaz de usuario. | - [Label](./packages/label/README.md) - v1.0.0 |
 | `@byteflow-ui/input` | `1.0.0` | Campo de entrada de texto genérico. | - [Input](./packages/input/README.md) - v1.0.0 |
+| `@byteflow-ui/checkbox` | `1.0.0` | Componente de casilla de verificación. | - [Checkbox](./packages/checkbox/README.md) - v1.0.0 |
