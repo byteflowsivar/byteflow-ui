@@ -16,6 +16,7 @@
     "@byteflow-ui/label": "*",
     "@byteflow-ui/input": "*",
     "@byteflow-ui/checkbox": "*",
+    "@byteflow-ui/radio": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

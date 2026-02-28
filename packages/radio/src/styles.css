@@ -1,0 +1,92 @@
+:root {
+    --bf-radio-size: 1.25rem;
+    --bf-radio-inner-size: 0.625rem;
+    --bf-radio-bg: var(--bf-canvas-subtle, #f8fafc);
+    --bf-radio-border: var(--bf-surface-border, #e2e8f0);
+    --bf-radio-checked-border: var(--bf-accent, #3b82f6);
+    --bf-radio-dot-color: var(--bf-accent, #3b82f6);
+    --bf-radio-ring: rgba(59, 130, 246, 0.2);
+}
+
+.bf-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bf-radio-group--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.bf-radio-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    user-select: none;
+    font-family: var(--bf-font-sans, inherit);
+    font-size: 0.875rem;
+    color: var(--bf-text-primary, #0f172a);
+}
+
+.bf-radio-container--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.bf-radio-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.bf-radio-custom {
+    position: relative;
+    width: var(--bf-radio-size);
+    height: var(--bf-radio-size);
+    background-color: var(--bf-radio-bg);
+    border: 1px solid var(--bf-radio-border);
+    border-radius: 50%;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.bf-radio-input:focus-visible+.bf-radio-custom {
+    box-shadow: 0 0 0 2px var(--bf-radio-ring);
+    border-color: var(--bf-radio-checked-border);
+}
+
+.bf-radio-input:checked+.bf-radio-custom {
+    border-color: var(--bf-radio-checked-border);
+}
+
+.bf-radio-dot {
+    width: var(--bf-radio-inner-size);
+    height: var(--bf-radio-inner-size);
+    background-color: var(--bf-radio-dot-color);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bf-radio-input:checked+.bf-radio-custom .bf-radio-dot {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-radio-container {
+    color: var(--bf-text-primary, #f1f5f9);
+}
+
+.dark-theme .bf-radio-custom {
+    --bf-radio-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-radio-border: var(--bf-surface-border, #334155);
+}
