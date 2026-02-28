@@ -14,3 +14,9 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/select` | `1.0.0` | Componente de selección genérico (Dropdown). | - [Select](./packages/select/README.md) - v1.0.0 |
 | `@byteflow-ui/switch` | `1.0.0` | Interruptor (Toggle) animado. | - [Switch](./packages/switch/README.md) - v1.0.0 |
 | `@byteflow-ui/tooltip` | `1.0.0` | Información flotante (Tooltip) con 4 posiciones. | - [Tooltip](./packages/tooltip/README.md) - v1.0.0 |
+| `@byteflow-ui/badge` | `1.0.0` | Etiquetas visuales para estados o conteos. | - [Badge](./packages/badge/README.md) - v1.0.0 |
+| `@byteflow-ui/avatar` | `1.0.0` | Representación visual de usuarios con fallbacks. | - [Avatar](./packages/avatar/README.md) - v1.0.0 |
+| `@byteflow-ui/separator` | `1.0.0` | Línea divisoria decorativa o semántica. | - [Separator](./packages/separator/README.md) - v1.0.0 |
+| `@byteflow-ui/skeleton` | `1.0.0` | Marcadores de posición animados para estados de carga. | - [Skeleton](./packages/skeleton/README.md) - v1.0.0 |
+| `@byteflow-ui/spinner` | `1.0.0` | Indicador de carga animado (Spinner) vectorial. | - [Spinner](./packages/spinner/README.md) - v1.0.0 |
+| `@byteflow-ui/card` | `1.0.0` | Contenedores estructurados para contenido relacionado. | - [Card](./packages/card/README.md) - v1.0.0 |

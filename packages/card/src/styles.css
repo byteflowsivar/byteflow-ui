@@ -1,0 +1,57 @@
+:root {
+    --bf-card-bg: var(--bf-canvas, #ffffff);
+    --bf-card-border: var(--bf-surface-border, #e2e8f0);
+    --bf-card-radius: var(--bf-radius-lg, 12px);
+    --bf-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --bf-card-padding: 1.5rem;
+}
+
+.bf-card {
+    background-color: var(--bf-card-bg);
+    border: 1px solid var(--bf-card-border);
+    border-radius: var(--bf-card-radius);
+    box-shadow: var(--bf-card-shadow);
+    color: var(--bf-text-primary);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.bf-card-header {
+    padding: var(--bf-card-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.bf-card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.bf-card-description {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary);
+}
+
+.bf-card-content {
+    padding: var(--bf-card-padding);
+    padding-top: 0;
+    flex: 1;
+}
+
+.bf-card-footer {
+    padding: var(--bf-card-padding);
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dark-theme .bf-card {
+    --bf-card-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-card-border: var(--bf-surface-border, #334155);
+    --bf-card-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+}

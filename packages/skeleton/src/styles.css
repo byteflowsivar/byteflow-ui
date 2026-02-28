@@ -1,0 +1,42 @@
+:root {
+    --bf-skeleton-bg: var(--bf-canvas-subtle, #f1f5f9);
+    --bf-skeleton-pulse-opacity: 0.5;
+}
+
+.bf-skeleton {
+    background-color: var(--bf-skeleton-bg);
+    position: relative;
+    overflow: hidden;
+    animation: bf-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.bf-skeleton--rectangular {
+    border-radius: 0;
+}
+
+.bf-skeleton--circular {
+    border-radius: 50%;
+}
+
+.bf-skeleton--rounded {
+    border-radius: var(--bf-radius-md, 8px);
+}
+
+@keyframes bf-skeleton-pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: var(--bf-skeleton-pulse-opacity);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.dark-theme .bf-skeleton {
+    --bf-skeleton-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-skeleton-pulse-opacity: 0.4;
+}

@@ -1,0 +1,102 @@
+:root {
+    --bf-badge-bg: var(--bf-canvas-subtle, #f1f5f9);
+    --bf-badge-color: var(--bf-text-primary, #0f172a);
+    --bf-badge-border: var(--bf-surface-border, #e2e8f0);
+    --bf-badge-radius: 9999px;
+    --bf-badge-font-size: 0.75rem;
+    --bf-badge-font-weight: 500;
+    --bf-badge-padding-x: 0.625rem;
+    --bf-badge-padding-y: 0.125rem;
+}
+
+.bf-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--bf-badge-radius);
+    padding: var(--bf-badge-padding-y) var(--bf-badge-padding-x);
+    font-size: var(--bf-badge-font-size);
+    font-weight: var(--bf-badge-font-weight);
+    line-height: 1;
+    white-space: nowrap;
+    background-color: var(--bf-badge-bg);
+    color: var(--bf-badge-color);
+    border: 1px solid var(--bf-badge-border);
+    font-family: var(--bf-font-sans, inherit);
+    transition: all 0.2s ease;
+}
+
+/* Variantes */
+.bf-badge--primary {
+    --bf-badge-bg: var(--bf-accent, #3b82f6);
+    --bf-badge-color: #ffffff;
+    --bf-badge-border: transparent;
+}
+
+.bf-badge--secondary {
+    --bf-badge-bg: var(--bf-canvas-subtle, #e2e8f0);
+    --bf-badge-color: var(--bf-text-primary, #0f172a);
+    --bf-badge-border: var(--bf-surface-border, #cbd5e1);
+}
+
+.bf-badge--outline {
+    --bf-badge-bg: transparent;
+    --bf-badge-color: var(--bf-text-primary, #0f172a);
+    --bf-badge-border: var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-badge--success {
+    --bf-badge-bg: #dcfce7;
+    --bf-badge-color: #166534;
+    --bf-badge-border: #bbf7d0;
+}
+
+.bf-badge--warning {
+    --bf-badge-bg: #fef9c3;
+    --bf-badge-color: #854d0e;
+    --bf-badge-border: #fef08a;
+}
+
+.bf-badge--error {
+    --bf-badge-bg: #fee2e2;
+    --bf-badge-color: #991b1b;
+    --bf-badge-border: #fecaca;
+}
+
+/* Tamaños */
+.bf-badge--sm {
+    --bf-badge-font-size: 0.625rem;
+    --bf-badge-padding-x: 0.5rem;
+    --bf-badge-padding-y: 0.1rem;
+}
+
+.bf-badge--lg {
+    --bf-badge-font-size: 0.875rem;
+    --bf-badge-padding-x: 0.75rem;
+    --bf-badge-padding-y: 0.25rem;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-badge {
+    --bf-badge-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-badge-color: var(--bf-text-primary, #f1f5f9);
+    --bf-badge-border: var(--bf-surface-border, #334155);
+}
+
+.dark-theme .bf-badge--success {
+    --bf-badge-bg: rgba(22, 101, 52, 0.2);
+    --bf-badge-color: #4ade80;
+    --bf-badge-border: rgba(34, 197, 94, 0.3);
+}
+
+.dark-theme .bf-badge--warning {
+    --bf-badge-bg: rgba(133, 77, 14, 0.2);
+    --bf-badge-color: #facc15;
+    --bf-badge-border: rgba(234, 179, 8, 0.3);
+}
+
+.dark-theme .bf-badge--error {
+    --bf-badge-bg: rgba(153, 27, 27, 0.2);
+    --bf-badge-color: #f87171;
+    --bf-badge-border: rgba(239, 68, 68, 0.3);
+}

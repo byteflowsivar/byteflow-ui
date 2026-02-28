@@ -9,6 +9,19 @@ import { Textarea } from '@byteflow-ui/textarea'
 import { Select } from '@byteflow-ui/select'
 import { Switch } from '@byteflow-ui/switch'
 import { Tooltip } from '@byteflow-ui/tooltip'
+import { Badge } from '@byteflow-ui/badge'
+import { Avatar } from '@byteflow-ui/avatar'
+import { Separator } from '@byteflow-ui/separator'
+import { Skeleton } from '@byteflow-ui/skeleton'
+import { Spinner } from '@byteflow-ui/spinner'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
+} from '@byteflow-ui/card'
 
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
@@ -20,10 +33,16 @@ import '@byteflow-ui/textarea/dist/index.css'
 import '@byteflow-ui/select/dist/index.css'
 import '@byteflow-ui/switch/dist/index.css'
 import '@byteflow-ui/tooltip/dist/index.css'
+import '@byteflow-ui/badge/dist/index.css'
+import '@byteflow-ui/avatar/dist/index.css'
+import '@byteflow-ui/separator/dist/index.css'
+import '@byteflow-ui/skeleton/dist/index.css'
+import '@byteflow-ui/spinner/dist/index.css'
+import '@byteflow-ui/card/dist/index.css'
 import './App.css'
 import './theme.css'
 
-type ComponentType = 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea' | 'select' | 'switch' | 'tooltip';
+type ComponentType = 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea' | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton' | 'spinner' | 'card';
 type TabType = 'preview' | 'code' | 'styles';
 
 interface StyleDoc {
@@ -120,6 +139,56 @@ const componentStyles: Record<ComponentType, StyleDoc[]> = {
       { name: '--bf-tooltip-bg', desc: 'Color de fondo del globo.' },
       { name: '--bf-tooltip-radius', desc: 'Radio de los bordes.' },
       { name: '--bf-tooltip-z-index', desc: 'Orden de apilamiento.' }
+    ]
+  }],
+  'badge': [{
+    selector: '.bf-badge',
+    description: 'Pequeñas etiquetas para estados o conteos.',
+    variables: [
+      { name: '--bf-badge-bg', desc: 'Color de fondo.' },
+      { name: '--bf-badge-color', desc: 'Color del texto.' },
+      { name: '--bf-badge-radius', desc: 'Radio de los bordes.' }
+    ]
+  }],
+  'avatar': [{
+    selector: '.bf-avatar',
+    description: 'Representación visual de usuarios con fallbacks.',
+    variables: [
+      { name: '--bf-avatar-size', desc: 'Tamaño del componente.' },
+      { name: '--bf-avatar-radius', desc: 'Radio de los bordes.' },
+      { name: '--bf-avatar-bg', desc: 'Color de fondo.' }
+    ]
+  }],
+  'separator': [{
+    selector: '.bf-separator',
+    description: 'Línea divisoria decorativa o semántica.',
+    variables: [
+      { name: '--bf-separator-bg', desc: 'Color de la línea.' }
+    ]
+  }],
+  'skeleton': [{
+    selector: '.bf-skeleton',
+    description: 'Estado de carga animado que imita el diseño del contenido real.',
+    variables: [
+      { name: '--bf-skeleton-bg', desc: 'Color de fondo base.' },
+      { name: '--bf-skeleton-pulse-opacity', desc: 'Nivel de opacidad durante la animación.' }
+    ]
+  }],
+  'spinner': [{
+    selector: '.bf-spinner',
+    description: 'Indicador de progreso circular.',
+    variables: [
+      { name: '--bf-spinner-color', desc: 'Color de la cabeza del spinner.' },
+      { name: '--bf-spinner-track', desc: 'Color de la pista de fondo.' }
+    ]
+  }],
+  'card': [{
+    selector: '.bf-card',
+    description: 'Contenedor principal configurado con sombras y radio de borde premium.',
+    variables: [
+      { name: '--bf-card-bg', desc: 'Color de fondo de la tarjeta.' },
+      { name: '--bf-card-border', desc: 'Color del borde sutil.' },
+      { name: '--bf-card-shadow', desc: 'Sombra para profundidad visual.' }
     ]
   }]
 };
@@ -310,6 +379,169 @@ function App() {
             </div>
           </div>
         );
+      case 'badge':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Badge variant="primary">Principal</Badge>
+              <Badge variant="secondary">Secundario</Badge>
+              <Badge variant="outline">Outline</Badge>
+              <Badge variant="success">Éxito</Badge>
+              <Badge variant="warning">Aviso</Badge>
+              <Badge variant="error">Error</Badge>
+            </div>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <Badge size="sm" variant="primary">Small</Badge>
+              <Badge size="md" variant="primary">Medium</Badge>
+              <Badge size="lg" variant="primary">Large</Badge>
+            </div>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <Badge variant="outline">#Trend</Badge>
+              <Badge variant="secondary">v1.2.0</Badge>
+              <Badge variant="primary" style={{ borderRadius: '4px' }}>Custom Radius</Badge>
+            </div>
+          </div>
+        );
+      case 'avatar':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80" alt="JD" size="sm" />
+              <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80" alt="JD" size="md" />
+              <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80" alt="JD" size="lg" />
+              <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80" alt="JD" size="xl" />
+            </div>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <Avatar alt="Victor Hugo" size="lg" />
+              <Avatar alt="Byteflow UI" size="lg" shape="square" />
+              <Avatar src="broken-link.jpg" alt="Error Handling" size="lg" />
+            </div>
+          </div>
+        );
+      case 'separator':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '500px' }}>
+            <div>
+              <h4>Perfil de Usuario</h4>
+              <p style={{ color: 'var(--bf-text-secondary)', marginBottom: '1rem' }}>Información personal y preferencias.</p>
+              <Separator />
+            </div>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', height: '2rem' }}>
+              <span>Dashboard</span>
+              <Separator orientation="vertical" />
+              <span>Configuración</span>
+              <Separator orientation="vertical" />
+              <span>Ayuda</span>
+            </div>
+            <div style={{ padding: '1rem', border: '1px solid var(--bf-surface-border)', borderRadius: '8px' }}>
+              <p>Contenido superior</p>
+              <Separator style={{ margin: '1rem 0', backgroundColor: 'var(--bf-accent)', opacity: 0.3 }} />
+              <p>Contenido inferior con color personalizado</p>
+            </div>
+          </div>
+        );
+      case 'skeleton':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', width: '100%', maxWidth: '450px' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <Skeleton variant="circular" width={50} height={50} />
+              <div style={{ flex: 1 }}>
+                <Skeleton variant="rectangular" width="70%" height={16} style={{ marginBottom: '8px', borderRadius: '4px' }} />
+                <Skeleton variant="rectangular" width="40%" height={12} style={{ borderRadius: '4px' }} />
+              </div>
+            </div>
+
+            <div>
+              <Skeleton variant="rounded" width="100%" height={200} style={{ marginBottom: '1rem' }} />
+              <Skeleton variant="rectangular" width="100%" height={14} style={{ marginBottom: '0.5rem', borderRadius: '4px' }} />
+              <Skeleton variant="rectangular" width="90%" height={14} style={{ marginBottom: '0.5rem', borderRadius: '4px' }} />
+              <Skeleton variant="rectangular" width="30%" height={14} style={{ borderRadius: '4px' }} />
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <Skeleton variant="rounded" width={80} height={32} />
+              <Skeleton variant="rounded" width={80} height={32} />
+            </div>
+          </div>
+        );
+      case 'spinner':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <Spinner size="sm" />
+              <Spinner size="md" />
+              <Spinner size="lg" />
+              <Spinner size="xl" />
+            </div>
+            <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Spinner size="lg" variant="primary" />
+                <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>Primary</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Spinner size="lg" variant="secondary" />
+                <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>Secondary</p>
+              </div>
+              <div style={{ textAlign: 'center', color: 'var(--bf-accent)' }}>
+                <Spinner size="lg" variant="ghost" />
+                <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>Ghost</p>
+              </div>
+            </div>
+            <Button variant="primary" isLoading>
+              Cargando datos
+            </Button>
+          </div>
+        );
+      case 'card':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', alignItems: 'center' }}>
+            <Card style={{ width: '400px' }}>
+              <CardHeader>
+                <CardTitle>Notificaciones</CardTitle>
+                <CardDescription>Configura cómo recibes las alertas.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>Email Semanal</span>
+                    <Switch defaultChecked />
+                  </div>
+                  <Separator />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>Alertas Push</span>
+                    <Switch />
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter style={{ justifyContent: 'flex-end', gap: '1rem' }}>
+                <Button variant="ghost">Cancelar</Button>
+                <Button variant="primary">Guardar</Button>
+              </CardFooter>
+            </Card>
+
+            <div style={{ display: 'flex', gap: '2rem' }}>
+              <Card style={{ width: '250px' }}>
+                <CardHeader>
+                  <CardTitle style={{ fontSize: '1rem' }}>Ventas Totales</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <h2 style={{ margin: 0 }}>$12,450.00</h2>
+                  <p style={{ color: 'var(--bf-success-color, #10b981)', fontSize: '0.8rem' }}>+15% este mes</p>
+                </CardContent>
+              </Card>
+
+              <Card style={{ width: '250px' }}>
+                <CardHeader>
+                  <CardTitle style={{ fontSize: '1rem' }}>Usuarios Activos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <h2 style={{ margin: 0 }}>1,280</h2>
+                  <p style={{ color: 'var(--bf-accent)', fontSize: '0.8rem' }}>En tiempo real</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -337,6 +569,18 @@ function App() {
         return `import { Switch } from '@byteflow-ui/switch';\n\n<Switch label="Notificaciones" defaultChecked />`;
       case 'tooltip':
         return `import { Tooltip } from '@byteflow-ui/tooltip';\n\n<Tooltip content="Tooltip arriba" position="top">\n  <Button>Hover</Button>\n</Tooltip>`;
+      case 'badge':
+        return `import { Badge } from '@byteflow-ui/badge';\n\n<Badge variant="success">Completado</Badge>\n<Badge variant="primary" size="lg">Nuevo</Badge>`;
+      case 'avatar':
+        return `import { Avatar } from '@byteflow-ui/avatar';\n\n<Avatar src="user.jpg" alt="VH" />\n<Avatar alt="Victor Hugo" size="lg" />\n<Avatar shape="square" alt="UX" />`;
+      case 'separator':
+        return `import { Separator } from '@byteflow-ui/separator';\n\n<Separator />\n<Separator orientation="vertical" />`;
+      case 'skeleton':
+        return `import { Skeleton } from '@byteflow-ui/skeleton';\n\n<Skeleton variant="circular" width={50} height={50} />\n<Skeleton variant="rounded" width="100%" height={200} />\n<Skeleton width="60%" height={16} />`;
+      case 'spinner':
+        return `import { Spinner } from '@byteflow-ui/spinner';\n\n<Spinner size="md" />\n<Spinner size="lg" variant="secondary" />`;
+      case 'card':
+        return `import { \n  Card, \n  CardHeader, \n  CardTitle, \n  CardDescription, \n  CardContent, \n  CardFooter \n} from '@byteflow-ui/card';\n\n<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content here</CardContent>\n</Card>`;
       default:
         return '';
     }
@@ -350,7 +594,7 @@ function App() {
           {theme === 'light' ? '🌙 Modo Oscuro' : '☀️ Modo Claro'}
         </button>
         <nav className="nav-links">
-          {(['money-input', 'button', 'label', 'input', 'checkbox', 'radio', 'textarea', 'select', 'switch', 'tooltip'] as const).map(comp => (
+          {(['money-input', 'button', 'label', 'input', 'checkbox', 'radio', 'textarea', 'select', 'switch', 'tooltip', 'badge', 'avatar', 'separator', 'skeleton', 'spinner', 'card'] as const).map(comp => (
             <div
               key={comp}
               className={`nav-item ${activeComponent === comp ? 'active' : ''}`}

@@ -21,6 +21,12 @@
     "@byteflow-ui/select": "*",
     "@byteflow-ui/switch": "*",
     "@byteflow-ui/tooltip": "*",
+    "@byteflow-ui/badge": "*",
+    "@byteflow-ui/avatar": "*",
+    "@byteflow-ui/separator": "*",
+    "@byteflow-ui/skeleton": "*",
+    "@byteflow-ui/spinner": "*",
+    "@byteflow-ui/card": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

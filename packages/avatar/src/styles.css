@@ -1,0 +1,72 @@
+:root {
+    --bf-avatar-size: 2.5rem;
+    --bf-avatar-bg: var(--bf-canvas-subtle, #f1f5f9);
+    --bf-avatar-color: var(--bf-text-secondary, #64748b);
+    --bf-avatar-border: var(--bf-surface-border, #e2e8f0);
+    --bf-avatar-radius: 9999px;
+    --bf-avatar-font-size: 0.875rem;
+}
+
+.bf-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--bf-avatar-size);
+    height: var(--bf-avatar-size);
+    border-radius: var(--bf-avatar-radius);
+    background-color: var(--bf-avatar-bg);
+    color: var(--bf-avatar-color);
+    overflow: hidden;
+    font-family: var(--bf-font-sans, inherit);
+    font-weight: 500;
+    border: 1px solid var(--bf-avatar-border);
+    user-select: none;
+}
+
+.bf-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bf-avatar-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bf-avatar-bg);
+    font-size: var(--bf-avatar-font-size);
+    text-transform: uppercase;
+}
+
+/* Tamaños */
+.bf-avatar--sm {
+    --bf-avatar-size: 2rem;
+    --bf-avatar-font-size: 0.75rem;
+}
+
+.bf-avatar--lg {
+    --bf-avatar-size: 3.5rem;
+    --bf-avatar-font-size: 1.125rem;
+}
+
+.bf-avatar--xl {
+    --bf-avatar-size: 5rem;
+    --bf-avatar-font-size: 1.5rem;
+}
+
+/* Formas */
+.bf-avatar--square {
+    --bf-avatar-radius: 8px;
+}
+
+/* Modo Oscuro */
+.dark-theme .bf-avatar {
+    --bf-avatar-bg: var(--bf-canvas-subtle, #1e293b);
+    --bf-avatar-color: var(--bf-text-secondary, #94a3b8);
+    --bf-avatar-border: var(--bf-surface-border, #334155);
+}

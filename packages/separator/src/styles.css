@@ -1,0 +1,22 @@
+:root {
+    --bf-separator-bg: var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-separator {
+    background-color: var(--bf-separator-bg);
+    flex-shrink: 0;
+}
+
+.bf-separator--horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.bf-separator--vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.dark-theme .bf-separator {
+    --bf-separator-bg: var(--bf-surface-border, #334155);
+}

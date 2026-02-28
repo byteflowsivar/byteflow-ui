@@ -1,0 +1,96 @@
+:root {
+    --bf-spinner-size-sm: 1rem;
+    --bf-spinner-size-md: 2rem;
+    --bf-spinner-size-lg: 3rem;
+    --bf-spinner-size-xl: 4rem;
+    --bf-spinner-color: var(--bf-accent, #2563eb);
+    --bf-spinner-track: var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-spinner {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.bf-spinner--sm {
+    width: var(--bf-spinner-size-sm);
+    height: var(--bf-spinner-size-sm);
+}
+
+.bf-spinner--md {
+    width: var(--bf-spinner-size-md);
+    height: var(--bf-spinner-size-md);
+}
+
+.bf-spinner--lg {
+    width: var(--bf-spinner-size-lg);
+    height: var(--bf-spinner-size-lg);
+}
+
+.bf-spinner--xl {
+    width: var(--bf-spinner-size-xl);
+    height: var(--bf-spinner-size-xl);
+}
+
+.bf-spinner-svg {
+    animation: bf-spinner-rotate 2s linear infinite;
+    height: 100%;
+    width: 100%;
+}
+
+.bf-spinner-track {
+    stroke: var(--bf-spinner-track);
+}
+
+.bf-spinner-head {
+    stroke: var(--bf-spinner-color);
+    stroke-linecap: round;
+    animation: bf-spinner-dash 1.5s ease-in-out infinite;
+}
+
+.bf-spinner--secondary .bf-spinner-head {
+    stroke: var(--bf-text-secondary);
+}
+
+.bf-spinner--ghost .bf-spinner-head {
+    stroke: currentColor;
+}
+
+@keyframes bf-spinner-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bf-spinner-dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+.bf-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.dark-theme .bf-spinner {
+    --bf-spinner-track: var(--bf-surface-border, #334155);
+}
