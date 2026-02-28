@@ -2,36 +2,35 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .demo-container {
-  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.demo-header h1 {
+  margin: 0;
+  font-size: 3rem;
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
 }
 
 .card {
-  background: white;
-  padding: 3rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-h1 {
   margin: 0;
   color: #1e293b;
   font-size: 1.75rem;
