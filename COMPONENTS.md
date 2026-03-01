@@ -27,3 +27,8 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/empty` | `1.0.0` | Gestión elegante de estados vacíos y feedback. | - [Empty](./packages/empty/README.md) - v1.0.0 |
 | `@byteflow-ui/item` | `1.0.0` | Elemento base para listas y menús dinámicos. | - [Item](./packages/item/README.md) - v1.0.0 |
 | `@byteflow-ui/field` | `1.0.0` | Componente compuesto para formularios con validación. | - [Field](./packages/field/README.md) - v1.0.0 |
+| `@byteflow-ui/slider` | `1.0.0` | Control deslizante para selección de valores numéricos. | - [Slider](./packages/slider/README.md) - v1.0.0 |
+| `@byteflow-ui/toggle` | `1.0.0` | Botón de dos estados (on/off) con feedback visual claro. | - [Toggle](./packages/toggle/README.md) - v1.0.0 |
+| `@byteflow-ui/toggle-group` | `1.0.0` | Conjunto de botones de toggle para selección única o múltiple. | - [Toggle Group](./packages/toggle-group/README.md) - v1.0.0 |
+| `@byteflow-ui/input-group` | `1.0.0` | Contenedor para Input que permite añadir prefijos/sufijos. | - [Input Group](./packages/input-group/README.md) - v1.0.0 |
+| `@byteflow-ui/input-otp` | `1.0.0` | Input especializado para códigos de verificación (One-Time Password). | - [Input OTP](./packages/input-otp/README.md) - v1.0.0 |

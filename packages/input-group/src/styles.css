@@ -1,0 +1,52 @@
+.bf-input-group {
+    display: inline-flex;
+    align-items: stretch;
+    width: auto;
+    position: relative;
+    border-radius: var(--bf-radius-md);
+    overflow: hidden;
+    box-shadow: var(--bf-shadow-sm);
+    transition: box-shadow 0.2s ease;
+}
+
+.bf-input-group:focus-within {
+    box-shadow: 0 0 0 2px var(--bf-canvas), 0 0 0 4px var(--bf-accent);
+}
+
+.bf-input-group--full-width {
+    display: flex;
+    width: 100%;
+}
+
+/* Manejo de elementos hijos (Inputs, Buttons, Text) */
+.bf-input-group>* {
+    border-radius: 0 !important;
+    border-right-width: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+.bf-input-group>*:last-child {
+    border-right-width: 1px !important;
+}
+
+.bf-input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0 0.875rem;
+    background-color: var(--bf-surface-subtle);
+    color: var(--bf-text-secondary);
+    border: 1px solid var(--bf-surface-border);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+/* Integración específica con @byteflow-ui/input si está presente en el DOM */
+.bf-input-group .bf-input-container {
+    flex: 1;
+}
+
+.bf-input-group .bf-input {
+    border-radius: 0 !important;
+    height: 100% !important;
+}

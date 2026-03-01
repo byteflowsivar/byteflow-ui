@@ -1,0 +1,37 @@
+{
+    "name": "@byteflow-ui/toggle-group",
+    "version": "1.0.0",
+    "description": "Conjunto de botones de toggle para selección única o múltiple.",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "lint": "eslint src --ext .ts,.tsx"
+    },
+    "keywords": [
+        "react",
+        "ui",
+        "component",
+        "toggle-group",
+        "button",
+        "byteflow"
+    ],
+    "author": "Victor Hugo Cornejo Calderon",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">=18",
+        "react-dom": ">=18"
+    },
+    "dependencies": {
+        "@byteflow-ui/toggle": "^1.0.0"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.2",
+        "typescript": "^5.3.3"
+    }
+}

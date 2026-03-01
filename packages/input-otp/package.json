@@ -1,0 +1,34 @@
+{
+    "name": "@byteflow-ui/input-otp",
+    "version": "1.0.0",
+    "description": "Input especializado para códigos de verificación (One-Time Password).",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "lint": "eslint src --ext .ts,.tsx"
+    },
+    "keywords": [
+        "react",
+        "ui",
+        "component",
+        "otp",
+        "input",
+        "byteflow"
+    ],
+    "author": "Victor Hugo Cornejo Calderon",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">=18",
+        "react-dom": ">=18"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.2",
+        "typescript": "^5.3.3"
+    }
+}

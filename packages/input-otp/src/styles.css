@@ -1,0 +1,57 @@
+.bf-input-otp {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+}
+
+.bf-input-otp-slot {
+    width: 3rem;
+    height: 3.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bf-text-primary);
+    background-color: var(--bf-surface);
+    border: 2px solid var(--bf-surface-border);
+    border-radius: var(--bf-radius-md);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.bf-input-otp-slot:focus {
+    border-color: var(--bf-accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+}
+
+.bf-input-otp-slot:disabled {
+    background-color: var(--bf-surface-subtle);
+    border-color: var(--bf-surface-border);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.bf-input-otp-separator {
+    width: 8px;
+    height: 2px;
+    background-color: var(--bf-surface-border);
+    border-radius: 999px;
+    margin: 0 0.25rem;
+}
+
+.bf-input-otp--disabled {
+    pointer-events: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.bf-input-otp-slot::-webkit-outer-spin-button,
+.bf-input-otp-slot::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.bf-input-otp-slot[type=number] {
+    -moz-appearance: textfield;
+}

@@ -31,12 +31,11 @@ Este plan define el orden estratégico de creación para el kit de componentes U
 18. **Item:** Utilitario para elementos repetitivos (listas).
 19. **Field:** Contenedor de Formulario que junta `Label` + `Input` + Errores.
 
-## Fase 3: Inputs Avanzados & Text Extensions
+## [x] Fase 3: Inputs Avanzados & Text Extensions (Completo)
 *Variantes y adiciones que extienden las capacidades nativas de HTML de captura.*
 
 20. **Textarea:** Inputs expansivos.
 21. **Select:** Selector estándar (usando base nativa accesible).
-22. **Native Select:** Selector del SO puro sin interfaz custom (para mobile).
 23. **Slider:** Componente análogo para valores acotados numéricamente.
 24. **Toggle:** Botones con estado on/off.
 25. **Toggle Group:** Grupos de configuración de switch de vista.

@@ -1,0 +1,41 @@
+.bf-toggle-group {
+    display: inline-flex;
+    gap: 1px;
+    background-color: var(--bf-surface-border);
+    border-radius: var(--bf-radius-md);
+    padding: 1px;
+    overflow: hidden;
+}
+
+.bf-toggle-group--outline {
+    background-color: transparent;
+    border: 1px solid var(--bf-surface-border);
+    gap: 0;
+    padding: 0;
+}
+
+.bf-toggle-group--ghost {
+    background-color: transparent;
+    gap: 0.25rem;
+    padding: 0;
+}
+
+.bf-toggle-group-item {
+    border-radius: 0;
+}
+
+/* Redondear esquinas exteriores */
+.bf-toggle-group>.bf-toggle-group-item:first-child {
+    border-top-left-radius: calc(var(--bf-radius-md) - 1px);
+    border-bottom-left-radius: calc(var(--bf-radius-md) - 1px);
+}
+
+.bf-toggle-group>.bf-toggle-group-item:last-child {
+    border-top-right-radius: calc(var(--bf-radius-md) - 1px);
+    border-bottom-right-radius: calc(var(--bf-radius-md) - 1px);
+}
+
+/* Espaciados en modo ghost */
+.bf-toggle-group--ghost>.bf-toggle-group-item {
+    border-radius: var(--bf-radius-sm);
+}

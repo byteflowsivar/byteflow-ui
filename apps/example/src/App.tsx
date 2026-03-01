@@ -33,6 +33,11 @@ import {
   BreadcrumbPage
 } from '@byteflow-ui/breadcrumb'
 import { AspectRatio } from '@byteflow-ui/aspect-ratio'
+import { Slider } from '@byteflow-ui/slider'
+import { Toggle } from '@byteflow-ui/toggle'
+import { ToggleGroup, ToggleGroupItem } from '@byteflow-ui/toggle-group'
+import { InputGroup, InputGroupText } from '@byteflow-ui/input-group'
+import { InputOTP } from '@byteflow-ui/input-otp'
 import {
   Empty,
   EmptyIcon,
@@ -64,6 +69,11 @@ import '@byteflow-ui/scroll-area/dist/index.css'
 import '@byteflow-ui/tabs/dist/index.css'
 import '@byteflow-ui/breadcrumb/dist/index.css'
 import '@byteflow-ui/aspect-ratio/dist/index.css'
+import '@byteflow-ui/slider/dist/index.css'
+import '@byteflow-ui/toggle/dist/index.css'
+import '@byteflow-ui/toggle-group/dist/index.css'
+import '@byteflow-ui/input-group/dist/index.css'
+import '@byteflow-ui/input-otp/dist/index.css'
 import '@byteflow-ui/empty/dist/index.css'
 import '@byteflow-ui/item/dist/index.css'
 import '@byteflow-ui/field/dist/index.css'
@@ -74,14 +84,14 @@ type ComponentType =
   | 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea'
   | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton'
   | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
-  | 'empty' | 'item' | 'field';
+  | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp';
 
 type TabType = 'preview' | 'code' | 'styles';
 
 const categories = [
   {
     title: 'Fundamentos',
-    components: ['button', 'label', 'input', 'textarea', 'select', 'checkbox', 'radio', 'switch'] as ComponentType[]
+    components: ['button', 'label', 'input', 'textarea', 'select', 'checkbox', 'radio', 'switch', 'slider', 'toggle', 'toggle-group', 'input-group', 'input-otp'] as ComponentType[]
   },
   {
     title: 'Visualización',
@@ -242,7 +252,7 @@ function App() {
         return (
           <div style={{ display: 'flex', gap: '2rem' }}>
             <Tooltip content="Información extra">
-              <Button variant="outline">Hover para ver Tooltip</Button>
+              <Button variant="secondary">Hover para ver Tooltip</Button>
             </Tooltip>
             <Tooltip content="Acción destructiva">
               <Button variant="ghost">🗑️ Borrar</Button>
@@ -290,7 +300,7 @@ function App() {
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Skeleton circle />
+              <Skeleton width={40} height={40} style={{ borderRadius: '50%' }} />
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <Skeleton width="100%" height={12} />
                 <Skeleton width="60%" height={12} />
@@ -356,36 +366,38 @@ function App() {
 
       case 'tabs':
         return (
-          <Tabs defaultValue="perfil" style={{ width: '450px' }}>
-            <TabsList>
-              <TabsTrigger value="perfil">Perfil</TabsTrigger>
-              <TabsTrigger value="seguridad">Seguridad</TabsTrigger>
-              <TabsTrigger value="notif">Alertas</TabsTrigger>
-            </TabsList>
-            <div style={{ marginTop: '1rem' }}>
-              <TabsContent value="perfil">
-                <Card>
-                  <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
-                    <Avatar size="xl" alt="VH" style={{ margin: '0 auto 1rem' }} />
-                    <h3 style={{ margin: 0 }}>Victor Hugo</h3>
-                    <p style={{ color: 'var(--bf-text-muted)', fontSize: '0.9rem' }}>Arquitecto UI</p>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="seguridad">
-                <Item>
-                  <ItemContent>Verificación en dos pasos</ItemContent>
-                  <ItemSuffix><Switch defaultChecked /></ItemSuffix>
-                </Item>
-              </TabsContent>
-              <TabsContent value="notif">
-                <Empty>
-                  <EmptyIcon>🔔</EmptyIcon>
-                  <EmptyTitle>Sin alertas</EmptyTitle>
-                </Empty>
-              </TabsContent>
-            </div>
-          </Tabs>
+          <div style={{ width: '450px' }}>
+            <Tabs defaultValue="perfil">
+              <TabsList>
+                <TabsTrigger value="perfil">Perfil</TabsTrigger>
+                <TabsTrigger value="seguridad">Seguridad</TabsTrigger>
+                <TabsTrigger value="notif">Alertas</TabsTrigger>
+              </TabsList>
+              <div style={{ marginTop: '1rem' }}>
+                <TabsContent value="perfil">
+                  <Card>
+                    <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
+                      <Avatar size="xl" alt="VH" style={{ margin: '0 auto 1rem' }} />
+                      <h3 style={{ margin: 0 }}>Victor Hugo</h3>
+                      <p style={{ color: 'var(--bf-text-muted)', fontSize: '0.9rem' }}>Arquitecto UI</p>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="seguridad">
+                  <Item>
+                    <ItemContent>Verificación en dos pasos</ItemContent>
+                    <ItemSuffix><Switch defaultChecked /></ItemSuffix>
+                  </Item>
+                </TabsContent>
+                <TabsContent value="notif">
+                  <Empty>
+                    <EmptyIcon>🔔</EmptyIcon>
+                    <EmptyTitle>Sin alertas</EmptyTitle>
+                  </Empty>
+                </TabsContent>
+              </div>
+            </Tabs>
+          </div>
         );
 
       case 'breadcrumb':
@@ -466,21 +478,121 @@ function App() {
           </Card>
         );
 
+      case 'slider':
+        return (
+          <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <Slider
+              label="Intensidad de Brillo"
+              defaultValue={75}
+              onChange={(v: number) => console.log('Slider:', v)}
+            />
+            <Slider
+              label="Volumen de Sistema"
+              min={0}
+              max={100}
+              step={10}
+              defaultValue={30}
+            />
+            <Slider
+              label="Control Deshabilitado"
+              disabled
+              defaultValue={50}
+            />
+          </div>
+        );
+
+      case 'toggle':
+        return (
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <Toggle aria-label="Negrita" size="lg">B</Toggle>
+            <Toggle aria-label="Itálica" variant="outline">I</Toggle>
+            <Toggle aria-label="Subrayado" variant="ghost">U</Toggle>
+            <Toggle disabled>D</Toggle>
+          </div>
+        );
+
+      case 'toggle-group':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+              <Label style={{ display: 'block', marginBottom: '1rem' }}>Alineación (Única)</Label>
+              <ToggleGroup type="single" defaultValue="center" variant="outline">
+                <ToggleGroupItem value="left">Izquierda</ToggleGroupItem>
+                <ToggleGroupItem value="center">Centro</ToggleGroupItem>
+                <ToggleGroupItem value="right">Derecha</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+            <div>
+              <Label style={{ display: 'block', marginBottom: '1rem' }}>Formato (Múltiple)</Label>
+              <ToggleGroup type="multiple" defaultValue={['bold']} variant="default">
+                <ToggleGroupItem value="bold">B</ToggleGroupItem>
+                <ToggleGroupItem value="italic">I</ToggleGroupItem>
+                <ToggleGroupItem value="underline">U</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+          </div>
+        );
+
+      case 'input-group':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '500px' }}>
+            <InputGroup fullWidth>
+              <InputGroupText>https://</InputGroupText>
+              <Input placeholder="byteflow.ui" />
+              <Button>Copiar</Button>
+            </InputGroup>
+
+            <InputGroup>
+              <InputGroupText>@</InputGroupText>
+              <Input placeholder="usuario" />
+            </InputGroup>
+
+            <InputGroup fullWidth>
+              <Input type="email" placeholder="tu@email.com" />
+              <Button variant="secondary">Suscribirse</Button>
+            </InputGroup>
+          </div>
+        );
+
+      case 'input-otp':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+              <Label style={{ display: 'block', marginBottom: '1rem' }}>Código de Verificación (6 dígitos)</Label>
+              <InputOTP
+                maxLength={6}
+                onComplete={(v) => console.log('OTP Completo:', v)}
+              />
+            </div>
+            <div>
+              <Label style={{ display: 'block', marginBottom: '1rem' }}>Código Simple (4 caracteres)</Label>
+              <InputOTP
+                maxLength={4}
+                numericOnly={false}
+              />
+            </div>
+            <div>
+              <Label style={{ display: 'block', marginBottom: '1rem' }}>Deshabilitado</Label>
+              <InputOTP maxLength={4} disabled defaultValue="1234" />
+            </div>
+          </div>
+        );
+
       default: return null;
     }
   }
 
   const getCodeString = () => {
     const ComponentName = activeComponent.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
-    return `import { ${ComponentName} } from '@byteflow-ui/${activeComponent}';
+    return `import {${ComponentName} } from '@byteflow-ui/${activeComponent}';
 
-function App() {
+            function App() {
   return (
-    <${ComponentName}
-      label="Ejemplo"
-      // ... otras propiedades
-    />
-  );
+            <${ComponentName}
+              label="Ejemplo"
+            // ... otras propiedades
+            />
+            );
 }`;
   }
 
