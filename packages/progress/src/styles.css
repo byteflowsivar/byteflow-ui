@@ -1,0 +1,38 @@
+.bf-progress {
+    position: relative;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: var(--bf-surface-hover, rgba(255, 255, 255, 0.1));
+}
+
+.bf-progress-indicator {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    background: var(--bf-primary, #6366f1);
+    transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    border-radius: 9999px;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.bf-progress--indeterminate .bf-progress-indicator {
+    width: 50%;
+    transform: translateX(-100%);
+    animation: bf-progress-indeterminate 1.5s infinite linear;
+}
+
+@keyframes bf-progress-indeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(50%);
+    }
+
+    100% {
+        transform: translateX(150%);
+    }
+}

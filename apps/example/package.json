@@ -34,6 +34,13 @@
     "@byteflow-ui/empty": "*",
     "@byteflow-ui/item": "*",
     "@byteflow-ui/field": "*",
+    "@byteflow-ui/slider": "*",
+    "@byteflow-ui/toggle": "*",
+    "@byteflow-ui/toggle-group": "*",
+    "@byteflow-ui/input-group": "*",
+    "@byteflow-ui/input-otp": "*",
+    "@byteflow-ui/alert": "*",
+    "@byteflow-ui/progress": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

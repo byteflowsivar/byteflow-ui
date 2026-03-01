@@ -32,3 +32,5 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/toggle-group` | `1.0.0` | Conjunto de botones de toggle para selección única o múltiple. | - [Toggle Group](./packages/toggle-group/README.md) - v1.0.0 |
 | `@byteflow-ui/input-group` | `1.0.0` | Contenedor para Input que permite añadir prefijos/sufijos. | - [Input Group](./packages/input-group/README.md) - v1.0.0 |
 | `@byteflow-ui/input-otp` | `1.0.0` | Input especializado para códigos de verificación (One-Time Password). | - [Input OTP](./packages/input-otp/README.md) - v1.0.0 |
+| `@byteflow-ui/alert` | `1.0.0` | Componente de alerta para retroalimentación de estado. | - [Alert](./packages/alert/README.md) - v1.0.0 |
+| `@byteflow-ui/progress` | `1.0.0` | Barra de progreso visual animada. | - [Progress](./packages/progress/README.md) - v1.0.0 |

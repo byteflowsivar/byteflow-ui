@@ -38,6 +38,8 @@ import { Toggle } from '@byteflow-ui/toggle'
 import { ToggleGroup, ToggleGroupItem } from '@byteflow-ui/toggle-group'
 import { InputGroup, InputGroupText } from '@byteflow-ui/input-group'
 import { InputOTP } from '@byteflow-ui/input-otp'
+import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert'
+import { Progress } from '@byteflow-ui/progress'
 import {
   Empty,
   EmptyIcon,
@@ -74,6 +76,8 @@ import '@byteflow-ui/toggle/dist/index.css'
 import '@byteflow-ui/toggle-group/dist/index.css'
 import '@byteflow-ui/input-group/dist/index.css'
 import '@byteflow-ui/input-otp/dist/index.css'
+import '@byteflow-ui/alert/dist/index.css'
+import '@byteflow-ui/progress/dist/index.css'
 import '@byteflow-ui/empty/dist/index.css'
 import '@byteflow-ui/item/dist/index.css'
 import '@byteflow-ui/field/dist/index.css'
@@ -84,7 +88,8 @@ type ComponentType =
   | 'money-input' | 'button' | 'label' | 'input' | 'checkbox' | 'radio' | 'textarea'
   | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton'
   | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
-  | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp';
+  | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp'
+  | 'alert' | 'progress';
 
 type TabType = 'preview' | 'code' | 'styles';
 
@@ -95,7 +100,7 @@ const categories = [
   },
   {
     title: 'Visualización',
-    components: ['badge', 'avatar', 'separator', 'skeleton', 'spinner', 'tooltip'] as ComponentType[]
+    components: ['badge', 'avatar', 'separator', 'skeleton', 'spinner', 'tooltip', 'alert', 'progress'] as ComponentType[]
   },
   {
     title: 'Layout & Estructura',
@@ -574,6 +579,51 @@ function App() {
             <div>
               <Label style={{ display: 'block', marginBottom: '1rem' }}>Deshabilitado</Label>
               <InputOTP maxLength={4} disabled defaultValue="1234" />
+            </div>
+          </div>
+        );
+
+      case 'alert':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '500px' }}>
+            <Alert variant="info">
+              <AlertTitle>Nueva Actualización</AlertTitle>
+              <AlertDescription>Una nueva versión de la librería está disponible para descargar.</AlertDescription>
+            </Alert>
+            <Alert variant="success">
+              <AlertTitle>Éxito</AlertTitle>
+              <AlertDescription>Tu perfil ha sido actualizado correctamente.</AlertDescription>
+            </Alert>
+            <Alert variant="warning">
+              <AlertTitle>Atención</AlertTitle>
+              <AlertDescription>Tu suscripción expirará en 3 días. Por favor renueva pronto.</AlertDescription>
+            </Alert>
+            <Alert variant="error">
+              <AlertTitle>Error de Sistema</AlertTitle>
+              <AlertDescription>No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.</AlertDescription>
+            </Alert>
+          </div>
+        );
+
+      case 'progress':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', width: '400px' }}>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                <Label>Descargando Recursos</Label>
+                <span style={{ fontSize: '0.8rem', color: 'var(--bf-text-muted)' }}>60%</span>
+              </div>
+              <Progress value={60} />
+            </div>
+
+            <div>
+              <Label style={{ display: 'block', marginBottom: '0.5rem' }}>Sincronizando Datos</Label>
+              <Progress value={30} />
+            </div>
+
+            <div>
+              <Label style={{ display: 'block', marginBottom: '0.5rem' }}>Estado Indeterminado</Label>
+              <Progress />
             </div>
           </div>
         );
