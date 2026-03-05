@@ -4,43 +4,43 @@ Este plan define el orden estratégico de creación para el kit de componentes U
 
 ---
 
-## Fase 1: Fundamentos (Core UI - Alta Frecuencia)
+## [x] Fase 1: Fundamentos (Core UI - Alta Frecuencia) (Completo)
 *Son los componentes atómicos esenciales. Casi todas las páginas y otros componentes complejos dependerán de ellos.*
 
-1. **Button:** El componente interactivo más básico y ubicuo.
-2. **Label:** Base para accesibilidad en todos los formularios.
-3. **Input:** Interacción de texto fundamental.
-4. **Checkbox:** Interacción booleana estándar.
-5. **Switch:** Variante moderna de Checkbox.
-6. **Radio Group:** Selección única entre pocas opciones.
-7. **Badge:** Etiquetas e indicadores visuales de estado cortos.
-8. **Avatar:** Representación visual de usuarios frecuente.
-9. **Separator:** División estructural visual estándar.
-10. **Skeleton:** Base para estados de carga amigables.
-11. **Spinner:** Alternativa simple para estados de carga (fetching).
+- [x] 1. **Button:** El componente interactivo más básico y ubicuo.
+- [x] 2. **Label:** Base para accesibilidad en todos los formularios.
+- [x] 3. **Input:** Interacción de texto fundamental.
+- [x] 4. **Checkbox:** Interacción booleana estándar.
+- [x] 5. **Switch:** Variante moderna de Checkbox.
+- [x] 6. **Radio Group:** Selección única entre pocas opciones.
+- [x] 7. **Badge:** Etiquetas e indicadores visuales de estado cortos.
+- [x] 8. **Avatar:** Representación visual de usuarios frecuente.
+- [x] 9. **Separator:** División estructural visual estándar.
+- [x] 10. **Skeleton:** Base para estados de carga amigables.
+- [x] 11. **Spinner:** Alternativa simple para estados de carga (fetching).
 
-## Fase 2: Layout & Estructura Básica
+## [x] Fase 2: Layout & Estructura Básica (Completo)
 *Ayudan a organizar la información en pantalla una vez que tenemos los atómicos.*
 
-12. **Card:** Contenedor fundamental de agrupar información en tarjetas.
-13. **Scroll Area:** Manejo nativo de scroll personalizado y consistente.
-14. **Tabs:** Navegación local entre vistas mutuamente excluyentes.
-15. **Breadcrumb:** Orientación de navegación jerárquica.
-16. **Aspect Ratio:** Utilidad para incrustar contenedores reactivos (video, imágenes).
-17. **Empty:** Estado fundamental para listas o tablas sin contenido.
-18. **Item:** Utilitario para elementos repetitivos (listas).
-19. **Field:** Contenedor de Formulario que junta `Label` + `Input` + Errores.
+- [x] 12. **Card:** Contenedor fundamental de agrupar información en tarjetas.
+- [x] 13. **Scroll Area:** Manejo nativo de scroll personalizado y consistente.
+- [x] 14. **Tabs:** Navegación local entre vistas mutuamente excluyentes.
+- [x] 15. **Breadcrumb:** Orientación de navegación jerárquica.
+- [x] 16. **Aspect Ratio:** Utilidad para incrustar contenedores reactivos (video, imágenes).
+- [x] 17. **Empty:** Estado fundamental para listas o tablas sin contenido.
+- [x] 18. **Item:** Utilitario para elementos repetitivos (listas).
+- [x] 19. **Field:** Contenedor de Formulario que junta `Label` + `Input` + Errores.
 
 ## [x] Fase 3: Inputs Avanzados & Text Extensions (Completo)
 *Variantes y adiciones que extienden las capacidades nativas de HTML de captura.*
 
-20. **Textarea:** Inputs expansivos.
-21. **Select:** Selector estándar (usando base nativa accesible).
-23. **Slider:** Componente análogo para valores acotados numéricamente.
-24. **Toggle:** Botones con estado on/off.
-25. **Toggle Group:** Grupos de configuración de switch de vista.
-26. **Input Group:** Inputs que combinan texto con íconos, botones o prefijos.
-27. **Input OTP:** Input especializado en contraseñas o pins (One Time Password).
+- [x] 20. **Textarea:** Inputs expansivos.
+- [x] 21. **Select:** Selector estándar (usando base nativa accesible).
+- [x] 23. **Slider:** Componente análogo para valores acotados numéricamente.
+- [x] 24. **Toggle:** Botones con estado on/off.
+- [x] 25. **Toggle Group:** Grupos de configuración de switch de vista.
+- [x] 26. **Input Group:** Inputs que combinan texto con íconos, botones o prefijos.
+- [x] 27. **Input OTP:** Input especializado en contraseñas o pins (One Time Password).
 
 ## [x] Fase 4: Overlays y Feedback (Completo)
 - [x] 28. **Alert** (READY)
