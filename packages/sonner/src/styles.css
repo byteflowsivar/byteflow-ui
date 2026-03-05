@@ -1,0 +1,96 @@
+.bf-sonner-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 2100;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    pointer-events: none;
+    perspective: 1000px;
+}
+
+.bf-sonner-toast {
+    position: absolute;
+    bottom: 0;
+    pointer-events: auto;
+    width: 22rem;
+    max-width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--bf-surface, rgba(23, 23, 23, 0.9));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--bf-surface-border, rgba(255, 255, 255, 0.12));
+    border-radius: var(--bf-radius-lg, 12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: bottom center;
+}
+
+.bf-sonner-toast--success {
+    border-left: 3px solid #10b981;
+}
+
+.bf-sonner-toast--error {
+    border-left: 3px solid #ef4444;
+}
+
+.bf-sonner-toast--warning {
+    border-left: 3px solid #f59e0b;
+}
+
+.bf-sonner-toast--info {
+    border-left: 3px solid #3b82f6;
+}
+
+.bf-sonner-content {
+    flex: 1;
+}
+
+.bf-sonner-message {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--bf-text-primary, #ffffff);
+}
+
+.bf-sonner-description {
+    font-size: 0.8rem;
+    color: var(--bf-text-secondary, rgba(255, 255, 255, 0.7));
+    margin-top: 0.15rem;
+}
+
+.bf-sonner-close {
+    background: transparent;
+    border: none;
+    color: var(--bf-text-muted, rgba(255, 255, 255, 0.3));
+    cursor: pointer;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.bf-sonner-close:hover {
+    color: var(--bf-text-primary, #ffffff);
+}
+
+/* Slide in animation for new items */
+@keyframes bf-sonner-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.bf-sonner-toast:last-child {
+    animation: bf-sonner-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

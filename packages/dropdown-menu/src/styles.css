@@ -1,0 +1,84 @@
+.bf-dropdown-root {
+    display: inline-block;
+}
+
+.bf-dropdown-content {
+    min-width: 13rem;
+    padding: 0.35rem;
+    background: var(--bf-surface, rgba(23, 23, 23, 0.8));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--bf-surface-border, rgba(255, 255, 255, 0.1));
+    border-radius: var(--bf-radius-lg, 12px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    color: var(--bf-text-primary, #ffffff);
+    animation: bf-dropdown-slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.bf-dropdown-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary, rgba(255, 255, 255, 0.7));
+    background: transparent;
+    border: none;
+    border-radius: var(--bf-radius-md, 8px);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.bf-dropdown-item:hover {
+    background: var(--bf-surface-hover, rgba(255, 255, 255, 0.1));
+    color: var(--bf-text-primary, #ffffff);
+}
+
+.bf-dropdown-item:active {
+    transform: scale(0.98);
+}
+
+.bf-dropdown-item:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.bf-dropdown-label {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bf-text-muted, rgba(255, 255, 255, 0.5));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bf-dropdown-separator {
+    height: 1px;
+    background: var(--bf-surface-border, rgba(255, 255, 255, 0.08));
+    margin: 0.25rem 0;
+}
+
+.bf-dropdown-shortcut {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--bf-text-muted, rgba(255, 255, 255, 0.4));
+    font-family: inherit;
+    padding-left: 1rem;
+}
+
+@keyframes bf-dropdown-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

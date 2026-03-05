@@ -34,3 +34,22 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/input-otp` | `1.0.0` | Input especializado para códigos de verificación (One-Time Password). | - [Input OTP](./packages/input-otp/README.md) - v1.0.0 |
 | `@byteflow-ui/alert` | `1.0.0` | Componente de alerta para retroalimentación de estado. | - [Alert](./packages/alert/README.md) - v1.0.0 |
 | `@byteflow-ui/progress` | `1.0.0` | Barra de progreso visual animada. | - [Progress](./packages/progress/README.md) - v1.0.0 |
+| `@byteflow-ui/dialog` | `1.0.0` | Componente de diálogo modal premium para el kit Byteflow-UI. | - [Dialog](./packages/dialog/README.md) - v1.0.0 |
+| `@byteflow-ui/alert-dialog` | `1.0.0` | Componente de alerta crítica basado en modal. | - [Alert Dialog](./packages/alert-dialog/README.md) - v1.0.0 |
+| `@byteflow-ui/popover` | `1.0.0` | Componente de popover premium basado en portal. | - [Popover](./packages/popover/README.md) - v1.0.0 |
+| `@byteflow-ui/dropdown-menu` | `1.0.0` | Menú desplegable premium con soporte para atajos y separadores. | - [Dropdown Menu](./packages/dropdown-menu/README.md) - v1.0.0 |
+| `@byteflow-ui/sheet` | `1.0.0` | Panel superpuesto (`Sheet`) o cajón inferior (`Drawer`) premium. | - [Sheet](./packages/sheet/README.md) - v1.0.0 |
+| `@byteflow-ui/toast` | `1.0.0` | Sistema de notificaciones flotantes apiladas. | - [Toast](./packages/toast/README.md) - v1.0.0 |
+| `@byteflow-ui/sonner` | `1.0.0` | Notificaciones apiladas (stacked) con diseño premium. | - [Sonner](./packages/sonner/README.md) - v1.0.0 |
+| `@byteflow-ui/hover-card` | `1.0.0` | Tarjetas informativas que aparecen al posar el cursor. | - [Hover Card](./packages/hover-card/README.md) - v1.0.0 |
+
+| `@byteflow-ui/hover-card` | `1.0.0` | Tarjetas informativas que aparecen al posar el cursor. | - [Hover Card](./packages/hover-card/README.md) - v1.0.0 |
+| `@byteflow-ui/context-menu` | `1.0.0` | Menú desplegable que se activa con el clic derecho. | - [Context Menu](./packages/context-menu/README.md) - v1.0.0 |
+
+
+
+
+
+
+
+

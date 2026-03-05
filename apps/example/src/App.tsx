@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+
 import { MoneyInput } from '@byteflow-ui/money-input'
 import { Button } from '@byteflow-ui/button'
 import { Label } from '@byteflow-ui/label'
@@ -50,6 +51,52 @@ import {
 import { Item, ItemPrefix, ItemContent, ItemSuffix } from '@byteflow-ui/item'
 import { Field, FieldLabel, FieldDescription, FieldError } from '@byteflow-ui/field'
 
+// Fase 4 Imports
+import {
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter
+} from '@byteflow-ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter
+} from '@byteflow-ui/alert-dialog'
+import { Popover, PopoverTrigger, PopoverContent } from '@byteflow-ui/popover'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut
+} from '@byteflow-ui/dropdown-menu'
+import {
+  Sheet,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+  Drawer
+} from '@byteflow-ui/sheet'
+import { ToastProvider, useToast } from '@byteflow-ui/toast'
+import { ToasterProvider, useSonner } from '@byteflow-ui/sonner'
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@byteflow-ui/hover-card'
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut
+} from '@byteflow-ui/context-menu'
+
 // Estilos de los componentes
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
@@ -81,6 +128,17 @@ import '@byteflow-ui/progress/dist/index.css'
 import '@byteflow-ui/empty/dist/index.css'
 import '@byteflow-ui/item/dist/index.css'
 import '@byteflow-ui/field/dist/index.css'
+
+// Fase 4 Styles
+import '@byteflow-ui/dialog/dist/index.css'
+import '@byteflow-ui/alert-dialog/dist/index.css'
+import '@byteflow-ui/popover/dist/index.css'
+import '@byteflow-ui/dropdown-menu/dist/index.css'
+import '@byteflow-ui/sheet/dist/index.css'
+import '@byteflow-ui/toast/dist/index.css'
+import '@byteflow-ui/sonner/dist/index.css'
+import '@byteflow-ui/hover-card/dist/index.css'
+import '@byteflow-ui/context-menu/dist/index.css'
 import './App.css'
 import './theme.css'
 
@@ -89,7 +147,7 @@ type ComponentType =
   | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton'
   | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
   | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp'
-  | 'alert' | 'progress';
+  | 'alert' | 'progress' | 'dialog' | 'alert-dialog' | 'popover' | 'dropdown-menu' | 'sheet' | 'drawer' | 'toast' | 'sonner' | 'hover-card' | 'context-menu';
 
 type TabType = 'preview' | 'code' | 'styles';
 
@@ -100,13 +158,38 @@ const categories = [
   },
   {
     title: 'Visualización',
-    components: ['badge', 'avatar', 'separator', 'skeleton', 'spinner', 'tooltip', 'alert', 'progress'] as ComponentType[]
+    components: ['badge', 'avatar', 'separator', 'skeleton', 'spinner', 'tooltip', 'alert', 'progress', 'toast', 'sonner'] as ComponentType[]
   },
   {
     title: 'Layout & Estructura',
     components: ['card', 'scroll-area', 'tabs', 'breadcrumb', 'aspect-ratio', 'empty', 'item', 'field', 'money-input'] as ComponentType[]
+  },
+  {
+    title: 'Overlays & Context',
+    components: ['dialog', 'alert-dialog', 'popover', 'dropdown-menu', 'sheet', 'drawer', 'hover-card', 'context-menu'] as ComponentType[]
   }
 ];
+
+const ToastDemo = () => {
+  const { toast } = useToast();
+  return (
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <Button onClick={() => toast({ title: "Notificación", description: "Esto es un toast estándar." })}>Toast Default</Button>
+      <Button variant="secondary" onClick={() => toast({ title: "Éxito", description: "Acción completada con éxito.", variant: "success" })}>Toast Success</Button>
+      <Button style={{ background: '#ef4444', color: 'white' }} onClick={() => toast({ title: "Error", description: "Algo salió mal.", variant: "error" })}>Toast Error</Button>
+    </div>
+  );
+};
+
+const SonnerDemo = () => {
+  const { toast } = useSonner();
+  return (
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <Button onClick={() => toast("Mensaje Apilado", { description: "Sonner permite múltiples notificaciones." })}>Enviar Sonner</Button>
+      <Button variant="secondary" onClick={() => toast("Carga Finalizada", { type: "success" })}>Sonner Success</Button>
+    </div>
+  );
+};
 
 function App() {
   const [activeComponent, setActiveComponent] = useState<ComponentType>('money-input')
@@ -119,6 +202,18 @@ function App() {
   const [inputValue, setInputValue] = useState('')
   const [switchState, setSwitchState] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+
+  // Fase 4 states
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false)
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false)
+  const [contextMenuPoint, setContextMenuPoint] = useState({ x: 0, y: 0 })
+  const popoverTriggerRef = useRef<HTMLButtonElement>(null)
+  const dropdownTriggerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark-theme', theme === 'dark')
@@ -214,7 +309,7 @@ function App() {
 
       case 'radio':
         return (
-          <RadioGroup value={radioValue} onChange={(e) => setRadioValue(e.target.value)}>
+          <RadioGroup value={radioValue} onChange={(e: any) => setRadioValue(e.target.value)}>
             <Label style={{ marginBottom: '1rem', display: 'block' }}>Selecciona tu rol</Label>
             <Radio label="Desarrollador" value="opcion1" />
             <Radio label="Diseñador" value="opcion2" />
@@ -628,6 +723,240 @@ function App() {
           </div>
         );
 
+      case 'dialog':
+        return (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button onClick={() => setIsDialogOpen(true)}>Abrir Diálogo</Button>
+            <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+              <DialogHeader>
+                <DialogTitle>Editar Perfil</DialogTitle>
+                <DialogDescription>Haz cambios en tu perfil aquí. Haz clic en guardar cuando termines.</DialogDescription>
+              </DialogHeader>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1rem 0' }}>
+                <Input label="Nombre" defaultValue="Victor Hugo" />
+                <Input label="Usuario" defaultValue="@rex2002xp" />
+              </div>
+              <DialogFooter>
+                <Button variant="ghost" onClick={() => setIsDialogOpen(false)}>Cancelar</Button>
+                <Button onClick={() => setIsDialogOpen(false)}>Guardar Cambios</Button>
+              </DialogFooter>
+            </Dialog>
+          </div>
+        );
+
+      case 'alert-dialog':
+        return (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button variant="secondary" onClick={() => setIsAlertDialogOpen(true)}>Eliminar Cuenta</Button>
+            <AlertDialog isOpen={isAlertDialogOpen} onClose={() => setIsAlertDialogOpen(false)}>
+              <AlertDialogHeader>
+                <AlertDialogTitle>¿Estás absolutamente seguro?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Esta acción no se puede deshacer. Esto eliminará permanentemente tu cuenta
+                  y borrará tus datos de nuestros servidores.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <Button variant="ghost" onClick={() => setIsAlertDialogOpen(false)}>Cancelar</Button>
+                <Button style={{ background: '#ef4444', color: 'white' }} onClick={() => setIsAlertDialogOpen(false)}>Sí, eliminar cuenta</Button>
+              </AlertDialogFooter>
+            </AlertDialog>
+          </div>
+        );
+
+      case 'popover':
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+            <Popover>
+              <PopoverTrigger>
+                <Button ref={popoverTriggerRef} onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                  Abrir Popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                isOpen={isPopoverOpen}
+                onClose={() => setIsPopoverOpen(false)}
+                anchorRef={popoverTriggerRef}
+                side="bottom"
+              >
+                <div style={{ padding: '8px' }}>
+                  <h4 style={{ margin: '0 0 8px 0' }}>Configuración Rápida</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <Switch label="Auto-guardado" size="sm" defaultChecked />
+                    <Switch label="Sincronización" size="sm" />
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+        );
+
+      case 'dropdown-menu':
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button ref={dropdownTriggerRef} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                  Opciones de Cuenta
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                isOpen={isDropdownOpen}
+                onClose={() => setIsDropdownOpen(false)}
+                anchorRef={dropdownTriggerRef}
+                align="end"
+              >
+                <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => setIsDropdownOpen(false)}>
+                  Perfil
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setIsDropdownOpen(false)}>
+                  Facturación
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setIsDropdownOpen(false)}>
+                  Ajustes
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => setIsDropdownOpen(false)} style={{ color: '#ef4444' }}>
+                  Cerrar Sesión
+                  <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        );
+
+      case 'sheet':
+        return (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button onClick={() => setIsSheetOpen(true)}>Abrir Sheet (Derecha)</Button>
+            <Sheet isOpen={isSheetOpen} onClose={() => setIsSheetOpen(false)} side="right">
+              <SheetHeader>
+                <SheetTitle>Editar Perfil</SheetTitle>
+                <SheetDescription>Realiza cambios en tu perfil aquí. Haz clic en guardar al terminar.</SheetDescription>
+              </SheetHeader>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', flex: 1 }}>
+                <Input label="Nombre completo" defaultValue="Victor Hugo Cornejo" />
+                <Input label="Email" defaultValue="rex2002xp@gmail.com" />
+              </div>
+              <SheetFooter>
+                <Button style={{ width: '100%' }} onClick={() => setIsSheetOpen(false)}>Guardar Cambios</Button>
+              </SheetFooter>
+            </Sheet>
+          </div>
+        );
+
+      case 'drawer':
+        return (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button variant="secondary" onClick={() => setIsDrawerOpen(true)}>Abrir Drawer (Móvil)</Button>
+            <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+              <SheetHeader>
+                <SheetTitle>Acciones Rápidas</SheetTitle>
+                <SheetDescription>Selecciona una acción para continuar.</SheetDescription>
+              </SheetHeader>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: '1rem 0' }}>
+                <Button variant="ghost" style={{ justifyContent: 'flex-start' }}>📤 Compartir Archivo</Button>
+                <Button variant="ghost" style={{ justifyContent: 'flex-start' }}>🔗 Copiar Enlace</Button>
+                <Button variant="ghost" style={{ justifyContent: 'flex-start' }}>📥 Descargar</Button>
+              </div>
+            </Drawer>
+          </div>
+        );
+
+      case 'toast':
+        return <ToastDemo />;
+
+      case 'sonner':
+        return <SonnerDemo />;
+
+      case 'hover-card':
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+            <HoverCard openDelay={200}>
+              <HoverCardTrigger>
+                <div style={{ cursor: 'pointer', textDecoration: 'underline', color: 'var(--bf-accent)' }}>
+                  @byteflow_ui
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent side="top">
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <Avatar src="https://github.com/byteflow.png" alt="BF" />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div style={{ fontWeight: 600, fontSize: '14px' }}>Byteflow UI</div>
+                    <div style={{ fontSize: '13px', opacity: 0.8 }}>
+                      The premium React component library for high-end applications.
+                    </div>
+                    <div style={{ display: 'flex', gap: '12px', marginTop: '4px', fontSize: '12px', opacity: 0.6 }}>
+                      <span><strong>1.2k</strong> Seguidores</span>
+                      <span><strong>450</strong> Siguiendo</span>
+                    </div>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+        );
+
+      case 'context-menu':
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+            <ContextMenu>
+              <ContextMenuTrigger>
+                <div
+                  onContextMenu={(e) => {
+                    e.preventDefault();
+                    setContextMenuPoint({ x: e.clientX, y: e.clientY });
+                    setIsContextMenuOpen(true);
+                  }}
+                  style={{
+                    width: '400px',
+                    height: '250px',
+                    border: '2px dashed var(--bf-surface-border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '24px',
+                    background: 'var(--bf-canvas-subtle)',
+                    color: 'var(--bf-text-muted)'
+                  }}
+                >
+                  Haz Click Derecho Aquí para Opciones
+                </div>
+              </ContextMenuTrigger>
+
+              <ContextMenuContent
+                isOpen={isContextMenuOpen}
+                onClose={() => setIsContextMenuOpen(false)}
+                anchorPoint={contextMenuPoint}
+              >
+                <ContextMenuLabel>Área de Trabajo</ContextMenuLabel>
+                <ContextMenuItem onClick={() => setIsContextMenuOpen(false)}>
+                  Nuevo Archivo
+                  <ContextMenuShortcut>⌘N</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem onClick={() => setIsContextMenuOpen(false)}>
+                  Nueva Carpeta
+                  <ContextMenuShortcut>⇧⌘N</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem onClick={() => setIsContextMenuOpen(false)}>
+                  Pegar
+                  <ContextMenuShortcut>⌘V</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem onClick={() => setIsContextMenuOpen(false)} style={{ color: '#ef4444' }}>
+                  Limpiar Área
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </div>
+        );
+
       default: return null;
     }
   }
@@ -636,13 +965,13 @@ function App() {
     const ComponentName = activeComponent.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
     return `import {${ComponentName} } from '@byteflow-ui/${activeComponent}';
 
-            function App() {
+function App() {
   return (
-            <${ComponentName}
-              label="Ejemplo"
-            // ... otras propiedades
-            />
-            );
+    <${ComponentName}
+      label="Ejemplo"
+      // ... otras propiedades
+    />
+  );
 }`;
   }
 
@@ -656,115 +985,119 @@ function App() {
   }
 
   return (
-    <div className="app-layout">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <div className="logo-section"><h1>Byteflow UI</h1></div>
-        </div>
-
-        <div className="theme-toggle-wrapper">
-          <button className="theme-toggle-btn" onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
-            {theme === 'light' ? <span>🌙</span> : <span>☀️</span>}
-            {theme === 'light' ? 'Modo Oscuro' : 'Modo Claro'}
-          </button>
-        </div>
-
-        <ScrollArea className="nav-scroll-area">
-          <nav className="nav-links">
-            {categories.map(cat => (
-              <div key={cat.title}>
-                <div className="nav-section-title">{cat.title}</div>
-                {cat.components.map(comp => (
-                  <Item
-                    key={comp}
-                    selected={activeComponent === comp}
-                    onClick={() => {
-                      setActiveComponent(comp);
-                      setActiveTab('preview');
-                    }}
-                  >
-                    <ItemContent>{comp.replace('-', ' ')}</ItemContent>
-                    {['field', 'empty', 'money-input'].includes(comp) && <ItemSuffix><div style={{ width: 6, height: 6, background: 'var(--bf-accent)', borderRadius: '50%' }} /></ItemSuffix>}
-                  </Item>
-                ))}
-              </div>
-            ))}
-          </nav>
-        </ScrollArea>
-      </aside>
-
-      <main className="main-content">
-        <ScrollArea>
-          <header className="content-header">
-            <Breadcrumb style={{ marginBottom: '0.75rem' }}>
-              <BreadcrumbList>
-                <BreadcrumbItem><BreadcrumbLink href="#">Librería</BreadcrumbLink></BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem><BreadcrumbPage>{activeComponent.replace('-', ' ')}</BreadcrumbPage></BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            <h2>{activeComponent.replace('-', ' ')}</h2>
-          </header>
-
-          <section className="component-viewport">
-            <div className="component-container">
-              <div className="preview-card">
-                <nav className="preview-tabs">
-                  <button className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`} onClick={() => setActiveTab('preview')}>Vista Previa</button>
-                  <button className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`} onClick={() => setActiveTab('code')}>Código</button>
-                  <button className={`tab-btn ${activeTab === 'styles' ? 'active' : ''}`} onClick={() => setActiveTab('styles')}>Personalización</button>
-                </nav>
-
-                <div className="preview-viewport">
-                  {activeTab === 'preview' && (
-                    <div className="preview-body">
-                      {renderComponentDemo()}
-                    </div>
-                  )}
-                  {activeTab === 'code' && (
-                    <div className="code-block-wrapper">
-                      <pre><code>{getCodeString()}</code></pre>
-                    </div>
-                  )}
-                  {activeTab === 'styles' && (
-                    <div className="styles-doc-wrapper">
-                      <div className="styles-doc">
-                        <h4>Variables CSS de {activeComponent}</h4>
-                        <p className="style-desc">Personaliza el componente modificando estas variables en tu archivo de estilos global.</p>
-                        <table className="vars-table">
-                          <thead>
-                            <tr><th>Variable</th><th>Valor Base</th><th>Descripción</th></tr>
-                          </thead>
-                          <tbody>
-                            {getStylesData().map(s => (
-                              <tr key={s.var}>
-                                <td><code>{s.var}</code></td>
-                                <td><code>{s.def}</code></td>
-                                <td>{s.desc}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div style={{ marginTop: '3rem' }}>
-                <Card style={{ background: 'var(--bf-canvas-subtle)', borderStyle: 'dashed' }}>
-                  <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
-                    <p style={{ margin: 0, color: 'var(--bf-text-secondary)', fontSize: '0.9rem' }}>
-                      Este componente sigue los estándares WCAG 2.1 para accesibilidad universal.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
+    <ToastProvider>
+      <ToasterProvider>
+        <div className="app-layout">
+          <aside className="sidebar">
+            <div className="sidebar-header">
+              <div className="logo-section"><h1>Byteflow UI</h1></div>
             </div>
-          </section>
-        </ScrollArea>
-      </main>
-    </div>
+
+            <div className="theme-toggle-wrapper">
+              <button className="theme-toggle-btn" onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
+                {theme === 'light' ? <span>🌙</span> : <span>☀️</span>}
+                {theme === 'light' ? 'Modo Oscuro' : 'Modo Claro'}
+              </button>
+            </div>
+
+            <ScrollArea className="nav-scroll-area">
+              <nav className="nav-links">
+                {categories.map(cat => (
+                  <div key={cat.title}>
+                    <div className="nav-section-title">{cat.title}</div>
+                    {cat.components.map(comp => (
+                      <Item
+                        key={comp}
+                        selected={activeComponent === comp}
+                        onClick={() => {
+                          setActiveComponent(comp);
+                          setActiveTab('preview');
+                        }}
+                      >
+                        <ItemContent>{comp.replace('-', ' ')}</ItemContent>
+                        {['field', 'empty', 'money-input', 'dialog', 'toast'].includes(comp) && <ItemSuffix><div style={{ width: 6, height: 6, background: 'var(--bf-accent)', borderRadius: '50%' }} /></ItemSuffix>}
+                      </Item>
+                    ))}
+                  </div>
+                ))}
+              </nav>
+            </ScrollArea>
+          </aside>
+
+          <main className="main-content">
+            <ScrollArea>
+              <header className="content-header">
+                <Breadcrumb style={{ marginBottom: '0.75rem' }}>
+                  <BreadcrumbList>
+                    <BreadcrumbItem><BreadcrumbLink href="#">Librería</BreadcrumbLink></BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem><BreadcrumbPage>{activeComponent.replace('-', ' ')}</BreadcrumbPage></BreadcrumbItem>
+                  </BreadcrumbList>
+                </Breadcrumb>
+                <h2>{activeComponent.replace('-', ' ')}</h2>
+              </header>
+
+              <section className="component-viewport">
+                <div className="component-container">
+                  <div className="preview-card">
+                    <nav className="preview-tabs">
+                      <button className={`tab-btn ${activeTab === 'preview' ? 'active' : ''}`} onClick={() => setActiveTab('preview')}>Vista Previa</button>
+                      <button className={`tab-btn ${activeTab === 'code' ? 'active' : ''}`} onClick={() => setActiveTab('code')}>Código</button>
+                      <button className={`tab-btn ${activeTab === 'styles' ? 'active' : ''}`} onClick={() => setActiveTab('styles')}>Personalización</button>
+                    </nav>
+
+                    <div className="preview-viewport">
+                      {activeTab === 'preview' && (
+                        <div className="preview-body">
+                          {renderComponentDemo()}
+                        </div>
+                      )}
+                      {activeTab === 'code' && (
+                        <div className="code-block-wrapper">
+                          <pre><code>{getCodeString()}</code></pre>
+                        </div>
+                      )}
+                      {activeTab === 'styles' && (
+                        <div className="styles-doc-wrapper">
+                          <div className="styles-doc">
+                            <h4>Variables CSS de {activeComponent}</h4>
+                            <p className="style-desc">Personaliza el componente modificando estas variables en tu archivo de estilos global.</p>
+                            <table className="vars-table">
+                              <thead>
+                                <tr><th>Variable</th><th>Valor Base</th><th>Descripción</th></tr>
+                              </thead>
+                              <tbody>
+                                {getStylesData().map(s => (
+                                  <tr key={s.var}>
+                                    <td><code>{s.var}</code></td>
+                                    <td><code>{s.def}</code></td>
+                                    <td>{s.desc}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: '3rem' }}>
+                    <Card style={{ background: 'var(--bf-canvas-subtle)', borderStyle: 'dashed' }}>
+                      <CardContent style={{ padding: '2rem', textAlign: 'center' }}>
+                        <p style={{ margin: 0, color: 'var(--bf-text-secondary)', fontSize: '0.9rem' }}>
+                          Este componente sigue los estándares WCAG 2.1 para accesibilidad universal.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </section>
+            </ScrollArea>
+          </main>
+        </div>
+      </ToasterProvider>
+    </ToastProvider>
   )
 }
 

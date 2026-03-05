@@ -1,0 +1,111 @@
+.bf-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: bf-dialog-fade-in 0.2s ease-out;
+}
+
+.bf-dialog-content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 32rem;
+    background: var(--bf-surface, rgba(23, 23, 23, 0.8));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--bf-surface-border, rgba(255, 255, 255, 0.1));
+    border-radius: var(--bf-radius-xl, 20px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: bf-dialog-zoom-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bf-dialog-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--bf-radius-lg, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bf-text-muted, rgba(255, 255, 255, 0.5));
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bf-dialog-close-btn:hover {
+    background: var(--bf-surface-hover, rgba(255, 255, 255, 0.1));
+    color: var(--bf-text-primary, #ffffff);
+}
+
+.bf-dialog-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-right: 2.5rem;
+}
+
+.bf-dialog-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--bf-text-primary, #ffffff);
+    line-height: 1.2;
+}
+
+.bf-dialog-description {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary, rgba(255, 255, 255, 0.7));
+    line-height: 1.5;
+}
+
+.bf-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+@keyframes bf-dialog-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bf-dialog-zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .bf-dialog-content-wrapper {
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+}

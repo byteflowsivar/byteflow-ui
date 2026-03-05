@@ -42,22 +42,21 @@ Este plan define el orden estratégico de creación para el kit de componentes U
 26. **Input Group:** Inputs que combinan texto con íconos, botones o prefijos.
 27. **Input OTP:** Input especializado en contraseñas o pins (One Time Password).
 
-## Fase 4: Sobrecargas (Overlays), ContextOS & Feedback
-*Elementos que flotan, interactúan por encima del DOM o ofrecen notificaciones persistentes.*
+## [x] Fase 4: Overlays y Feedback (Completo)
+- [x] 28. **Alert** (READY)
+- [x] 29. **Toast** (READY)
+- [x] 30. **Sonner** (READY)
+- [x] 31. **Progress** (READY)
+- [x] 32. **Tooltip** (READY)
+- [x] 33. **Hover Card** (READY)
+- [x] 34. **Dialog** (READY)
+- [x] 35. **Alert Dialog** (READY)
+- [x] 36. **Dropdown Menu** (READY)
+- [x] 37. **Popover** (READY)
+- [x] 38. **Drawer** (READY)
+- [x] 39. **Sheet** (READY)
+- [x] 40. **ContextMenu** (READY)
 
-28. **Alert:** Banner visual estático de advertencias o feedback en la página.
-29. **Toast:** Feedback efímero no obtrusivo (esquina de la pantalla).
-30. **Sonner:** Variante de toast más moderna empilada (estilo Radix/Sonner).
-31. **Progress:** Barra de visualización de progreso continua.
-32. **Tooltip:** Pequeña descripción con hover en otros elementos (muy usado).
-33. **Hover Card:** Tarjetas enriquecidas al posar el mouse (similar a tooltip pero complejo).
-34. **Dialog:** Fundamental. Modal superpuesto (imperativo).
-35. **Alert Dialog:** Dialog específico para acciones destructivas en flujos críticos.
-36. **Dropdown Menu:** Acciones modales desencadenadas por botones (fundamental en UX).
-37. **Popover:** Dialog enriquecido pero relativo/anclado al trigger.
-38. **Drawer:** Diálogos inferiores optimizados para UX responsivo móvil.
-39. **Sheet:** Paneles superpuestos laterales (off-canvas).
-40. **ContextMenu:** Menú desencadenado en click derecho para acciones avanzadas.
 
 ## Fase 5: Navegación & Organización Compleja
 *Manejo de rutas complejas o estructuras profundas en la app.*

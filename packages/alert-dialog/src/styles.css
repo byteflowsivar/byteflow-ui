@@ -1,0 +1,10 @@
+/* Alert Dialog specific overrides */
+.bf-alert-dialog .bf-dialog-close-btn {
+    display: none;
+}
+
+.bf-alert-dialog .bf-dialog-content-wrapper {
+    max-width: 25rem;
+    /* Usually smaller than generic dialogs */
+    gap: 1.25rem;
+}

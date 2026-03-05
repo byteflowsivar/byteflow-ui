@@ -1,0 +1,41 @@
+.bf-popover-root {
+    display: inline-block;
+}
+
+.bf-popover-content {
+    min-width: 12rem;
+    padding: 0.75rem;
+    background: var(--bf-surface, rgba(23, 23, 23, 0.8));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--bf-surface-border, rgba(255, 255, 255, 0.1));
+    border-radius: var(--bf-radius-lg, 12px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    color: var(--bf-text-primary, #ffffff);
+    animation: bf-popover-fade-in 0.2s ease-out;
+}
+
+@keyframes bf-popover-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.bf-popover-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.bf-popover-description {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--bf-text-secondary, rgba(255, 255, 255, 0.7));
+    line-height: 1.4;
+}
