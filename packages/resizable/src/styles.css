@@ -1,0 +1,74 @@
+.bf-resizable-group {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bf-resizable-group--horizontal {
+    flex-direction: row;
+}
+
+.bf-resizable-group--vertical {
+    flex-direction: column;
+}
+
+.bf-resizable-panel {
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+}
+
+.bf-resizable-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bf-surface-border, #e2e8f0);
+    position: relative;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+
+.bf-resizable-group--horizontal>.bf-resizable-handle {
+    width: 1px;
+    cursor: col-resize;
+    margin: 0 -0.5px;
+}
+
+.bf-resizable-group--vertical>.bf-resizable-handle {
+    height: 1px;
+    cursor: row-resize;
+    margin: -0.5px 0;
+}
+
+.bf-resizable-handle:hover {
+    background-color: var(--bf-accent, #3182ce);
+}
+
+.bf-resizable-handle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    background-color: var(--bf-surface-border, #e2e8f0);
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+    border-radius: 4px;
+    color: var(--bf-text-muted, #a0aec0);
+    position: absolute;
+    z-index: 20;
+}
+
+.bf-resizable-group--horizontal>.bf-resizable-handle .bf-resizable-handle-icon {
+    transform: rotate(90deg);
+}
+
+/* Dark Theme overrides */
+:global(.dark-theme) .bf-resizable-handle {
+    background-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-resizable-handle-icon {
+    background-color: var(--bf-surface, #1a202c);
+    border-color: var(--bf-surface-border, #2d3748);
+}

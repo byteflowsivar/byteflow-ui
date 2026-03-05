@@ -1,0 +1,118 @@
+.bf-calendar {
+    width: 280px;
+    padding: 1rem;
+    background: var(--bf-surface, #ffffff);
+    border-radius: var(--bf-radius-lg, 12px);
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+    user-select: none;
+}
+
+.bf-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.bf-calendar-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.bf-calendar-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--bf-text-secondary, #4a5568);
+    transition: all 0.2s ease;
+}
+
+.bf-calendar-nav-btn:hover {
+    background: var(--bf-surface-hover, #f7fafc);
+    color: var(--bf-text-primary, #1a202c);
+}
+
+.bf-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.bf-calendar-day-name {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--bf-text-muted, #a0aec0);
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bf-calendar-day {
+    height: 32px;
+    width: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: var(--bf-text-primary, #1a202c);
+}
+
+.bf-calendar-day:hover {
+    background: var(--bf-surface-hover, #f7fafc);
+}
+
+.bf-calendar-day--outside {
+    opacity: 0.3;
+}
+
+.bf-calendar-day--today {
+    background: var(--bf-canvas-subtle, #f1f5f9);
+    font-weight: 700;
+    color: var(--bf-accent, #3182ce);
+}
+
+.bf-calendar-day--selected {
+    background: var(--bf-accent, #3182ce) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Dark Theme overrides */
+:global(.dark-theme) .bf-calendar {
+    background: var(--bf-surface, #1a202c);
+    border-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-calendar-nav-btn {
+    border-color: var(--bf-surface-border, #2d3748);
+    color: var(--bf-text-secondary, #a0aec0);
+}
+
+:global(.dark-theme) .bf-calendar-nav-btn:hover {
+    background: var(--bf-surface-hover, #2d3748);
+}
+
+:global(.dark-theme) .bf-calendar-day {
+    color: var(--bf-text-primary, #f7fafc);
+}
+
+:global(.dark-theme) .bf-calendar-day:hover {
+    background: var(--bf-surface-hover, #2d3748);
+}
+
+:global(.dark-theme) .bf-calendar-day--today {
+    background: rgba(255, 255, 255, 0.05);
+}

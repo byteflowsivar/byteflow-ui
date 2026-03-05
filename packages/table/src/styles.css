@@ -1,0 +1,95 @@
+.bf-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--bf-radius-lg, 12px);
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-table {
+    width: 100%;
+    caption-side: bottom;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+    background: var(--bf-surface, #ffffff);
+}
+
+.bf-table-header {
+    background-color: var(--bf-canvas-subtle, #f7fafc);
+    border-bottom: 1px solid var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-table-body {
+    background: transparent;
+}
+
+.bf-table-footer {
+    background-color: var(--bf-canvas-subtle, #f7fafc);
+    border-top: 1px solid var(--bf-surface-border, #e2e8f0);
+    font-weight: 500;
+}
+
+.bf-table-row {
+    border-bottom: 1px solid var(--bf-surface-border, #e2e8f0);
+    transition: background-color 0.2s ease;
+}
+
+.bf-table-row:last-child {
+    border-bottom: 0;
+}
+
+.bf-table-row:hover {
+    background-color: var(--bf-surface-hover, #f1f5f9);
+}
+
+.bf-table-head {
+    height: 48px;
+    padding: 0 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 600;
+    color: var(--bf-text-muted, #64748b);
+}
+
+.bf-table-cell {
+    padding: 1rem;
+    vertical-align: middle;
+    color: var(--bf-text-primary, #1e293b);
+}
+
+.bf-table-caption {
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: var(--bf-text-muted, #708090);
+}
+
+/* Dark Theme overrides */
+:global(.dark-theme) .bf-table-container {
+    border-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-table {
+    background-color: var(--bf-surface, #1a202c);
+    color: var(--bf-text-primary, #f7fafc);
+}
+
+:global(.dark-theme) .bf-table-header,
+:global(.dark-theme) .bf-table-footer {
+    background-color: rgba(255, 255, 255, 0.02);
+    border-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-table-row {
+    border-bottom-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-table-row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark-theme) .bf-table-head {
+    color: var(--bf-text-muted, #94a3b8);
+}
+
+:global(.dark-theme) .bf-table-cell {
+    color: var(--bf-text-primary, #f7fafc);
+}

@@ -1,0 +1,114 @@
+.bf-command {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bf-surface, #ffffff);
+    color: var(--bf-text-primary, #1a202c);
+    border-radius: var(--bf-radius-lg, 12px);
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-command-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--bf-surface-border, #e2e8f0);
+    padding: 0 1rem;
+}
+
+.bf-command-search-icon {
+    margin-right: 0.75rem;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.bf-command-input {
+    flex: 1;
+    height: 48px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+    color: inherit;
+}
+
+.bf-command-input::placeholder {
+    color: var(--bf-text-muted, #a0aec0);
+}
+
+.bf-command-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    max-height: 300px;
+}
+
+.bf-command-empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary, #4a5568);
+}
+
+.bf-command-group-heading {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--bf-text-muted, #a0aec0);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bf-command-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.1s ease;
+    color: inherit;
+}
+
+.bf-command-item:hover {
+    background: var(--bf-surface-hover, #f7fafc);
+    color: var(--bf-accent, #3182ce);
+}
+
+.bf-command-item:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.bf-command-separator {
+    height: 1px;
+    background-color: var(--bf-surface-border, #e2e8f0);
+    margin: 0.25rem 0;
+}
+
+.bf-command-shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+}
+
+/* Dark Theme overrides */
+:global(.dark-theme) .bf-command {
+    background-color: var(--bf-surface, #1a202c);
+    border-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-command-input-wrapper,
+:global(.dark-theme) .bf-command-separator {
+    border-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-command-item:hover {
+    background: var(--bf-surface-hover, #2d3748);
+}

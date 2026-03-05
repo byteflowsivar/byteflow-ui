@@ -1,0 +1,37 @@
+.bf-combobox {
+    width: 100%;
+}
+
+.bf-combobox-trigger {
+    width: 100%;
+    justify-content: space-between;
+    font-weight: 400;
+}
+
+.bf-combobox-chevron {
+    opacity: 0.5;
+    margin-left: 0.5rem;
+}
+
+.bf-combobox-content {
+    padding: 0;
+    overflow: hidden;
+    width: var(--popover-anchor-width, 200px);
+}
+
+.bf-combobox-check {
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.bf-combobox-check--visible {
+    opacity: 1;
+}
+
+.bf-combobox-item--selected {
+    font-weight: 600;
+    color: var(--bf-accent, #3182ce);
+}

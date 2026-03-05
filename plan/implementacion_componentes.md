@@ -68,17 +68,17 @@ Este plan define el orden estratégico de creación para el kit de componentes U
 - [x] 45. **Navigation Menu:** Menu estilo Headings para eCommerce o documentaciones profundas.
 - [x] 46. **Menubar:** Navegación estilo OS desktop (File, Edit, View).
 
-## Fase 6: Data Display & Componentes Especializados
+## [x] Fase 6: Data Display & Componentes Especializados (Completo)
 *Componentes potentes, pesados o de uso especializado para manipulación selectiva de data.*
 
-47. **Command:** Paleta de comandos (Command + K) o Search global en la app.
-48. **Combobox:** Fusión entre Select y Command (búsqueda y completado).
-49. **Table:** Despliegue estático de colecciones.
-50. **Data Table:** Instancia de Table combinada con Pagination, Búsqueda, Filtrado (suele ser el más complejo u orquestador).
-51. **Calendar:** Componente complejo para renderizar meses e hitos.
-52. **Date Picker:** Incorpora `Input` + `Popover` + `Calendar`.
-53. **Carousel:** Componente deslizable para landing pages o galerías.
-54. **Chart:** Gráficos estadísticos altamente especializados, raramente usados excepto en dashboards (suele delegarse a Recharts, Chart.js).
-55. **Resizable:** Paneles estilo IDE o Split UI que pueden encogerse dinámicamente.
-56. **Kbd:** Renderizado semántico de botones de atajo en pantalla.
-57. **Direction:** Manejo utilitario avanzado LTR/RTL, uso casi exclusivo localizaciones asiáticas o de idiomas específicos.
+- [x] 47. **Command:** Paleta de comandos (Command + K) o Search global en la app.
+- [x] 48. **Combobox:** Fusión entre Select y Command (búsqueda y completado).
+- [x] 49. **Table:** Despliegue estático de colecciones.
+- [x] 50. **Data Table:** Instancia de Table combinada con Pagination, Búsqueda, Filtrado.
+- [x] 51. **Calendar:** Componente complejo para renderizar meses e hitos.
+- [x] 52. **Date Picker:** Incorpora `Input` + `Popover` + `Calendar`.
+- [x] 53. **Carousel:** Componente deslizable para landing pages o galerías.
+- [ ] 54. **Chart:** (Opcional) Gráficos estadísticos altamente especializados.
+- [x] 55. **Resizable:** Paneles estilo IDE o Split UI que pueden encogerse dinámicamente.
+- [x] 56. **Kbd:** Renderizado semántico de botones de atajo en pantalla.
+- [ ] 57. **Direction:** (Opcional) Manejo utilitario avanzado LTR/RTL.

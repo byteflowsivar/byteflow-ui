@@ -127,6 +127,44 @@ import {
   MenubarLabel
 } from '@byteflow-ui/menubar'
 
+// Fase 6 Imports
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  CommandShortcut
+} from '@byteflow-ui/command'
+import { Combobox } from '@byteflow-ui/combobox'
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption
+} from '@byteflow-ui/table'
+import { DataTable } from '@byteflow-ui/data-table'
+import { Calendar } from '@byteflow-ui/calendar'
+import { DatePicker } from '@byteflow-ui/date-picker'
+import {
+  Carousel,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from '@byteflow-ui/carousel'
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle
+} from '@byteflow-ui/resizable'
+import { Kbd } from '@byteflow-ui/kbd'
+
 // Estilos de los componentes
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
@@ -177,6 +215,16 @@ import '@byteflow-ui/sidebar/dist/index.css'
 import '@byteflow-ui/pagination/dist/index.css'
 import '@byteflow-ui/navigation-menu/dist/index.css'
 import '@byteflow-ui/menubar/dist/index.css'
+
+// Fase 6 Styles
+import '@byteflow-ui/command/dist/index.css'
+import '@byteflow-ui/combobox/dist/index.css'
+import '@byteflow-ui/table/dist/index.css'
+import '@byteflow-ui/calendar/dist/index.css'
+import '@byteflow-ui/date-picker/dist/index.css'
+import '@byteflow-ui/carousel/dist/index.css'
+import '@byteflow-ui/resizable/dist/index.css'
+import '@byteflow-ui/kbd/dist/index.css'
 import './App.css'
 import './theme.css'
 
@@ -186,7 +234,8 @@ type ComponentType =
   | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
   | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp'
   | 'alert' | 'progress' | 'dialog' | 'alert-dialog' | 'popover' | 'dropdown-menu' | 'sheet' | 'drawer' | 'toast' | 'sonner' | 'hover-card' | 'context-menu'
-  | 'accordion' | 'collapsible' | 'sidebar' | 'pagination' | 'navigation-menu' | 'menubar';
+  | 'accordion' | 'collapsible' | 'sidebar' | 'pagination' | 'navigation-menu' | 'menubar'
+  | 'command' | 'combobox' | 'table' | 'data-table' | 'calendar' | 'date-picker' | 'carousel' | 'resizable' | 'kbd';
 
 type TabType = 'preview' | 'code' | 'styles';
 
@@ -210,6 +259,10 @@ const categories = [
   {
     title: 'Navegación & Estructura',
     components: ['accordion', 'collapsible', 'sidebar', 'pagination', 'navigation-menu', 'menubar'] as ComponentType[]
+  },
+  {
+    title: 'Avanzado & Datos',
+    components: ['command', 'combobox', 'table', 'data-table', 'calendar', 'date-picker', 'carousel', 'resizable', 'kbd'] as ComponentType[]
   }
 ];
 
@@ -249,6 +302,9 @@ function App() {
   // Fase 5 states
   const [currentPage, setCurrentPage] = useState(1)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  // Fase 6 states
+  const [date, setDate] = useState<Date | undefined>(new Date())
+  const [comboboxValue, setComboboxValue] = useState('')
   // Fase 4 states
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false)
@@ -1194,6 +1250,281 @@ function App() {
             </Menubar>
             <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--bf-text-muted)' }}>
               Barra de menús estilo sistema operativo.
+            </div>
+          </div>
+        );
+
+      case 'command':
+        return (
+          <div style={{ maxWidth: '450px', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', overflow: 'hidden' }}>
+            <Command>
+              <CommandInput placeholder="Escribe un comando o busca..." />
+              <CommandList>
+                <CommandEmpty>No se encontraron resultados.</CommandEmpty>
+                <CommandGroup heading="Sugerencias">
+                  <CommandItem value="calendario">
+                    <span>📅</span>
+                    <span style={{ marginLeft: '0.75rem' }}>Calendario</span>
+                    <CommandShortcut>⌘C</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem value="emojis">
+                    <span>😊</span>
+                    <span style={{ marginLeft: '0.75rem' }}>Buscar Emojis</span>
+                    <CommandShortcut>⌘E</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem value="calculadora">
+                    <span>🔢</span>
+                    <span style={{ marginLeft: '0.75rem' }}>Calculadora</span>
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Configuración">
+                  <CommandItem value="perfil">
+                    <span>👤</span>
+                    <span style={{ marginLeft: '0.75rem' }}>Perfil</span>
+                    <CommandShortcut>⌘P</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem value="ajustes">
+                    <span>⚙️</span>
+                    <span style={{ marginLeft: '0.75rem' }}>Ajustes</span>
+                    <CommandShortcut>⌘S</CommandShortcut>
+                  </CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
+        );
+
+      case 'combobox':
+        return (
+          <div style={{ maxWidth: '300px' }}>
+            <Label style={{ marginBottom: '0.5rem', display: 'block' }}>Seleccionar Framework</Label>
+            <Combobox
+              options={[
+                { value: 'next', label: 'Next.js' },
+                { value: 'svelte', label: 'SvelteKit' },
+                { value: 'nuxt', label: 'Nuxt.js' },
+                { value: 'remix', label: 'Remix' },
+                { value: 'astro', label: 'Astro' },
+              ]}
+              value={comboboxValue}
+              onValueChange={setComboboxValue}
+              placeholder="Elige un framework..."
+            />
+          </div>
+        );
+
+      case 'table':
+        return (
+          <div style={{ width: '100%' }}>
+            <Table>
+              <TableCaption>Historial de transacciones de la cuenta.</TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Factura</TableHead>
+                  <TableHead>Estado</TableHead>
+                  <TableHead>Método de Pago</TableHead>
+                  <TableHead style={{ textAlign: 'right' }}>Monto</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell style={{ fontWeight: 600 }}>INV001</TableCell>
+                  <TableCell><Badge variant="success">Pagado</Badge></TableCell>
+                  <TableCell>Tarjeta de Crédito</TableCell>
+                  <TableCell style={{ textAlign: 'right' }}>$250.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: 600 }}>INV002</TableCell>
+                  <TableCell><Badge variant="secondary">Pendiente</Badge></TableCell>
+                  <TableCell>PayPal</TableCell>
+                  <TableCell style={{ textAlign: 'right' }}>$150.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: 600 }}>INV003</TableCell>
+                  <TableCell><Badge variant="success">Pagado</Badge></TableCell>
+                  <TableCell>Transferencia</TableCell>
+                  <TableCell style={{ textAlign: 'right' }}>$350.00</TableCell>
+                </TableRow>
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TableCell colSpan={3}>Total</TableCell>
+                  <TableCell style={{ textAlign: 'right', fontWeight: 700 }}>$750.00</TableCell>
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </div>
+        );
+
+      case 'data-table':
+        return (
+          <DataTable
+            data={[
+              { id: '1', user: 'Victor C.', email: 'victor@example.com', role: 'Admin' },
+              { id: '2', user: 'Ana L.', email: 'ana@example.com', role: 'Editor' },
+              { id: '3', user: 'Luis M.', email: 'luis@example.com', role: 'Viewer' },
+              { id: '4', user: 'Carla R.', email: 'carla@example.com', role: 'Editor' },
+              { id: '5', user: 'Pedro S.', email: 'pedro@example.com', role: 'Viewer' },
+              { id: '6', user: 'Marta G.', email: 'marta@example.com', role: 'Admin' },
+            ]}
+            columns={[
+              { header: 'Usuario', accessorKey: 'user' },
+              { header: 'Email', accessorKey: 'email' },
+              {
+                header: 'Rol',
+                accessorKey: 'role',
+                cell: (val) => <Badge variant={val === 'Admin' ? 'primary' : 'secondary'}>{val}</Badge>
+              },
+            ]}
+            pageSize={3}
+            searchKey="user"
+          />
+        );
+
+      case 'calendar':
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Calendar
+              selected={date}
+              onSelect={setDate}
+              className="border rounded-md"
+            />
+          </div>
+        );
+
+      case 'date-picker':
+        return (
+          <div style={{ maxWidth: '300px' }}>
+            <Label style={{ marginBottom: '0.5rem', display: 'block' }}>Fecha de Evento</Label>
+            <DatePicker
+              value={date}
+              onValueChange={setDate}
+              placeholder="Selecciona una fecha"
+            />
+          </div>
+        );
+
+      case 'carousel':
+        return (
+          <div style={{ padding: '0 2rem' }}>
+            <Carousel>
+              <CarouselItem>
+                <div style={{
+                  height: '300px',
+                  background: 'linear-gradient(45deg, #3182ce, #63b3ed)',
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '2rem',
+                  fontWeight: 800
+                }}>
+                  SLIDE 1
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div style={{
+                  height: '300px',
+                  background: 'linear-gradient(45deg, #48bb78, #81e6d9)',
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '2rem',
+                  fontWeight: 800
+                }}>
+                  SLIDE 2
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div style={{
+                  height: '300px',
+                  background: 'linear-gradient(45deg, #ed64a6, #fbb6ce)',
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '2rem',
+                  fontWeight: 800
+                }}>
+                  SLIDE 3
+                </div>
+              </CarouselItem>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        );
+
+      case 'resizable':
+        return (
+          <div style={{ height: '400px', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', overflow: 'hidden' }}>
+            <ResizablePanelGroup direction="horizontal">
+              <ResizablePanel defaultSize={20}>
+                <div style={{ padding: '1rem', height: '100%', background: 'var(--bf-canvas-subtle)' }}>
+                  <div style={{ fontWeight: 600, marginBottom: '1rem' }}>Sidebar</div>
+                  <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.7 }}>index.ts</div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.7 }}>styles.css</div>
+                  </nav>
+                </div>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={60}>
+                <ResizablePanelGroup direction="vertical">
+                  <ResizablePanel defaultSize={70}>
+                    <div style={{ padding: '2rem' }}>
+                      <h3 style={{ margin: 0 }}>Editor Principal</h3>
+                      <p style={{ marginTop: '1rem', color: 'var(--bf-text-secondary)' }}>
+                        Contenido del panel central divisible verticalmente.
+                      </p>
+                    </div>
+                  </ResizablePanel>
+                  <ResizableHandle withHandle />
+                  <ResizablePanel defaultSize={30}>
+                    <div style={{ padding: '1rem', background: 'var(--bf-canvas-subtle)', height: '100%' }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.8rem' }}>TERMINAL</div>
+                    </div>
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={20}>
+                <div style={{ padding: '1rem', height: '100%', background: 'var(--bf-canvas-subtle)' }}>
+                  <div style={{ fontWeight: 600 }}>Inspector</div>
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </div>
+        );
+
+      case 'kbd':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span>Abrir búsqueda</span>
+              <div style={{ display: 'flex', gap: '0.25rem' }}>
+                <Kbd>⌘</Kbd>
+                <Kbd>K</Kbd>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span>Guardar cambios</span>
+              <div style={{ display: 'flex', gap: '0.25rem' }}>
+                <Kbd>Ctrl</Kbd>
+                <Kbd>S</Kbd>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span>Copiar</span>
+              <div style={{ display: 'flex', gap: '0.25rem' }}>
+                <Kbd>⌘</Kbd>
+                <Kbd>C</Kbd>
+              </div>
             </div>
           </div>
         );

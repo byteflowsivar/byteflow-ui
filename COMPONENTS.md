@@ -43,7 +43,6 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/sonner` | `1.0.0` | Notificaciones apiladas (stacked) con diseño premium. | - [Sonner](./packages/sonner/README.md) - v1.0.0 |
 | `@byteflow-ui/hover-card` | `1.0.0` | Tarjetas informativas que aparecen al posar el cursor. | - [Hover Card](./packages/hover-card/README.md) - v1.0.0 |
 
-| `@byteflow-ui/hover-card` | `1.0.0` | Tarjetas informativas que aparecen al posar el cursor. | - [Hover Card](./packages/hover-card/README.md) - v1.0.0 |
 | `@byteflow-ui/context-menu` | `1.0.0` | Menú desplegable que se activa con el clic derecho. | - [Context Menu](./packages/context-menu/README.md) - v1.0.0 |
 | `@byteflow-ui/accordion` | `1.0.0` | Secciones colapsables de contenido vertical (FAQ, detalles). | - [Accordion](./packages/accordion/README.md) - v1.0.0 |
 | `@byteflow-ui/collapsible` | `1.0.0` | Componente para expandir o contraer secciones de contenido. | - [Collapsible](./packages/collapsible/README.md) - v1.0.0 |
@@ -51,6 +50,15 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 | `@byteflow-ui/pagination` | `1.0.0` | Navegación entre páginas para conjuntos de datos grandes. | - [Pagination](./packages/pagination/README.md) - v1.0.0 |
 | `@byteflow-ui/navigation-menu` | `1.0.0` | Menú de navegación principal con submenús desplegables. | - [Navigation Menu](./packages/navigation-menu/README.md) - v1.0.0 |
 | `@byteflow-ui/menubar` | `1.0.0` | Barra de menús estilo escritorio para aplicaciones. | - [Menubar](./packages/menubar/README.md) - v1.0.0 |
+| `@byteflow-ui/command` | `1.0.0` | Paleta de comandos interactiva (⌘K). | - [Command](./packages/command/README.md) - v1.0.0 |
+| `@byteflow-ui/combobox` | `1.0.0` | Selector con búsqueda y filtrado integrado. | - [Combobox](./packages/combobox/README.md) - v1.0.0 |
+| `@byteflow-ui/table` | `1.0.0` | Estructura de tabla semántica y estilizada. | - [Table](./packages/table/README.md) - v1.0.0 |
+| `@byteflow-ui/data-table` | `1.0.0` | Tabla avanzada con paginación y búsqueda. | - [Data Table](./packages/data-table/README.md) - v1.0.0 |
+| `@byteflow-ui/calendar` | `1.0.0` | Visualizador y selector de fechas. | - [Calendar](./packages/calendar/README.md) - v1.0.0 |
+| `@byteflow-ui/date-picker` | `1.0.0` | Selector de fechas en popover. | - [Date Picker](./packages/date-picker/README.md) - v1.0.0 |
+| `@byteflow-ui/carousel` | `1.0.0` | Slider de contenido con scroll-snap. | - [Carousel](./packages/carousel/README.md) - v1.0.0 |
+| `@byteflow-ui/resizable` | `1.0.0` | Paneles de interfaz divisibles y ajustables. | - [Resizable](./packages/resizable/README.md) - v1.0.0 |
+| `@byteflow-ui/kbd` | `1.0.0` | Representación de teclas de atajo. | - [Kbd](./packages/kbd/README.md) - v1.0.0 |
 
 
 

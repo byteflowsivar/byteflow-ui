@@ -1,0 +1,24 @@
+.bf-date-picker {
+    width: 100%;
+}
+
+.bf-date-picker-trigger {
+    width: 100%;
+    justify-content: flex-start;
+    font-weight: 400;
+    text-align: left;
+}
+
+.bf-date-picker-trigger--empty {
+    color: var(--bf-text-muted, #a0aec0);
+}
+
+.bf-date-picker-icon {
+    margin-right: 0.75rem;
+    opacity: 0.5;
+}
+
+.bf-date-picker-content {
+    padding: 0;
+    overflow: hidden;
+}

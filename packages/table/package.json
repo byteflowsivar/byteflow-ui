@@ -1,0 +1,37 @@
+{
+    "name": "@byteflow-ui/table",
+    "version": "1.0.0",
+    "description": "Componente Table premium para Byteflow UI",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./dist/index.css": "./dist/index.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "lint": "eslint src"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+        "tsup": "^8.3.5",
+        "typescript": "^5.6.3",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0"
+    },
+    "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
+    "license": "MIT"
+}
