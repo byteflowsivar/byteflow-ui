@@ -1,0 +1,85 @@
+.bf-accordion {
+    width: 100%;
+}
+
+.bf-accordion-item {
+    border-bottom: 1px solid var(--bf-surface-border, #e2e8f0);
+}
+
+.bf-accordion-item:last-child {
+    border-bottom: none;
+}
+
+.bf-accordion-header {
+    margin: 0;
+    display: flex;
+}
+
+.bf-accordion-trigger {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--bf-text-primary, #1a202c);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.bf-accordion-trigger:hover {
+    color: var(--bf-accent, #3182ce);
+}
+
+.bf-accordion-trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.bf-accordion-chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+}
+
+.bf-accordion-trigger[aria-expanded="true"] .bf-accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.bf-accordion-content {
+    overflow: hidden;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary, #4a5568);
+    transition: all 0.2s ease-out;
+}
+
+.bf-accordion-content[data-state="closed"] {
+    max-height: 0;
+    opacity: 0;
+}
+
+.bf-accordion-content[data-state="open"] {
+    max-height: 1000px;
+    opacity: 1;
+    padding-bottom: 1rem;
+}
+
+.bf-accordion-content-inner {
+    line-height: 1.6;
+}
+
+/* Dark Theme */
+:global(.dark-theme) .bf-accordion-item {
+    border-bottom-color: var(--bf-surface-border, #2d3748);
+}
+
+:global(.dark-theme) .bf-accordion-trigger {
+    color: var(--bf-text-primary, #f7fafc);
+}
+
+:global(.dark-theme) .bf-accordion-content {
+    color: var(--bf-text-secondary, #a0aec0);
+}

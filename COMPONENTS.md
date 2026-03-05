@@ -45,6 +45,12 @@ Este archivo centraliza la lista de todos los componentes disponibles en el kit 
 
 | `@byteflow-ui/hover-card` | `1.0.0` | Tarjetas informativas que aparecen al posar el cursor. | - [Hover Card](./packages/hover-card/README.md) - v1.0.0 |
 | `@byteflow-ui/context-menu` | `1.0.0` | Menú desplegable que se activa con el clic derecho. | - [Context Menu](./packages/context-menu/README.md) - v1.0.0 |
+| `@byteflow-ui/accordion` | `1.0.0` | Secciones colapsables de contenido vertical (FAQ, detalles). | - [Accordion](./packages/accordion/README.md) - v1.0.0 |
+| `@byteflow-ui/collapsible` | `1.0.0` | Componente para expandir o contraer secciones de contenido. | - [Collapsible](./packages/collapsible/README.md) - v1.0.0 |
+| `@byteflow-ui/sidebar` | `1.0.0` | Estructura lateral para navegación principal en dashboards. | - [Sidebar](./packages/sidebar/README.md) - v1.0.0 |
+| `@byteflow-ui/pagination` | `1.0.0` | Navegación entre páginas para conjuntos de datos grandes. | - [Pagination](./packages/pagination/README.md) - v1.0.0 |
+| `@byteflow-ui/navigation-menu` | `1.0.0` | Menú de navegación principal con submenús desplegables. | - [Navigation Menu](./packages/navigation-menu/README.md) - v1.0.0 |
+| `@byteflow-ui/menubar` | `1.0.0` | Barra de menús estilo escritorio para aplicaciones. | - [Menubar](./packages/menubar/README.md) - v1.0.0 |
 
 
 

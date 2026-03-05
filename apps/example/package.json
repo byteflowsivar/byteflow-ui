@@ -50,6 +50,12 @@
     "@byteflow-ui/sonner": "*",
     "@byteflow-ui/hover-card": "*",
     "@byteflow-ui/context-menu": "*",
+    "@byteflow-ui/accordion": "*",
+    "@byteflow-ui/collapsible": "*",
+    "@byteflow-ui/sidebar": "*",
+    "@byteflow-ui/pagination": "*",
+    "@byteflow-ui/navigation-menu": "*",
+    "@byteflow-ui/menubar": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -1,0 +1,68 @@
+.bf-pagination {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.bf-pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.bf-pagination-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    border-radius: 6px;
+    border: 1px solid var(--bf-surface-border, #e2e8f0);
+    background: var(--bf-surface, #ffffff);
+    color: var(--bf-text-primary, #1a202c);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bf-pagination-item:hover:not(:disabled) {
+    border-color: var(--bf-accent, #3182ce);
+    color: var(--bf-accent, #3182ce);
+}
+
+.bf-pagination-item--active {
+    background: var(--bf-accent, #3182ce);
+    border-color: var(--bf-accent, #3182ce);
+    color: white;
+}
+
+.bf-pagination-item:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--bf-canvas-subtle, #f7fafc);
+}
+
+.bf-pagination-dots {
+    color: var(--bf-text-muted, #a0aec0);
+    padding: 0 4px;
+}
+
+.bf-pagination-nav {
+    padding: 0;
+}
+
+/* Dark Theme overrides */
+:global(.dark-theme) .bf-pagination-item {
+    background: var(--bf-surface, #1a202c);
+    border-color: var(--bf-surface-border, #2d3748);
+    color: var(--bf-text-primary, #f7fafc);
+}
+
+:global(.dark-theme) .bf-pagination-item:hover:not(:disabled) {
+    border-color: var(--bf-accent, #3182ce);
+}

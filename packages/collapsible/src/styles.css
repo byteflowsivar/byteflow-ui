@@ -1,0 +1,59 @@
+.bf-collapsible {
+    width: 100%;
+}
+
+.bf-collapsible-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--bf-text-primary, #1a202c);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.bf-collapsible-trigger:hover:not(:disabled) {
+    color: var(--bf-accent, #3182ce);
+}
+
+.bf-collapsible-trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.bf-collapsible-content {
+    overflow: hidden;
+    font-size: 0.875rem;
+    color: var(--bf-text-secondary, #4a5568);
+    transition: all 0.2s ease-out;
+}
+
+.bf-collapsible-content[data-state="closed"] {
+    max-height: 0;
+    opacity: 0;
+}
+
+.bf-collapsible-content[data-state="open"] {
+    max-height: 1000px;
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.bf-collapsible-content-inner {
+    line-height: 1.6;
+}
+
+/* Dark Theme */
+:global(.dark-theme) .bf-collapsible-trigger {
+    color: var(--bf-text-primary, #f7fafc);
+}
+
+:global(.dark-theme) .bf-collapsible-content {
+    color: var(--bf-text-secondary, #a0aec0);
+}

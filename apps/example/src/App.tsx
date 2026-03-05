@@ -97,6 +97,36 @@ import {
   ContextMenuShortcut
 } from '@byteflow-ui/context-menu'
 
+// Fase 5 Imports
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@byteflow-ui/accordion'
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@byteflow-ui/collapsible'
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarItem,
+  SidebarGroup,
+  SidebarToggle
+} from '@byteflow-ui/sidebar'
+import { Pagination } from '@byteflow-ui/pagination'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink
+} from '@byteflow-ui/navigation-menu'
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarLabel
+} from '@byteflow-ui/menubar'
+
 // Estilos de los componentes
 import '@byteflow-ui/money-input/dist/index.css'
 import '@byteflow-ui/button/dist/index.css'
@@ -139,6 +169,14 @@ import '@byteflow-ui/toast/dist/index.css'
 import '@byteflow-ui/sonner/dist/index.css'
 import '@byteflow-ui/hover-card/dist/index.css'
 import '@byteflow-ui/context-menu/dist/index.css'
+
+// Fase 5 Styles
+import '@byteflow-ui/accordion/dist/index.css'
+import '@byteflow-ui/collapsible/dist/index.css'
+import '@byteflow-ui/sidebar/dist/index.css'
+import '@byteflow-ui/pagination/dist/index.css'
+import '@byteflow-ui/navigation-menu/dist/index.css'
+import '@byteflow-ui/menubar/dist/index.css'
 import './App.css'
 import './theme.css'
 
@@ -147,7 +185,8 @@ type ComponentType =
   | 'select' | 'switch' | 'tooltip' | 'badge' | 'avatar' | 'separator' | 'skeleton'
   | 'spinner' | 'card' | 'scroll-area' | 'tabs' | 'breadcrumb' | 'aspect-ratio'
   | 'empty' | 'item' | 'field' | 'slider' | 'toggle' | 'toggle-group' | 'input-group' | 'input-otp'
-  | 'alert' | 'progress' | 'dialog' | 'alert-dialog' | 'popover' | 'dropdown-menu' | 'sheet' | 'drawer' | 'toast' | 'sonner' | 'hover-card' | 'context-menu';
+  | 'alert' | 'progress' | 'dialog' | 'alert-dialog' | 'popover' | 'dropdown-menu' | 'sheet' | 'drawer' | 'toast' | 'sonner' | 'hover-card' | 'context-menu'
+  | 'accordion' | 'collapsible' | 'sidebar' | 'pagination' | 'navigation-menu' | 'menubar';
 
 type TabType = 'preview' | 'code' | 'styles';
 
@@ -167,6 +206,10 @@ const categories = [
   {
     title: 'Overlays & Context',
     components: ['dialog', 'alert-dialog', 'popover', 'dropdown-menu', 'sheet', 'drawer', 'hover-card', 'context-menu'] as ComponentType[]
+  },
+  {
+    title: 'Navegación & Estructura',
+    components: ['accordion', 'collapsible', 'sidebar', 'pagination', 'navigation-menu', 'menubar'] as ComponentType[]
   }
 ];
 
@@ -203,6 +246,9 @@ function App() {
   const [switchState, setSwitchState] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
 
+  // Fase 5 states
+  const [currentPage, setCurrentPage] = useState(1)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   // Fase 4 states
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false)
@@ -954,6 +1000,201 @@ function App() {
                 </ContextMenuItem>
               </ContextMenuContent>
             </ContextMenu>
+          </div>
+        );
+
+      case 'accordion':
+        return (
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <Accordion type="single" defaultValue="item-1">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>¿Qué es Byteflow UI?</AccordionTrigger>
+                <AccordionContent>
+                  Es una librería de componentes premium diseñada para crear interfaces modernas,
+                  rápidas y accesibles con React y TypeScript.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>¿Soporta modo oscuro?</AccordionTrigger>
+                <AccordionContent>
+                  Sí, todos los componentes están diseñados con variables CSS que permiten
+                  una integración fluida con temas claros y oscuros.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3" disabled>
+                <AccordionTrigger>Componente Deshabilitado</AccordionTrigger>
+                <AccordionContent>
+                  Este contenido no debería ser visible.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        );
+
+      case 'collapsible':
+        return (
+          <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+            <Collapsible>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.5rem 1rem', background: 'var(--bf-canvas-subtle)', borderRadius: '8px' }}>
+                <span style={{ fontWeight: 600 }}>Repositorios de @byteflow-ui</span>
+                <CollapsibleTrigger>
+                  <Button variant="ghost" size="sm">Ver más</Button>
+                </CollapsibleTrigger>
+              </div>
+              <CollapsibleContent>
+                <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ padding: '0.75rem', border: '1px solid var(--bf-surface-border)', borderRadius: '8px' }}>
+                    📦 packages/button
+                  </div>
+                  <div style={{ padding: '0.75rem', border: '1px solid var(--bf-surface-border)', borderRadius: '8px' }}>
+                    📦 packages/input
+                  </div>
+                  <div style={{ padding: '0.75rem', border: '1px solid var(--bf-surface-border)', borderRadius: '8px' }}>
+                    📦 packages/card
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+        );
+
+      case 'sidebar':
+        return (
+          <div style={{ height: '500px', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', display: 'flex', overflow: 'hidden' }}>
+            <Sidebar
+              collapsed={isSidebarCollapsed}
+              onCollapseChange={setIsSidebarCollapsed}
+              width="240px"
+            >
+              <SidebarToggle />
+              <SidebarHeader>
+                <div style={{ fontWeight: 800, color: 'var(--bf-accent)' }}>BYTEFLOW</div>
+              </SidebarHeader>
+              <SidebarContent>
+                <SidebarGroup label="Plataforma">
+                  <SidebarItem icon={<span>🏠</span>} active>Dashboard</SidebarItem>
+                  <SidebarItem icon={<span>📊</span>}>Analíticas</SidebarItem>
+                  <SidebarItem icon={<span>👥</span>}>Usuarios</SidebarItem>
+                </SidebarGroup>
+                <SidebarGroup label="Configuración">
+                  <SidebarItem icon={<span>⚙️</span>}>Ajustes</SidebarItem>
+                  <SidebarItem icon={<span>🔒</span>}>Seguridad</SidebarItem>
+                </SidebarGroup>
+              </SidebarContent>
+              <SidebarFooter>
+                <SidebarItem icon={<span>👤</span>} suffix={<Badge variant="secondary">Pro</Badge>}>
+                  v.cornejo
+                </SidebarItem>
+              </SidebarFooter>
+            </Sidebar>
+            <div style={{ flex: 1, padding: '2rem', background: 'var(--bf-canvas-subtle)' }}>
+              <h3 style={{ margin: 0 }}>Contenido del Dashboard</h3>
+              <p style={{ marginTop: '1rem', color: 'var(--bf-text-secondary)' }}>
+                La barra lateral se puede colapsar usando el botón flotante.
+              </p>
+              <Button variant="secondary" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}>
+                {isSidebarCollapsed ? 'Expandir Sidebar' : 'Colapsar Sidebar'}
+              </Button>
+            </div>
+          </div>
+        );
+
+      case 'pagination':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+            <div style={{ padding: '2rem', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', width: '100%', textAlign: 'center' }}>
+              Mostrando resultados de la página <strong>{currentPage}</strong>
+            </div>
+            <Pagination
+              total={100}
+              current={currentPage}
+              pageSize={10}
+              onChange={setCurrentPage}
+            />
+          </div>
+        );
+
+      case 'navigation-menu':
+        return (
+          <div style={{ height: '300px', width: '100%', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', padding: '1rem' }}>
+            <NavigationMenu>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Recursos</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', width: '450px' }}>
+                    <div style={{ background: 'var(--bf-canvas-subtle)', padding: '1rem', borderRadius: '8px' }}>
+                      <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '4px' }}>Introducción</div>
+                      <p style={{ fontSize: '12px', opacity: 0.7, margin: 0 }}>Aprende los conceptos básicos de Byteflow UI.</p>
+                    </div>
+                    <div style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <NavigationMenuLink>Componentes</NavigationMenuLink>
+                      <NavigationMenuLink>Tipografía</NavigationMenuLink>
+                      <NavigationMenuLink>Colores</NavigationMenuLink>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Comunidad</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '200px' }}>
+                    <NavigationMenuLink>GitHub</NavigationMenuLink>
+                    <NavigationMenuLink>Discord</NavigationMenuLink>
+                    <NavigationMenuLink>Twitter</NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenu>
+            <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--bf-text-muted)' }}>
+              Pasa el cursor sobre los elementos del menú para ver los submenús.
+            </div>
+          </div>
+        );
+
+      case 'menubar':
+        return (
+          <div style={{ height: '300px', width: '100%', border: '1px solid var(--bf-surface-border)', borderRadius: '12px', padding: '1rem' }}>
+            <Menubar>
+              <MenubarMenu value="archivo">
+                <MenubarTrigger>Archivo</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem shortcut="⌘N">Nuevo Proyecto</MenubarItem>
+                  <MenubarItem shortcut="⌘O">Abrir...</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem shortcut="⌘S">Guardar</MenubarItem>
+                  <MenubarItem shortcut="⇧⌘S">Guardar como...</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem>Imprimir...</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu value="editar">
+                <MenubarTrigger>Editar</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem shortcut="⌘Z">Deshacer</MenubarItem>
+                  <MenubarItem shortcut="⇧⌘Z">Rehacer</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem shortcut="⌘X">Cortar</MenubarItem>
+                  <MenubarItem shortcut="⌘C">Copiar</MenubarItem>
+                  <MenubarItem shortcut="⌘V">Pegar</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu value="ver">
+                <MenubarTrigger>Ver</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarLabel>Apariencia</MenubarLabel>
+                  <MenubarItem>Barra Lateral</MenubarItem>
+                  <MenubarItem>Barra de Estado</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem>Pantalla Completa</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+            <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--bf-text-muted)' }}>
+              Barra de menús estilo sistema operativo.
+            </div>
           </div>
         );
 
