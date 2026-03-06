@@ -8,6 +8,11 @@ interface ComponentDocProps {
     definition: ComponentDocDefinition;
 }
 
+const ExamplePreview = ({ render }: { render: () => React.ReactNode }) => {
+    const Component = render;
+    return <Component />;
+};
+
 export const ComponentDoc = ({ definition }: ComponentDocProps) => {
     return (
         <section>
@@ -39,7 +44,7 @@ export const ComponentDoc = ({ definition }: ComponentDocProps) => {
                             justifyContent: 'center',
                             minHeight: '200px'
                         }}>
-                            {example.render()}
+                            <ExamplePreview render={example.render} />
                         </div>
                         <CodeBlock code={example.code} />
                     </div>

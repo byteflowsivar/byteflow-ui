@@ -76,6 +76,12 @@
     color: white;
 }
 
+.bf-sidebar-item--active:hover {
+    background: var(--sidebar-accent);
+    color: white;
+    opacity: 0.9;
+}
+
 .bf-sidebar-item-icon {
     display: flex;
     align-items: center;
