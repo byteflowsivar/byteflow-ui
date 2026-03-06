@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useMemo, createContext, useContext, useEffect, useRef } from 'react';
 import './styles.css';
 
-export interface CommandProps {
+/**
+ * Propiedades del componente Command.
+ */
+export interface CommandProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Contenido del comando. */
     children: React.ReactNode;
-    className?: string;
-    onKeyDown?: (e: React.KeyboardEvent) => void;
 }
 
 interface CommandContextValue {
@@ -14,22 +16,37 @@ interface CommandContextValue {
 
 const CommandContext = createContext<CommandContextValue | undefined>(undefined);
 
-export const Command: React.FC<CommandProps> = ({ children, className = '', onKeyDown }) => {
-    const [search, setSearch] = useState('');
+/**
+ * Command: Contenedor principal para una paleta de comandos o buscador.
+ */
+export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
+    ({ children, className = '', onKeyDown, ...props }, ref) => {
+        const [search, setSearch] = useState('');
 
-    return (
-        <CommandContext.Provider value={{ search, setSearch }}>
-            <div className={`bf-command ${className}`} onKeyDown={onKeyDown} role="application">
-                {children}
-            </div>
-        </CommandContext.Provider>
-    );
-};
+        return (
+            <CommandContext.Provider value={{ search, setSearch }}>
+                <div
+                    ref={ref}
+                    className={`bf-command ${className}`}
+                    onKeyDown={onKeyDown}
+                    role="application"
+                    {...props}
+                >
+                    {children}
+                </div>
+            </CommandContext.Provider>
+        );
+    }
+);
 
-export interface CommandInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    className?: string;
-}
+/**
+ * Propiedades para el input del Command.
+ */
+export interface CommandInputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
 
+/**
+ * CommandInput: Campo de búsqueda para la paleta de comandos.
+ */
 export const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
     ({ className = '', ...props }, ref) => {
         const context = useContext(CommandContext);
@@ -67,69 +84,87 @@ export const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps
     }
 );
 
-CommandInput.displayName = 'CommandInput';
-
-export const CommandList: React.FC<{ children: React.ReactNode; className?: string }> = ({
-    children,
-    className = '',
-}) => <div className={`bf-command-list ${className}`}>{children}</div>;
-
-export const CommandEmpty: React.FC<{ children: React.ReactNode; className?: string }> = ({
-    children,
-    className = '',
-}) => {
-    const context = useContext(CommandContext);
-    // This is a simple implementation, usually you'd check for visible items
-    return <div className={`bf-command-empty ${className}`}>{children}</div>;
-};
-
-export const CommandGroup: React.FC<{ children: React.ReactNode; heading?: string; className?: string }> = ({
-    children,
-    heading,
-    className = '',
-}) => (
-    <div className={`bf-command-group ${className}`} role="group">
-        {heading && <div className="bf-command-group-heading">{heading}</div>}
-        <div className="bf-command-group-content">{children}</div>
-    </div>
+/**
+ * CommandList: Contenedor para los grupos e ítems de resultados.
+ */
+export const CommandList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ children, className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-command-list ${className}`} {...props}>
+            {children}
+        </div>
+    )
 );
 
+/**
+ * CommandEmpty: Mensaje a mostrar cuando no hay resultados de búsqueda.
+ */
+export const CommandEmpty = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ children, className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-command-empty ${className}`} {...props}>
+            {children}
+        </div>
+    )
+);
+
+/**
+ * CommandGroup: Agrupa ítems relacionados con un encabezado opcional.
+ */
+export const CommandGroup = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & { heading?: string }>(
+    ({ children, heading, className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-command-group ${className}`} role="group" {...props}>
+            {heading && <div className="bf-command-group-heading">{heading}</div>}
+            <div className="bf-command-group-content">{children}</div>
+        </div>
+    )
+);
+
+/**
+ * Propiedades para un ítem del comando.
+ */
 export interface CommandItemProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onSelect'> {
-    children: React.ReactNode;
+    /** Callback al seleccionar el ítem. */
     onSelect?: (value: string) => void;
+    /** Valor del ítem para la selección. */
     value?: string;
-    className?: string;
 }
 
-export const CommandItem: React.FC<CommandItemProps> = ({
-    children,
-    onSelect,
-    value,
-    className = '',
-    ...props
-}) => {
-    const handleClick = () => {
-        onSelect?.(value || '');
-    };
+/**
+ * CommandItem: Un ítem seleccionable dentro de la paleta.
+ */
+export const CommandItem = React.forwardRef<HTMLButtonElement, CommandItemProps>(
+    ({ children, onSelect, value, className = '', ...props }, ref) => {
+        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+            onSelect?.(value || '');
+            props.onClick?.(e);
+        };
 
-    return (
-        <button
-            type="button"
-            className={`bf-command-item ${className}`}
-            onClick={handleClick}
-            role="option"
-            {...props}
-        >
-            {children}
-        </button>
-    );
-};
-
-export const CommandSeparator: React.FC<{ className?: string }> = ({ className = '' }) => (
-    <div className={`bf-command-separator ${className}`} />
+        return (
+            <button
+                ref={ref}
+                type="button"
+                className={`bf-command-item ${className}`}
+                onClick={handleClick}
+                role="option"
+                {...props}
+            >
+                {children}
+            </button>
+        );
+    }
 );
 
-export const CommandShortcut: React.FC<{ children: React.ReactNode; className?: string }> = ({
-    children,
-    className = '',
-}) => <span className={`bf-command-shortcut ${className}`}>{children}</span>;
+/**
+ * Separador visual para grupos de comandos.
+ */
+export const CommandSeparator = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-command-separator ${className}`} {...props} />
+    )
+);
+
+/**
+ * Atajo de teclado visual para un ítem.
+ */
+export const CommandShortcut = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
+    <span className={`bf-command-shortcut ${className}`} {...props}>{children}</span>
+);
