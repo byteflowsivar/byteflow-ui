@@ -3,95 +3,121 @@
     background-color: var(--bf-canvas, #ffffff);
     color: var(--bf-text-primary, #0f172a);
 
-    /* Tokens de Tematización (Light - Default) */
+    /* Tokens de Tematización Base (Light) */
     --bf-accent: #2563eb;
     --bf-canvas: #ffffff;
     --bf-canvas-subtle: #f8fafc;
+    --bf-surface-hover: #f1f5f9;
     --bf-surface-border: #e2e8f0;
     --bf-text-primary: #0f172a;
     --bf-text-secondary: #475569;
     --bf-text-muted: #94a3b8;
+
     --bf-radius-sm: 0.25rem;
     --bf-radius-md: 0.5rem;
     --bf-radius-lg: 0.75rem;
+    --bf-radius-xl: 1rem;
 
-    /* MoneyInput */
-    --bf-money-input-primary-color: var(--bf-accent);
-    --bf-money-input-bg-color: var(--bf-canvas);
-    --bf-money-input-border-color: var(--bf-surface-border);
-    --bf-money-input-text-color: var(--bf-text-primary);
-    --bf-money-input-label-color: var(--bf-text-secondary);
+    /* --- PERSONALIZACIÓN POR COMPONENTE --- */
 
-    /* Button */
+    /* 1. Fundamentos */
     --bf-button-primary-bg: var(--bf-accent);
     --bf-button-primary-text: #ffffff;
     --bf-button-radius: var(--bf-radius-md);
 
-    /* Input & Textarea */
     --bf-input-bg: var(--bf-canvas-subtle);
     --bf-input-border: var(--bf-surface-border);
     --bf-input-radius: var(--bf-radius-md);
-    --bf-textarea-min-height: 120px;
+    --bf-input-ring: var(--bf-accent);
 
-    /* Select */
-    --bf-select-bg: var(--bf-canvas-subtle);
-    --bf-select-radius: var(--bf-radius-md);
-    --bf-select-height: 2.75rem;
-    --bf-select-chevron: var(--bf-text-muted);
+    --bf-checkbox-checked-bg: var(--bf-accent);
+    --bf-checkbox-radius: var(--bf-radius-sm);
 
-    /* Switch */
     --bf-switch-bg-checked: var(--bf-accent);
     --bf-switch-width: 2.75rem;
 
-    /* Tooltip */
-    --bf-tooltip-bg: var(--bf-text-primary);
-    --bf-tooltip-radius: var(--bf-radius-sm);
+    --bf-slider-track-bg: var(--bf-surface-border);
+    --bf-slider-thumb-bg: var(--bf-canvas);
 
-    /* Badge */
+    /* 2. Visualización */
     --bf-badge-radius: 9999px;
-    --bf-badge-font-weight: 500;
+    --bf-badge-font-weight: 600;
 
-    /* Avatar */
     --bf-avatar-size: 2.5rem;
     --bf-avatar-radius: 9999px;
+    --bf-avatar-bg: var(--bf-canvas-subtle);
 
-    /* Separator */
-    --bf-separator-bg: var(--bf-surface-border);
+    --bf-alert-radius: var(--bf-radius-lg);
 
-    /* Skeleton */
-    --bf-skeleton-bg: var(--bf-canvas-subtle);
+    --bf-progress-indicator-bg: var(--bf-accent);
+    --bf-progress-radius: 9999px;
 
-    /* Spinner */
-    --bf-spinner-color: var(--bf-accent);
-    --bf-spinner-track: var(--bf-surface-border);
+    /* 3. Layout & Estructura */
+    --bf-card-bg: var(--bf-canvas);
+    --bf-card-border: var(--bf-surface-border);
+    --bf-card-radius: var(--bf-radius-lg);
+    --bf-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    --bf-money-input-primary-color: var(--bf-accent);
+    --bf-money-input-bg-color: var(--bf-canvas-subtle);
+    --bf-money-input-border-color: var(--bf-surface-border);
+    --bf-money-input-border-radius: var(--bf-radius-lg);
+
+    --bf-tabs-bg: var(--bf-canvas-subtle);
+    --bf-tabs-radius: var(--bf-radius-md);
+    --bf-tabs-active-bg: var(--bf-canvas);
+
+    --bf-scrollarea-thumb: var(--bf-surface-border);
+
+    --bf-breadcrumb-separator: var(--bf-text-muted);
+
+    --bf-empty-icon-color: var(--bf-text-muted);
+
+    --bf-item-selected-bg: var(--bf-surface-hover);
+
+    /* 4. Overlays & Context */
+    --bf-tooltip-bg: var(--bf-text-primary);
+    --bf-tooltip-radius: var(--bf-radius-sm);
+    --bf-tooltip-text: var(--bf-canvas);
+
+    --bf-toast-bg: var(--bf-text-primary);
+    --bf-toast-radius: var(--bf-radius-lg);
+    --bf-toast-border: var(--bf-surface-border);
 }
 
 .dark-theme {
-    /* Tokens de Tematización (Dark Overrides) */
+    /* Tokens de Tematización Base (Dark Overrides) */
     --bf-accent: #3b82f6;
     --bf-canvas: #0f172a;
     --bf-canvas-subtle: #1e293b;
+    --bf-surface-hover: #1e293b;
     --bf-surface-border: #334155;
     --bf-text-primary: #f1f5f9;
     --bf-text-secondary: #94a3b8;
     --bf-text-muted: #64748b;
 
+    /* Overrides de Componentes para Dark Mode */
+    --bf-card-bg: var(--bf-canvas-subtle);
+    --bf-toast-bg: #1e293b;
     --bf-money-input-bg-color: var(--bf-canvas-subtle);
+    --bf-tabs-bg: var(--bf-canvas-subtle);
+    --bf-tabs-active-bg: var(--bf-surface-border);
 }
 
-/* Estilos de Utilidad para la Demo */
-.custom-theme-example {
-    padding: 2rem;
-    border: 1px dashed var(--bf-accent);
-    border-radius: var(--bf-radius-lg);
-    margin-top: 2rem;
-}
-
-.placeholder-box {
-    padding: 1rem;
+/* Estilos de Utilidad para la Documentación */
+.doc-example-container {
+    padding: 2.5rem;
     background: var(--bf-canvas-subtle);
     border: 1px solid var(--bf-surface-border);
-    border-radius: var(--bf-radius-md);
-    color: var(--bf-text-muted);
-    font-size: 0.875rem;
+    border-radius: var(--bf-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    transition: all 0.2s ease;
+}
+
+.doc-example-container:hover {
+    border-color: var(--bf-accent);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
