@@ -2,12 +2,21 @@ import React from 'react';
 import { Label } from '@byteflow-ui/label';
 import './styles.css';
 
+/**
+ * Propiedades del componente Textarea.
+ */
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    /** Etiqueta de texto para el campo. */
     label?: string;
+    /** Mensaje de error a mostrar. Cambia el color del borde y activa aria-invalid. */
     error?: string;
+    /** Si el campo es obligatorio. Muestra un asterisco si hay label. */
     required?: boolean;
 }
 
+/**
+ * Textarea: Campo de entrada de texto multilínea con soporte para etiquetas y errores.
+ */
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ({ className = '', label, error, required, disabled, id, ...props }, ref) => {
         const textareaId = id || `bf-textarea-${Math.random().toString(36).substr(2, 9)}`;

@@ -2,16 +2,29 @@ import React from 'react';
 import { Label } from '@byteflow-ui/label';
 import './styles.css';
 
+/**
+ * Opción individual dentro de un componente Select.
+ */
 export interface SelectOption {
+    /** Texto que ve el usuario. */
     label: string;
+    /** Valor interno de la opción. */
     value: string | number;
+    /** Si es true, la opción no podrá ser seleccionada. */
     disabled?: boolean;
 }
 
+/**
+ * Propiedades del componente Select.
+ */
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+    /** Etiqueta descriptiva sobre el campo de selección. */
     label?: string;
+    /** Lista de opciones a renderizar. Alternativamente se pueden pasar `<option>` como children. */
     options?: SelectOption[];
+    /** Mensaje de error. Cambia el estilo del borde y activa aria-invalid. */
     error?: string;
+    /** Texto a mostrar cuando no hay ninguna opción seleccionada. */
     placeholder?: string;
 }
 
@@ -32,6 +45,9 @@ const ChevronIcon = () => (
     </svg>
 );
 
+/**
+ * Select: Control de selección que permite elegir una opción de una lista desplegable.
+ */
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ({ className = '', label, options = [], error, placeholder, id, required, disabled, children, ...props }, ref) => {
         const selectId = id || `bf-select-${Math.random().toString(36).substr(2, 9)}`;

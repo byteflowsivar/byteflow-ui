@@ -28,121 +28,131 @@ export interface SliderProps {
  * Slider: Un componente deslizante premium para selección de valores numéricos.
  * Diseñado con estética Byteflow-UI para una experiencia táctil y visual superior.
  */
-export const Slider: React.FC<SliderProps> = ({
-  value: controlledValue,
-  defaultValue = 0,
-  min = 0,
-  max = 100,
-  step = 1,
-  onChange,
-  label,
-  disabled = false,
-  className = '',
-  style,
-}) => {
-  const [internalValue, setInternalValue] = useState(defaultValue);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
+export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
+  ({
+    value: controlledValue,
+    defaultValue = 0,
+    min = 0,
+    max = 100,
+    step = 1,
+    onChange,
+    label,
+    disabled = false,
+    className = '',
+    style,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = useState(defaultValue);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const isDragging = useRef(false);
 
-  const currentValue = controlledValue !== undefined ? controlledValue : internalValue;
+    const currentValue = controlledValue !== undefined ? controlledValue : internalValue;
 
-  // Calcular porcentaje para el posicionamiento visual
-  const percentage = ((currentValue - min) / (max - min)) * 100;
+    // Calcular porcentaje para el posicionamiento visual
+    const percentage = ((currentValue - min) / (max - min)) * 100;
 
-  const updateValue = useCallback((clientX: number) => {
-    if (!trackRef.current || disabled) return;
+    const updateValue = useCallback((clientX: number) => {
+      if (!trackRef.current || disabled) return;
 
-    const rect = trackRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const width = rect.width;
-    
-    let nextPercentage = Math.max(0, Math.min(100, (x / width) * 100));
-    let nextValue = min + ((max - min) * nextPercentage) / 100;
-    
-    // Aplicar el step
-    nextValue = Math.round(nextValue / step) * step;
-    nextValue = Math.max(min, Math.min(max, nextValue));
+      const rect = trackRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const width = rect.width;
 
-    if (controlledValue === undefined) {
-      setInternalValue(nextValue);
-    }
-    onChange?.(nextValue);
-  }, [min, max, step, disabled, controlledValue, onChange]);
+      let nextPercentage = Math.max(0, Math.min(100, (x / width) * 100));
+      let nextValue = min + ((max - min) * nextPercentage) / 100;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    updateValue(e.clientX);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-  };
+      // Aplicar el step
+      nextValue = Math.round(nextValue / step) * step;
+      nextValue = Math.max(min, Math.min(max, nextValue));
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (isDragging.current) {
+      if (controlledValue === undefined) {
+        setInternalValue(nextValue);
+      }
+      onChange?.(nextValue);
+    }, [min, max, step, disabled, controlledValue, onChange]);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+      isDragging.current = true;
       updateValue(e.clientX);
-    }
-  }, [updateValue]);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    };
 
-  const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
-    window.removeEventListener('mousemove', handleMouseMove);
-    window.removeEventListener('mouseup', handleMouseUp);
-  }, [handleMouseMove]);
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+      if (isDragging.current) {
+        updateValue(e.clientX);
+      }
+    }, [updateValue]);
 
-  useEffect(() => {
-    return () => {
+    const handleMouseUp = useCallback(() => {
+      isDragging.current = false;
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
+    }, [handleMouseMove]);
+
+    useEffect(() => {
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }, [handleMouseMove, handleMouseUp]);
+
+    // Soporte para teclado (Accesibilidad)
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return;
+
+      let nextValue = currentValue;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        nextValue = Math.min(max, currentValue + step);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        nextValue = Math.max(min, currentValue - step);
+      } else if (e.key === 'Home') {
+        nextValue = min;
+      } else if (e.key === 'End') {
+        nextValue = max;
+      }
+
+      if (nextValue !== currentValue) {
+        if (controlledValue === undefined) setInternalValue(nextValue);
+        onChange?.(nextValue);
+      }
     };
-  }, [handleMouseMove, handleMouseUp]);
 
-  // Soporte para teclado (Accesibilidad)
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (disabled) return;
-    
-    let nextValue = currentValue;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-      nextValue = Math.min(max, currentValue + step);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-      nextValue = Math.max(min, currentValue - step);
-    } else if (e.key === 'Home') {
-      nextValue = min;
-    } else if (e.key === 'End') {
-      nextValue = max;
-    }
-
-    if (nextValue !== currentValue) {
-      if (controlledValue === undefined) setInternalValue(nextValue);
-      onChange?.(nextValue);
-    }
-  };
-
-  return (
-    <div 
-      className={`bf-slider-container ${disabled ? 'bf-slider--disabled' : ''} ${className}`}
-      style={style}
-    >
-      {label && <label className="bf-slider-label">{label}</label>}
-      <div 
-        ref={trackRef}
-        className="bf-slider-track"
-        onMouseDown={handleMouseDown}
+    return (
+      <div
+        ref={ref}
+        className={`bf-slider-container ${disabled ? 'bf-slider--disabled' : ''} ${className}`}
+        style={style}
+        {...props}
       >
-        <div 
-          className="bf-slider-range" 
-          style={{ width: `${percentage}%` }} 
-        />
-        <div 
-          className="bf-slider-thumb"
-          role="slider"
-          tabIndex={disabled ? -1 : 0}
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={currentValue}
-          aria-label={label || 'Slider'}
-          onKeyDown={handleKeyDown}
-          style={{ left: `${percentage}%` }}
-        />
+        {label && <label className="bf-slider-label">{label}</label>}
+        <div
+          ref={(node) => {
+            // Unir refs si es necesario
+            (trackRef as any).current = node;
+          }}
+          className="bf-slider-track"
+          onMouseDown={handleMouseDown}
+        >
+          <div
+            className="bf-slider-range"
+            style={{ width: `${percentage}%` }}
+          />
+          <div
+            className="bf-slider-thumb"
+            role="slider"
+            tabIndex={disabled ? -1 : 0}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={currentValue}
+            aria-label={label || 'Slider'}
+            onKeyDown={handleKeyDown}
+            style={{ left: `${percentage}%` }}
+          />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+Slider.displayName = 'Slider';

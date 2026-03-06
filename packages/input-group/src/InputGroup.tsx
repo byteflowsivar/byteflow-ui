@@ -1,9 +1,13 @@
 import React from 'react';
 import './styles.css';
 
+/**
+ * Propiedades del componente InputGroup.
+ */
 export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Contenido del grupo (inputs, botones, texto). */
     children: React.ReactNode;
-    /** Si es true, el grupo ocupará todo el ancho disponible. */
+    /** Si es true, el grupo ocupará todo el ancho disponible del contenedor. */
     fullWidth?: boolean;
 }
 
@@ -25,13 +29,22 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
     }
 );
 
+/**
+ * Propiedades del texto complementario para InputGroup.
+ */
 export interface InputGroupTextProps extends React.HTMLAttributes<HTMLSpanElement> { }
 
 /**
- * InputGroupText: Elemento para mostrar texto estático dentro del InputGroup.
+ * InputGroupText: Elemento para mostrar texto estático o iconos dentro de un InputGroup.
  */
-export const InputGroupText = ({ className = '', ...props }: InputGroupTextProps) => (
-    <span className={`bf-input-group-text ${className}`} {...props} />
+export const InputGroupText = React.forwardRef<HTMLSpanElement, InputGroupTextProps>(
+    ({ className = '', ...props }, ref) => (
+        <span
+            ref={ref}
+            className={`bf-input-group-text ${className}`}
+            {...props}
+        />
+    )
 );
 
 InputGroup.displayName = 'InputGroup';

@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import './styles.css';
 
+/**
+ * Propiedades del componente Toggle.
+ */
 export interface ToggleProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    /** Estado del toggle (controlado). */
+    /** Estado del toggle (controlado). Indicar true para 'presionado'. */
     pressed?: boolean;
-    /** Estado inicial (no controlado). */
+    /** Estado inicial del toggle cuando no es controlado. */
     defaultPressed?: boolean;
-    /** Callback al cambiar el estado. */
+    /** Callback disparado cuando el estado del toggle cambia. */
     onPressedChange?: (pressed: boolean) => void;
-    /** Variante visual. */
+    /** Estética visual: default (relleno), outline (borde), ghost (transparente). */
     variant?: 'default' | 'outline' | 'ghost';
-    /** Tamaño del botón. */
+    /** Tamaño del botón de toggle. */
     size?: 'sm' | 'md' | 'lg';
 }
 
 /**
  * Toggle: Un botón de dos estados que permite alternar una opción.
- * A diferencia del Switch, el Toggle se comporta y se ve como un botón presionado.
+ * A diferencia del Switch, el Toggle se comporta y se ve como un botón que se queda "hundido".
  */
 export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
     ({
