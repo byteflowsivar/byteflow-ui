@@ -2,11 +2,19 @@ import React from 'react';
 import { Label } from '@byteflow-ui/label';
 import './styles.css';
 
+/**
+ * Propiedades para el componente Checkbox.
+ */
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+    /** Etiqueta de texto que acompaña al checkbox. */
     label?: string;
+    /** Indica si el campo es obligatorio. */
     required?: boolean;
 }
 
+/**
+ * Checkbox: Componente de selección booleana con estilo premium.
+ */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     ({ className = '', label, required, disabled, id, ...props }, ref) => {
         const checkboxId = id || `bf-checkbox-${Math.random().toString(36).substr(2, 9)}`;

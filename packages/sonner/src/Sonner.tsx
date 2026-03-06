@@ -62,12 +62,20 @@ interface SonnerContextType {
 
 const SonnerContext = createContext<SonnerContextType | undefined>(undefined);
 
+/**
+ * Propiedades opcionales para disparar un toast.
+ */
+export type SonnerOptions = Omit<SonnerToastProps, 'id' | 'message' | 'onClose' | 'index' | 'total'>;
+
 export const Toaster: React.FC = () => {
     const context = useContext(SonnerContext);
     if (!context) return null;
     return null; // The logic is in ToasterProvider, but we follow sonner's API name
 };
 
+/**
+ * ToasterProvider: Proveedor de contexto para manejar las notificaciones Sonner.
+ */
 export const ToasterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [toasts, setToasts] = useState<Omit<SonnerToastProps, 'onClose' | 'index' | 'total'>[]>([]);
 
@@ -75,7 +83,7 @@ export const ToasterProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setToasts((prev) => prev.filter((t) => t.id !== id));
     }, []);
 
-    const toast = useCallback((message: string, options?: any) => {
+    const toast = useCallback((message: string, options?: SonnerOptions) => {
         const id = Math.random().toString(36).substr(2, 9);
         setToasts((prev) => [...prev, { id, message, ...options }]);
     }, []);
@@ -103,8 +111,11 @@ export const ToasterProvider: React.FC<{ children: React.ReactNode }> = ({ child
     );
 };
 
+/**
+ * Objeto imperativo para disparar toasts (Placeholder).
+ */
 export const sonner = {
-    toast: (_message: string, _options?: any) => {
+    toast: (_message: string, _options?: SonnerOptions) => {
         // This is a placeholder for the imperative API if needed, 
         // but since we use context, we'll mostly use the hook.
     }

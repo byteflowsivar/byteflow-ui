@@ -1,12 +1,22 @@
 import React from 'react';
 import './styles.css';
 
+/**
+ * Propiedades para el componente Button.
+ */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** La variante visual del botón. */
     variant?: 'primary' | 'secondary' | 'ghost';
+    /** El tamaño del botón. */
     size?: 'sm' | 'md' | 'lg';
+    /** Si es true, muestra un spinner de carga y deshabilita el botón. */
     isLoading?: boolean;
 }
 
+/**
+ * Button: Componente interactivo fundamental para acciones del usuario.
+ * Soporta múltiples estados, variantes y tamaños.
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className = '', variant = 'primary', size = 'md', isLoading, disabled, children, ...props }, ref) => {
         const baseClass = 'bf-button';
