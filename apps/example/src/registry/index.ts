@@ -11,6 +11,12 @@ import { progressDoc } from './progress';
 import { toastDoc } from './toast';
 import { switchDoc } from './switch';
 import { sliderDoc } from './slider';
+import { tabsDoc } from './tabs';
+import { scrollAreaDoc } from './scroll-area';
+import { breadcrumbDoc } from './breadcrumb';
+import { emptyDoc } from './empty';
+import { itemDoc } from './item';
+import { fieldDoc } from './field';
 
 export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'button': buttonDoc,
@@ -25,4 +31,10 @@ export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'toast': toastDoc,
     'switch': switchDoc,
     'slider': sliderDoc,
+    'tabs': tabsDoc,
+    'scroll-area': scrollAreaDoc,
+    'breadcrumb': breadcrumbDoc,
+    'empty': emptyDoc,
+    'item': itemDoc,
+    'field': fieldDoc,
 };
