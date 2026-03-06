@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar } from '@byteflow-ui/avatar';
 import type { ComponentDocDefinition } from './button';
 

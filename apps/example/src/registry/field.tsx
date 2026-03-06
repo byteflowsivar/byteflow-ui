@@ -32,14 +32,14 @@ export const fieldDoc: ComponentDocDefinition = {
                 <div style={{ width: '100%', maxWidth: '400px' }}>
                     <Field isInvalid={true}>
                         <FieldLabel>Email de Trabajo</FieldLabel>
-                        <Input defaultValue="usuario@invalido" error />
+                        <Input defaultValue="usuario@invalido" error="Email inválido" />
                         <FieldError>Por favor, ingresa un correo corporativo válido.</FieldError>
                     </Field>
                 </div>
             ),
             code: `<Field isInvalid>
     <FieldLabel>Email</FieldLabel>
-    <Input error />
+    <Input error="Email inválido" />
     <FieldError>Email inválido.</FieldError>
 </Field>`
         }

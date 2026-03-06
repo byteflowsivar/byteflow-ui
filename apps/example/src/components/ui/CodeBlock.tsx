@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const CodeBlock = ({ code }: { code: string }) => {
     const [copied, setCopied] = useState(false);

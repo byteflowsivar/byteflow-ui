@@ -1,6 +1,3 @@
-import type {
-    SidebarProps
-} from '@byteflow-ui/sidebar';
 import {
     Sidebar,
     SidebarHeader,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ScrollArea } from '@byteflow-ui/scroll-area';
 import type { ComponentDocDefinition } from './button';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useToast, ToastProvider } from '@byteflow-ui/toast';
 import { Button } from '@byteflow-ui/button';
 import type { ComponentDocDefinition } from './button';

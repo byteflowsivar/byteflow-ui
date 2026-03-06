@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { ComponentDocDefinition } from './button';
 import { Slider } from '@byteflow-ui/slider';
 

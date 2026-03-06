@@ -1,4 +1,3 @@
-import React from 'react';
 import { Empty, EmptyTitle, EmptyDescription, EmptyAction } from '@byteflow-ui/empty';
 import { Button } from '@byteflow-ui/button';
 import type { ComponentDocDefinition } from './button';

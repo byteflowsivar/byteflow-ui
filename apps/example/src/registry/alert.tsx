@@ -1,4 +1,3 @@
-import React from 'react';
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
 import type { ComponentDocDefinition } from './button';
 

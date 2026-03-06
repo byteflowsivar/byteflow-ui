@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Progress } from '@byteflow-ui/progress';
 import { Button } from '@byteflow-ui/button';
 import type { ComponentDocDefinition } from './button';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Item, ItemPrefix, ItemContent, ItemSuffix } from '@byteflow-ui/item';
 import type { ComponentDocDefinition } from './button';
 
