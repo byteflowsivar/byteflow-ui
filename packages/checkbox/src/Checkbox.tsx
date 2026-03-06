@@ -3,17 +3,18 @@ import { Label } from '@byteflow-ui/label';
 import './styles.css';
 
 /**
- * Propiedades para el componente Checkbox.
+ * Propiedades del componente Checkbox.
  */
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-    /** Etiqueta de texto que acompaña al checkbox. */
+    /** Etiqueta de texto que aparece a la derecha del checkbox, facilitando la identificación de la opción. */
     label?: string;
-    /** Indica si el campo es obligatorio. */
+    /** Indica si la selección de este checkbox es obligatoria para continuar (ej. términos y condiciones). */
     required?: boolean;
 }
 
 /**
- * Checkbox: Componente de selección booleana con estilo premium.
+ * Checkbox: Un control de selección binaria con estética Byteflow-UI. 
+ * Reemplaza el input nativo con un diseño personalizado, manteniendo la accesibilidad nativa mediante el uso de un input oculto.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     ({ className = '', label, required, disabled, id, ...props }, ref) => {

@@ -3,19 +3,20 @@ import { Label } from '@byteflow-ui/label';
 import './styles.css';
 
 /**
- * Propiedades para el componente Input.
+ * Propiedades del componente Input.
  */
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    /** Etiqueta descriptiva opcional. */
+    /** Texto de la etiqueta que identifica el propósito del campo. */
     label?: string;
-    /** Mensaje de error. Si se provee, cambia el estado visual del input. */
+    /** Mensaje de error a pie de campo. Si se provee, el borde del input cambiará a rojo para indicar un estado inválido. */
     error?: string;
-    /** Indica si el campo es obligatorio. */
+    /** Si es true, añade un indicador visual (ej. asterisco) resaltando que el campo es obligatorio. */
     required?: boolean;
 }
 
 /**
- * Input: Campo de entrada de texto estándar con soporte para etiquetas y mensajes de error.
+ * Input: El componente básico de entrada de texto. 
+ * Implementado con altos estándares de accesibilidad, gestionando automáticamente IDs, etiquetas vinculadas y estados de error ARIA.
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className = '', label, error, required, disabled, id, ...props }, ref) => {

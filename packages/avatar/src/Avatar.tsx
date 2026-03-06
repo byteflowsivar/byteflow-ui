@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import './styles.css';
 
 /**
- * Propiedades para el componente Avatar.
+ * Propiedades del componente Avatar.
  */
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-    /** URL de la imagen. */
+    /** URL de la imagen de perfil. Si falla o no se provee, se mostrará el fallback. */
     src?: string;
-    /** Texto alternativo para la imagen. */
+    /** Texto alternativo para la imagen, importante para la accesibilidad por lectores de pantalla. */
     alt?: string;
-    /** Contenido a mostrar si la imagen falla u omite. */
+    /** Contenido personalizado (ej. iniciales o iconos) a mostrar cuando la imagen no esté disponible. */
     fallback?: React.ReactNode;
-    /** El tamaño del avatar. */
+    /** Determina las dimensiones físicas del avatar dentro del espacio de la UI. */
     size?: 'sm' | 'md' | 'lg' | 'xl';
-    /** La forma del avatar. */
+    /** La forma geométrica del avatar: circle (estándar) o square (más industrial/moderno). */
     shape?: 'circle' | 'square';
 }
 
 /**
- * Avatar: Representación visual de un usuario o entidad.
- * Soporta fallbacks automáticos y diferentes formas/tamaños.
+ * Avatar: Una representación visual premium para usuarios o entidades. 
+ * Maneja internamente el ciclo de vida de carga de la imagen y proporciona una transición elegante hacia el fallback.
  */
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((
     {
@@ -53,7 +53,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((
                 />
             ) : (
                 <div className="bf-avatar-fallback">
-                    {fallback || alt.substring(0, 2) || '?'}
+                    {fallback || (alt ? alt.substring(0, 2).toUpperCase() : '?')}
                 </div>
             )}
         </div>

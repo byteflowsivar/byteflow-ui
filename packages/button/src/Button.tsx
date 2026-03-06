@@ -2,20 +2,20 @@ import React from 'react';
 import './styles.css';
 
 /**
- * Propiedades para el componente Button.
+ * Propiedades del componente Button.
  */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    /** La variante visual del botón. */
+    /** La variante visual del botón que define su nivel de importancia: primary (acción principal), secondary (acción de apoyo) o ghost (acción mínima). */
     variant?: 'primary' | 'secondary' | 'ghost';
-    /** El tamaño del botón. */
+    /** Tamaño del botón para ajustar su jerarquía visual en diferentes contextos de UI. */
     size?: 'sm' | 'md' | 'lg';
-    /** Si es true, muestra un spinner de carga y deshabilita el botón. */
+    /** Cuando es true, muestra un indicador de carga (spinner) y deshabilita la interacción para prevenir clicks duplicados. */
     isLoading?: boolean;
 }
 
 /**
- * Button: Componente interactivo fundamental para acciones del usuario.
- * Soporta múltiples estados, variantes y tamaños.
+ * Button: El componente fundamental para la interacción del usuario. 
+ * Diseñado internamente para ser accesible y proporcionar feedback visual inmediato, incluyendo estados de carga y deshabilitado.
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className = '', variant = 'primary', size = 'md', isLoading, disabled, children, ...props }, ref) => {
@@ -42,7 +42,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             >
                 {isLoading && (
                     <span className="bf-button__loader" aria-hidden="true">
-                        {/* Simple spinner placeholder */}
                         <svg className="bf-button__spinner" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="4" />
                         </svg>
