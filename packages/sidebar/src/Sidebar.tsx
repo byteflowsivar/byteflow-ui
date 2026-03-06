@@ -1,13 +1,19 @@
 import React, { useState, useCallback, useMemo, createContext, useContext } from 'react';
 import './styles.css';
 
-export interface SidebarProps {
-    children: React.ReactNode;
+/**
+ * Propiedades del componente Sidebar (Barra lateral).
+ */
+export interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
+    /** Determina si la barra lateral comienza colapsada. */
     defaultCollapsed?: boolean;
+    /** Estado controlado para determinar si la barra lateral está colapsada. */
     collapsed?: boolean;
+    /** Callback disparado al cambiar el estado de colapso. */
     onCollapseChange?: (collapsed: boolean) => void;
-    className?: string;
+    /** Ancho de la barra lateral expandida. Ej: '280px'. */
     width?: string;
+    /** Ancho de la barra lateral colapsada. Ej: '80px'. */
     collapsedWidth?: string;
 }
 
@@ -18,109 +24,141 @@ interface SidebarContextValue {
 
 const SidebarContext = createContext<SidebarContextValue | undefined>(undefined);
 
+/**
+ * Hook para acceder al estado del Sidebar dentro de sus subcomponentes.
+ */
 export const useSidebar = () => {
     const context = useContext(SidebarContext);
-    if (!context) throw new Error('useSidebar must be used within Sidebar');
+    if (!context) throw new Error('useSidebar debe usarse dentro de Sidebar');
     return context;
 };
 
-export const Sidebar: React.FC<SidebarProps> = ({
-    children,
-    defaultCollapsed = false,
-    collapsed: controlledCollapsed,
-    onCollapseChange,
-    className = '',
-    width = '280px',
-    collapsedWidth = '80px',
-}) => {
-    const [uncontrolledCollapsed, setUncontrolledCollapsed] = useState(defaultCollapsed);
-    const isControlled = controlledCollapsed !== undefined;
-    const isCollapsed = isControlled ? controlledCollapsed : uncontrolledCollapsed;
+/**
+ * Sidebar: Barra lateral de navegación altamente personalizable y colapsable.
+ */
+export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
+    ({
+        children,
+        defaultCollapsed = false,
+        collapsed: controlledCollapsed,
+        onCollapseChange,
+        className = '',
+        width = '280px',
+        collapsedWidth = '80px',
+        style,
+        ...props
+    }, ref) => {
+        const [uncontrolledCollapsed, setUncontrolledCollapsed] = useState(defaultCollapsed);
+        const isControlled = controlledCollapsed !== undefined;
+        const isCollapsed = isControlled ? controlledCollapsed : uncontrolledCollapsed;
 
-    const toggleCollapse = useCallback(() => {
-        const nextCollapsed = !isCollapsed;
-        if (!isControlled) {
-            setUncontrolledCollapsed(nextCollapsed);
-        }
-        onCollapseChange?.(nextCollapsed);
-    }, [isCollapsed, isControlled, onCollapseChange]);
+        const toggleCollapse = useCallback(() => {
+            const nextCollapsed = !isCollapsed;
+            if (!isControlled) {
+                setUncontrolledCollapsed(nextCollapsed);
+            }
+            onCollapseChange?.(nextCollapsed);
+        }, [isCollapsed, isControlled, onCollapseChange]);
 
-    const contextValue = useMemo(() => ({
-        isCollapsed,
-        toggleCollapse,
-    }), [isCollapsed, toggleCollapse]);
+        const contextValue = useMemo(() => ({
+            isCollapsed,
+            toggleCollapse,
+        }), [isCollapsed, toggleCollapse]);
 
-    return (
-        <SidebarContext.Provider value={contextValue}>
-            <aside
-                className={`bf-sidebar ${isCollapsed ? 'bf-sidebar--collapsed' : ''} ${className}`}
-                style={{
-                    '--sidebar-width': width,
-                    '--sidebar-collapsed-width': collapsedWidth
-                } as React.CSSProperties}
-            >
-                <div className="bf-sidebar-wrapper">
-                    {children}
-                </div>
-            </aside>
-        </SidebarContext.Provider>
-    );
-};
-
-export const SidebarHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-    <div className={`bf-sidebar-header ${className}`}>{children}</div>
+        return (
+            <SidebarContext.Provider value={contextValue}>
+                <aside
+                    ref={ref}
+                    className={`bf-sidebar ${isCollapsed ? 'bf-sidebar--collapsed' : ''} ${className}`}
+                    style={{
+                        '--sidebar-width': width,
+                        '--sidebar-collapsed-width': collapsedWidth,
+                        ...style
+                    } as React.CSSProperties}
+                    {...props}
+                >
+                    <div className="bf-sidebar-wrapper">
+                        {children}
+                    </div>
+                </aside>
+            </SidebarContext.Provider>
+        );
+    }
 );
 
-export const SidebarFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-    <div className={`bf-sidebar-footer ${className}`}>{children}</div>
+/**
+ * SidebarHeader: Sección superior de la barra lateral.
+ */
+export const SidebarHeader = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={`bf-sidebar-header ${className}`} {...props}>{children}</div>
 );
 
-export const SidebarContent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-    <div className={`bf-sidebar-content ${className}`}>{children}</div>
+/**
+ * SidebarFooter: Sección inferior de la barra lateral.
+ */
+export const SidebarFooter = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={`bf-sidebar-footer ${className}`} {...props}>{children}</div>
 );
 
-export interface SidebarItemProps {
+/**
+ * SidebarContent: Área central de scroll para los ítems de navegación.
+ */
+export const SidebarContent = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={`bf-sidebar-content ${className}`} {...props}>{children}</div>
+);
+
+/**
+ * Propiedades para un ítem de navegación en la barra lateral.
+ */
+export interface SidebarItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** Icono a mostrar. Se mantiene visible incluso al colapsar. */
     icon?: React.ReactNode;
-    children: React.ReactNode;
+    /** Indica si el ítem es la ruta activa. */
     active?: boolean;
-    onClick?: () => void;
+    /** Contenido adicional a la derecha (solo visible si no está limitado). */
     suffix?: React.ReactNode;
-    className?: string;
 }
 
-export const SidebarItem: React.FC<SidebarItemProps> = ({
-    icon,
-    children,
-    active = false,
-    onClick,
-    suffix,
-    className = '',
-}) => {
+/**
+ * SidebarItem: Botón de navegación individual dentro de la barra lateral.
+ */
+export const SidebarItem = React.forwardRef<HTMLButtonElement, SidebarItemProps>(
+    ({
+        icon,
+        children,
+        active = false,
+        onClick,
+        suffix,
+        className = '',
+        ...props
+    }, ref) => {
+        const { isCollapsed } = useSidebar();
+
+        return (
+            <button
+                ref={ref}
+                type="button"
+                className={`bf-sidebar-item ${active ? 'bf-sidebar-item--active' : ''} ${className}`}
+                onClick={onClick}
+                title={isCollapsed ? (typeof children === 'string' ? children : undefined) : undefined}
+                {...props}
+            >
+                {icon && <span className="bf-sidebar-item-icon">{icon}</span>}
+                {!isCollapsed && <span className="bf-sidebar-item-label">{children}</span>}
+                {!isCollapsed && suffix && <span className="bf-sidebar-item-suffix">{suffix}</span>}
+            </button>
+        );
+    }
+);
+
+/**
+ * SidebarGroup: Agrupa ítems de navegación bajo un título.
+ */
+export const SidebarGroup = ({ label, children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement> & { label?: string }) => {
     const { isCollapsed } = useSidebar();
 
     return (
-        <button
-            type="button"
-            className={`bf-sidebar-item ${active ? 'bf-sidebar-item--active' : ''} ${className}`}
-            onClick={onClick}
-            title={isCollapsed ? (typeof children === 'string' ? children : undefined) : undefined}
-        >
-            {icon && <span className="bf-sidebar-item-icon">{icon}</span>}
-            {!isCollapsed && <span className="bf-sidebar-item-label">{children}</span>}
-            {!isCollapsed && suffix && <span className="bf-sidebar-item-suffix">{suffix}</span>}
-        </button>
-    );
-};
-
-export const SidebarGroup: React.FC<{ label?: string; children: React.ReactNode; className?: string }> = ({
-    label,
-    children,
-    className = '',
-}) => {
-    const { isCollapsed } = useSidebar();
-
-    return (
-        <div className={`bf-sidebar-group ${className}`}>
+        <div className={`bf-sidebar-group ${className}`} {...props}>
             {!isCollapsed && label && <div className="bf-sidebar-group-label">{label}</div>}
             <div className="bf-sidebar-group-content">
                 {children}
@@ -129,7 +167,10 @@ export const SidebarGroup: React.FC<{ label?: string; children: React.ReactNode;
     );
 };
 
-export const SidebarToggle: React.FC<{ className?: string }> = ({ className = '' }) => {
+/**
+ * SidebarToggle: Botón predefinido para contraer o expandir la barra lateral.
+ */
+export const SidebarToggle = ({ className = '', ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
     const { isCollapsed, toggleCollapse } = useSidebar();
 
     return (
@@ -137,7 +178,8 @@ export const SidebarToggle: React.FC<{ className?: string }> = ({ className = ''
             type="button"
             className={`bf-sidebar-toggle ${className}`}
             onClick={toggleCollapse}
-            aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            aria-label={isCollapsed ? 'Expandir barra lateral' : 'Colapsar barra lateral'}
+            {...props}
         >
             <svg
                 width="15"
@@ -152,3 +194,6 @@ export const SidebarToggle: React.FC<{ className?: string }> = ({ className = ''
         </button>
     );
 };
+
+Sidebar.displayName = 'Sidebar';
+SidebarItem.displayName = 'SidebarItem';
