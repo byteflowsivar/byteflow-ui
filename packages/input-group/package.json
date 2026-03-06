@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/input-group",
     "version": "1.0.0",
-    "description": "Contenedor para Input que permite añadir prefijos/sufijos (iconos, texto, botones).",
+    "description": "Contenedor para Input que permite a\u00f1adir prefijos/sufijos (iconos, texto, botones).",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
         "input-group",
         "byteflow"
     ],
-    "author": "Victor Hugo Cornejo Calderon",
+    "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
     "license": "MIT",
     "peerDependencies": {
         "react": ">=18",

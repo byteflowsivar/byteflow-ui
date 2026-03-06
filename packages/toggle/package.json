@@ -1,35 +1,35 @@
 {
-  "name": "@byteflow-ui/toggle",
-  "version": "1.0.0",
-  "description": "Botón de dos estados (on/off) con feedback visual claro.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "lint": "eslint src --ext .ts,.tsx"
-  },
-  "keywords": [
-    "react",
-    "ui",
-    "component",
-    "toggle",
-    "button",
-    "byteflow"
-  ],
-  "author": "Victor Hugo Cornejo Calderon",
-  "license": "MIT",
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
-  },
-  "type": "commonjs"
+    "name": "@byteflow-ui/toggle",
+    "version": "1.0.0",
+    "description": "Bot\u00f3n de dos estados (on/off) con feedback visual claro.",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "lint": "eslint src --ext .ts,.tsx"
+    },
+    "keywords": [
+        "react",
+        "ui",
+        "component",
+        "toggle",
+        "button",
+        "byteflow"
+    ],
+    "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">=18",
+        "react-dom": ">=18"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.2",
+        "typescript": "^5.3.3"
+    },
+    "type": "commonjs"
 }

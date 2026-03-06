@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/toggle-group",
     "version": "1.0.0",
-    "description": "Conjunto de botones de toggle para selección única o múltiple.",
+    "description": "Conjunto de botones de toggle para selecci\u00f3n \u00fanica o m\u00faltiple.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -21,7 +21,7 @@
         "button",
         "byteflow"
     ],
-    "author": "Victor Hugo Cornejo Calderon",
+    "author": "Victor Hugo Cornejo Calderon <rex2002xp@gmail.com>",
     "license": "MIT",
     "peerDependencies": {
         "react": ">=18",
