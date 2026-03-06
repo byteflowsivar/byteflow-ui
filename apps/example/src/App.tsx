@@ -25,13 +25,19 @@ import '@byteflow-ui/breadcrumb/dist/index.css'
 import '@byteflow-ui/empty/dist/index.css'
 import '@byteflow-ui/item/dist/index.css'
 import '@byteflow-ui/field/dist/index.css'
+import '@byteflow-ui/dialog/dist/index.css'
+import '@byteflow-ui/popover/dist/index.css'
+import '@byteflow-ui/dropdown-menu/dist/index.css'
+import '@byteflow-ui/sheet/dist/index.css'
+import '@byteflow-ui/hover-card/dist/index.css'
+import '@byteflow-ui/tooltip/dist/index.css'
 import './index.css'
 import './theme.css'
 
 const categories = [
   {
     title: 'Fundamentos',
-    components: ['button', 'input', 'label', 'checkbox', 'radio', 'switch', 'slider']
+    components: ['button', 'input', 'checkbox', 'switch', 'slider', 'field']
   },
   {
     title: 'Visualización',
@@ -39,11 +45,11 @@ const categories = [
   },
   {
     title: 'Layout & Estructura',
-    components: ['money-input', 'card', 'scroll-area', 'tabs', 'breadcrumb', 'empty', 'item', 'field']
+    components: ['money-input', 'card', 'tabs', 'scroll-area', 'breadcrumb', 'empty', 'item']
   },
   {
     title: 'Overlays & Context',
-    components: ['dialog', 'popover', 'dropdown-menu', 'sheet', 'hover-card']
+    components: ['dialog', 'popover', 'dropdown-menu', 'sheet', 'hover-card', 'tooltip']
   }
 ];
 

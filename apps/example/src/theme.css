@@ -76,6 +76,20 @@
     --bf-item-selected-bg: var(--bf-surface-hover);
 
     /* 4. Overlays & Context */
+    --bf-dialog-radius: var(--bf-radius-xl);
+    --bf-dialog-bg: var(--bf-surface);
+    --bf-dialog-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+    --bf-popover-bg: var(--bf-surface);
+    --bf-popover-radius: var(--bf-radius-lg);
+
+    --bf-dropdown-bg: var(--bf-surface);
+    --bf-dropdown-radius: var(--bf-radius-lg);
+    --bf-dropdown-item-radius: var(--bf-radius-md);
+
+    --bf-sheet-bg: var(--bf-surface);
+    --bf-sheet-radius: var(--bf-radius-xl);
+
     --bf-tooltip-bg: var(--bf-text-primary);
     --bf-tooltip-radius: var(--bf-radius-sm);
     --bf-tooltip-text: var(--bf-canvas);
@@ -90,13 +104,14 @@
     --bf-accent: #3b82f6;
     --bf-canvas: #0f172a;
     --bf-canvas-subtle: #1e293b;
-    --bf-surface-hover: #1e293b;
-    --bf-surface-border: #334155;
+    --bf-surface-hover: rgba(255, 255, 255, 0.1);
+    --bf-surface-border: rgba(255, 255, 255, 0.1);
     --bf-text-primary: #f1f5f9;
     --bf-text-secondary: #94a3b8;
     --bf-text-muted: #64748b;
 
     /* Overrides de Componentes para Dark Mode */
+    --bf-surface: rgba(23, 23, 23, 0.8);
     --bf-card-bg: var(--bf-canvas-subtle);
     --bf-toast-bg: #1e293b;
     --bf-money-input-bg-color: var(--bf-canvas-subtle);

@@ -154,3 +154,17 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         document.body
     );
 };
+
+/**
+ * PopoverTitle: Título para el contenido del Popover.
+ */
+export const PopoverTitle = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={`bf-popover-title ${className}`} {...props}>{children}</div>
+);
+
+/**
+ * PopoverDescription: Texto descriptivo para el Popover.
+ */
+export const PopoverDescription = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={`bf-popover-description ${className}`} {...props}>{children}</div>
+);

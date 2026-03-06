@@ -17,6 +17,12 @@ import { breadcrumbDoc } from './breadcrumb';
 import { emptyDoc } from './empty';
 import { itemDoc } from './item';
 import { fieldDoc } from './field';
+import { dialogDoc } from './dialog';
+import { popoverDoc } from './popover';
+import { dropdownMenuDoc } from './dropdown-menu';
+import { sheetDoc } from './sheet';
+import { hoverCardDoc } from './hover-card';
+import { tooltipDoc } from './tooltip';
 
 export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'button': buttonDoc,
@@ -37,4 +43,10 @@ export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'empty': emptyDoc,
     'item': itemDoc,
     'field': fieldDoc,
+    'dialog': dialogDoc,
+    'popover': popoverDoc,
+    'dropdown-menu': dropdownMenuDoc,
+    'sheet': sheetDoc,
+    'hover-card': hoverCardDoc,
+    'tooltip': tooltipDoc,
 };
