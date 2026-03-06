@@ -1,11 +1,20 @@
 import React from 'react';
 import './styles.css';
 
+/**
+ * Propiedades del componente Item.
+ */
 export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Indica si el ítem está seleccionado visualmente. */
     selected?: boolean;
+    /** Deshabilita la interacción con el ítem. */
     disabled?: boolean;
 }
 
+/**
+ * Item: Un componente base flexible para elementos de lista, menús o selectores. 
+ * Soporta prefijos (iconos), contenido principal y sufijos (badges, flechas).
+ */
 export const Item = React.forwardRef<HTMLDivElement, ItemProps>(
     ({ selected = false, disabled = false, className = '', ...props }, ref) => {
         const classes = [
@@ -27,16 +36,31 @@ export const Item = React.forwardRef<HTMLDivElement, ItemProps>(
     }
 );
 
-export const ItemPrefix = ({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={`bf-item-prefix ${className}`} {...props} />
+/**
+ * ItemPrefix: Contenedor para elementos que preceden al contenido principal (ej. Iconos, Avatares).
+ */
+export const ItemPrefix = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-item-prefix ${className}`} {...props} />
+    )
 );
 
-export const ItemContent = ({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={`bf-item-content ${className}`} {...props} />
+/**
+ * ItemContent: Contenedor para el cuerpo principal o texto del ítem.
+ */
+export const ItemContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-item-content ${className}`} {...props} />
+    )
 );
 
-export const ItemSuffix = ({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={`bf-item-suffix ${className}`} {...props} />
+/**
+ * ItemSuffix: Contenedor para elementos que siguen al contenido principal (ej. Badges, Shortcuts).
+ */
+export const ItemSuffix = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ className = '', ...props }, ref) => (
+        <div ref={ref} className={`bf-item-suffix ${className}`} {...props} />
+    )
 );
 
 Item.displayName = 'Item';

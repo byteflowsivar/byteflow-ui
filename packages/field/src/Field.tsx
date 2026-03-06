@@ -22,12 +22,13 @@ export const useField = () => {
  * Propiedades del contenedor principal del campo.
  */
 export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
-    /** Indica si el campo tiene un estado de error. */
+    /** Indica si el campo tiene un estado de error, afectando la visibilidad de FieldError. */
     isInvalid?: boolean;
 }
 
 /**
  * Field: Contenedor principal que provee contexto (id, errores) a sus sub-componentes.
+ * Facilita la creación de formularios accesibles coordinando etiquetas, descripciones y errores.
  */
 export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
     ({ isInvalid = false, children, className = '', ...props }, ref) => {
@@ -50,29 +51,71 @@ export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
 );
 
 /**
- * FieldLabel: Etiqueta vinculada automáticamente al input dentro del Field.
+ * Propiedades de FieldLabel.
  */
-export const FieldLabel = ({ className = '', ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) => {
-    const { id } = useField();
-    return <label className={`bf-field-label ${className}`} htmlFor={id} {...props} />;
-};
+export interface FieldLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> { }
 
 /**
- * FieldDescription: Texto de ayuda o descripción para el campo.
+ * FieldLabel: Etiqueta vinculada automáticamente al input dentro del Field mediante la propiedad htmlFor.
  */
-export const FieldDescription = ({ className = '', ...props }: React.HTMLAttributes<HTMLParagraphElement>) => {
-    const { descriptionId } = useField();
-    return <p id={descriptionId} className={`bf-field-description ${className}`} {...props} />;
-};
+export const FieldLabel = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
+    ({ className = '', ...props }, ref) => {
+        const { id } = useField();
+        return (
+            <label
+                ref={ref}
+                className={`bf-field-label ${className}`}
+                htmlFor={id}
+                {...props}
+            />
+        );
+    }
+);
 
 /**
- * FieldError: Muestra el mensaje de error solo si Field tiene isInvalid={true}.
+ * Propiedades de FieldDescription.
  */
-export const FieldError = ({ className = '', ...props }: React.HTMLAttributes<HTMLParagraphElement>) => {
-    const { errorId, isInvalid } = useField();
-    if (!isInvalid) return null;
-    return <p id={errorId} className={`bf-field-error ${className}`} {...props} />;
-};
+export interface FieldDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> { }
+
+/**
+ * FieldDescription: Texto de ayuda o descripción para el campo, vinculado mediante aria-describedby.
+ */
+export const FieldDescription = React.forwardRef<HTMLParagraphElement, FieldDescriptionProps>(
+    ({ className = '', ...props }, ref) => {
+        const { descriptionId } = useField();
+        return (
+            <p
+                ref={ref}
+                id={descriptionId}
+                className={`bf-field-description ${className}`}
+                {...props}
+            />
+        );
+    }
+);
+
+/**
+ * Propiedades de FieldError.
+ */
+export interface FieldErrorProps extends React.HTMLAttributes<HTMLParagraphElement> { }
+
+/**
+ * FieldError: Muestra el mensaje de error de forma condicional cuando el Field padre tiene isInvalid={true}.
+ */
+export const FieldError = React.forwardRef<HTMLParagraphElement, FieldErrorProps>(
+    ({ className = '', ...props }, ref) => {
+        const { errorId, isInvalid } = useField();
+        if (!isInvalid) return null;
+        return (
+            <p
+                ref={ref}
+                id={errorId}
+                className={`bf-field-error ${className}`}
+                {...props}
+            />
+        );
+    }
+);
 
 Field.displayName = 'Field';
 FieldLabel.displayName = 'FieldLabel';
