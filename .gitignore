@@ -31,3 +31,5 @@ yarn-error.log*
 # Sistema
 .DS_Store
 Thumbs.db
+
+apps/byteflow-starter/
