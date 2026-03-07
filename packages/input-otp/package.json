@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/input-otp",
-    "version": "1.0.0",
-    "description": "Input especializado para c\u00f3digos de verificaci\u00f3n (One-Time Password).",
+    "version": "1.0.1",
+    "description": "Input especializado para códigos de verificación (One-Time Password).",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -30,5 +30,8 @@
     "devDependencies": {
         "tsup": "^8.0.2",
         "typescript": "^5.3.3"
-    }
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

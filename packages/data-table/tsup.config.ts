@@ -5,6 +5,7 @@ export default defineConfig({
     format: ['cjs', 'esm'],
     dts: true,
     clean: true,
+    injectStyle: false,
     minify: true,
     external: ['react', 'react-dom', '@byteflow-ui/table', '@byteflow-ui/pagination', '@byteflow-ui/input'],
 });

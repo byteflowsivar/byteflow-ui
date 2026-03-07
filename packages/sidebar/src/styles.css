@@ -147,7 +147,7 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-sidebar {
+.dark-theme .bf-sidebar {
     --sidebar-bg: var(--bf-surface, #1a202c);
     --sidebar-border: var(--bf-surface-border, #2d3748);
     --sidebar-text: var(--bf-text-primary, #f7fafc);

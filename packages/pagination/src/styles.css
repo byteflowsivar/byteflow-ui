@@ -57,12 +57,12 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-pagination-item {
+.dark-theme .bf-pagination-item {
     background: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-pagination-item:hover:not(:disabled) {
+.dark-theme .bf-pagination-item:hover:not(:disabled) {
     border-color: var(--bf-accent, #3182ce);
 }

@@ -63,33 +63,33 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-table-container {
+.dark-theme .bf-table-container {
     border-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-table {
+.dark-theme .bf-table {
     background-color: var(--bf-surface, #1a202c);
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-table-header,
-:global(.dark-theme) .bf-table-footer {
+.dark-theme .bf-table-header,
+.dark-theme .bf-table-footer {
     background-color: rgba(255, 255, 255, 0.02);
     border-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-table-row {
+.dark-theme .bf-table-row {
     border-bottom-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-table-row:hover {
+.dark-theme .bf-table-row:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-:global(.dark-theme) .bf-table-head {
+.dark-theme .bf-table-head {
     color: var(--bf-text-muted, #94a3b8);
 }
 
-:global(.dark-theme) .bf-table-cell {
+.dark-theme .bf-table-cell {
     color: var(--bf-text-primary, #f7fafc);
 }

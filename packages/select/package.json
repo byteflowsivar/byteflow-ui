@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/select",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Componente Select premium para el kit Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
@@ -11,7 +11,7 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./dist/index.css": "./dist/index.css"
+        "./index.css": "./dist/index.css"
     },
     "files": [
         "dist"
@@ -46,5 +46,8 @@
         "react-dom": "^19.2.4",
         "tsup": "^8.5.1",
         "typescript": "^5.9.3"
-    }
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

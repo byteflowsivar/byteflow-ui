@@ -18,7 +18,7 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-kbd {
+.dark-theme .bf-kbd {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: var(--bf-surface-border, #2d3748);
     color: var(--bf-text-muted, #a0aec0);

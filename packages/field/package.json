@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/field",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Componente Field compuesto (Label + Input + Error) para Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
@@ -11,7 +11,7 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./dist/index.css": "./dist/index.css"
+        "./index.css": "./dist/index.css"
     },
     "files": [
         "dist"
@@ -46,5 +46,8 @@
         "typescript": "^5.9.3",
         "@byteflow-ui/label": "*",
         "@byteflow-ui/input": "*"
-    }
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

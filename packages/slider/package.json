@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/slider",
-    "version": "1.0.0",
-    "description": "Componente deslizante para selecci\u00f3n de valores num\u00e9ricos.",
+    "version": "1.0.1",
+    "description": "Componente deslizante para selección de valores numéricos.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -30,5 +30,8 @@
     "devDependencies": {
         "tsup": "^8.0.2",
         "typescript": "^5.3.3"
-    }
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

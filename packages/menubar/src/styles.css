@@ -108,23 +108,23 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-menubar {
+.dark-theme .bf-menubar {
     background: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-menubar-trigger,
-:global(.dark-theme) .bf-menubar-item {
+.dark-theme .bf-menubar-trigger,
+.dark-theme .bf-menubar-item {
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-menubar-trigger:hover,
-:global(.dark-theme) .bf-menubar-trigger--active,
-:global(.dark-theme) .bf-menubar-item:hover:not(:disabled) {
+.dark-theme .bf-menubar-trigger:hover,
+.dark-theme .bf-menubar-trigger--active,
+.dark-theme .bf-menubar-item:hover:not(:disabled) {
     background: var(--bf-surface-hover, #2d3748);
 }
 
-:global(.dark-theme) .bf-menubar-content {
+.dark-theme .bf-menubar-content {
     background: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
 }

@@ -80,13 +80,13 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-carousel-btn {
+.dark-theme .bf-carousel-btn {
     background: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-:global(.dark-theme) .bf-carousel-btn:hover:not(:disabled) {
+.dark-theme .bf-carousel-btn:hover:not(:disabled) {
     background: var(--bf-surface-hover, #2d3748);
 }
 

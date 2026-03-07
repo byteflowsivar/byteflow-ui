@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/input-group",
-    "version": "1.0.0",
-    "description": "Contenedor para Input que permite a\u00f1adir prefijos/sufijos (iconos, texto, botones).",
+    "version": "1.0.1",
+    "description": "Contenedor para Input que permite añadir prefijos/sufijos (iconos, texto, botones).",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -30,5 +30,8 @@
         "tsup": "^8.0.2",
         "typescript": "^5.3.3"
     },
-    "type": "commonjs"
+    "type": "commonjs",
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

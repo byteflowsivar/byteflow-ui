@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/toggle-group",
-    "version": "1.0.0",
-    "description": "Conjunto de botones de toggle para selecci\u00f3n \u00fanica o m\u00faltiple.",
+    "version": "1.0.1",
+    "description": "Conjunto de botones de toggle para selección única o múltiple.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -33,5 +33,8 @@
     "devDependencies": {
         "tsup": "^8.0.2",
         "typescript": "^5.3.3"
-    }
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

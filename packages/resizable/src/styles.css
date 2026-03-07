@@ -64,11 +64,11 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-resizable-handle {
+.dark-theme .bf-resizable-handle {
     background-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-resizable-handle-icon {
+.dark-theme .bf-resizable-handle-icon {
     background-color: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
 }

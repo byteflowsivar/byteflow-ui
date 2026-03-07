@@ -50,10 +50,10 @@
 }
 
 /* Dark Theme */
-:global(.dark-theme) .bf-collapsible-trigger {
+.dark-theme .bf-collapsible-trigger {
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-collapsible-content {
+.dark-theme .bf-collapsible-content {
     color: var(--bf-text-secondary, #a0aec0);
 }

@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/toggle",
-    "version": "1.0.0",
-    "description": "Bot\u00f3n de dos estados (on/off) con feedback visual claro.",
+    "version": "1.0.1",
+    "description": "Botón de dos estados (on/off) con feedback visual claro.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -31,5 +31,8 @@
         "tsup": "^8.0.2",
         "typescript": "^5.3.3"
     },
-    "type": "commonjs"
+    "type": "commonjs",
+    "sideEffects": [
+        "./dist/index.css"
+    ]
 }

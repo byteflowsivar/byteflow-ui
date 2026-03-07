@@ -83,17 +83,17 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-navigation-menu-trigger,
-:global(.dark-theme) .bf-navigation-menu-link {
+.dark-theme .bf-navigation-menu-trigger,
+.dark-theme .bf-navigation-menu-link {
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-navigation-menu-trigger:hover,
-:global(.dark-theme) .bf-navigation-menu-link:hover {
+.dark-theme .bf-navigation-menu-trigger:hover,
+.dark-theme .bf-navigation-menu-link:hover {
     background: var(--bf-surface-hover, #2d3748);
 }
 
-:global(.dark-theme) .bf-navigation-menu-content {
+.dark-theme .bf-navigation-menu-content {
     background: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
 }

@@ -72,14 +72,14 @@
 }
 
 /* Dark Theme */
-:global(.dark-theme) .bf-accordion-item {
+.dark-theme .bf-accordion-item {
     border-bottom-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-accordion-trigger {
+.dark-theme .bf-accordion-trigger {
     color: var(--bf-text-primary, #f7fafc);
 }
 
-:global(.dark-theme) .bf-accordion-content {
+.dark-theme .bf-accordion-content {
     color: var(--bf-text-secondary, #a0aec0);
 }

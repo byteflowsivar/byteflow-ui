@@ -99,16 +99,16 @@
 }
 
 /* Dark Theme overrides */
-:global(.dark-theme) .bf-command {
+.dark-theme .bf-command {
     background-color: var(--bf-surface, #1a202c);
     border-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-command-input-wrapper,
-:global(.dark-theme) .bf-command-separator {
+.dark-theme .bf-command-input-wrapper,
+.dark-theme .bf-command-separator {
     border-color: var(--bf-surface-border, #2d3748);
 }
 
-:global(.dark-theme) .bf-command-item:hover {
+.dark-theme .bf-command-item:hover {
     background: var(--bf-surface-hover, #2d3748);
 }
