@@ -80,7 +80,7 @@ Componente Accordion premium para Byteflow UI. Permite organizar contenido en se
 
 ```tsx
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@byteflow-ui/accordion';
-import '@byteflow-ui/accordion/dist/index.css';
+import '@byteflow-ui/accordion/index.css';
 
 function App() {
   return (
@@ -115,7 +115,7 @@ Componente de alerta para mostrar mensajes de retroalimentación de estado de ma
 
 ```tsx
 import { Alert, AlertTitle, AlertDescription } from '@byteflow-ui/alert';
-import '@byteflow-ui/alert/dist/index.css';
+import '@byteflow-ui/alert/index.css';
 
 function Example() {
   return (
@@ -190,7 +190,7 @@ Componente Aspect Ratio para controlar proporciones de elementos en el kit **Byt
 
 ```tsx
 import { AspectRatio } from '@byteflow-ui/aspect-ratio';
-import '@byteflow-ui/aspect-ratio/dist/index.css';
+import '@byteflow-ui/aspect-ratio/index.css';
 
 function ImageCard() {
   return (
@@ -229,7 +229,7 @@ Componente Avatar premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Avatar } from '@byteflow-ui/avatar';
-import '@byteflow-ui/avatar/dist/index.css';
+import '@byteflow-ui/avatar/index.css';
 
 function App() {
   return (
@@ -270,7 +270,7 @@ Componente Badge premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Badge } from '@byteflow-ui/badge';
-import '@byteflow-ui/badge/dist/index.css';
+import '@byteflow-ui/badge/index.css';
 
 function App() {
   return (
@@ -309,7 +309,7 @@ import {
   BreadcrumbSeparator, 
   BreadcrumbPage 
 } from '@byteflow-ui/breadcrumb';
-import '@byteflow-ui/breadcrumb/dist/index.css';
+import '@byteflow-ui/breadcrumb/index.css';
 
 function MyNavigation() {
   return (
@@ -353,7 +353,7 @@ Un componente de botón altamente personalizable, accesible y listo para producc
 
 ```tsx
 import { Button } from '@byteflow-ui/button';
-import '@byteflow-ui/button/dist/index.css';
+import '@byteflow-ui/button/index.css';
 
 function App() {
   return (
@@ -386,7 +386,7 @@ Componente Calendar premium para Byteflow UI. Proporciona una interfaz intuitiva
 
 ```tsx
 import { Calendar } from '@byteflow-ui/calendar';
-import '@byteflow-ui/calendar/dist/index.css';
+import '@byteflow-ui/calendar/index.css';
 
 function DatePicker() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -421,7 +421,7 @@ import {
   CardContent, 
   CardFooter 
 } from '@byteflow-ui/card';
-import '@byteflow-ui/card/dist/index.css';
+import '@byteflow-ui/card/index.css';
 
 function MyCard() {
   return (
@@ -463,7 +463,7 @@ Componente Carousel premium para Byteflow UI. Implementado con motores nativos d
 
 ```tsx
 import { Carousel, CarouselItem, CarouselPrevious, CarouselNext } from '@byteflow-ui/carousel';
-import '@byteflow-ui/carousel/dist/index.css';
+import '@byteflow-ui/carousel/index.css';
 
 function Gallery() {
   return (
@@ -506,7 +506,7 @@ Componente Checkbox premium y accesible para el kit **Byteflow-UI**.
 
 ```tsx
 import { Checkbox } from '@byteflow-ui/checkbox';
-import '@byteflow-ui/checkbox/dist/index.css';
+import '@byteflow-ui/checkbox/index.css';
 
 function App() {
   return (
@@ -542,7 +542,7 @@ Componente Collapsible premium para Byteflow UI. Ideal para secciones que el usu
 
 ```tsx
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@byteflow-ui/collapsible';
-import '@byteflow-ui/collapsible/dist/index.css';
+import '@byteflow-ui/collapsible/index.css';
 
 function App() {
   return (
@@ -582,7 +582,7 @@ Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina l
 
 ```tsx
 import { Combobox } from '@byteflow-ui/combobox';
-import '@byteflow-ui/combobox/dist/index.css';
+import '@byteflow-ui/combobox/index.css';
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
@@ -634,7 +634,7 @@ import {
   CommandSeparator,
   CommandShortcut 
 } from '@byteflow-ui/command';
-import '@byteflow-ui/command/dist/index.css';
+import '@byteflow-ui/command/index.css';
 
 function CommandMenu() {
   return (
@@ -809,7 +809,7 @@ Componente Date Picker premium para Byteflow UI. Combina un trigger estilizado c
 
 ```tsx
 import { DatePicker } from '@byteflow-ui/date-picker';
-import '@byteflow-ui/date-picker/dist/index.css';
+import '@byteflow-ui/date-picker/index.css';
 
 function BirthdayPicker() {
   const [date, setDate] = useState<Date | undefined>();
@@ -964,7 +964,7 @@ import {
   EmptyAction 
 } from '@byteflow-ui/empty';
 import { Button } from '@byteflow-ui/button';
-import '@byteflow-ui/empty/dist/index.css';
+import '@byteflow-ui/empty/index.css';
 
 function NoResults() {
   return (
@@ -1005,7 +1005,7 @@ Componente Field compuesto para gestionar formularios de manera accesible en el 
 ```tsx
 import { Field, FieldLabel, FieldDescription, FieldError } from '@byteflow-ui/field';
 import { Input } from '@byteflow-ui/input';
-import '@byteflow-ui/field/dist/index.css';
+import '@byteflow-ui/field/index.css';
 
 function UserForm() {
   return (
@@ -1085,7 +1085,7 @@ Componente de entrada de texto base, parte del kit **Byteflow-UI**. Integra auto
 
 ```tsx
 import { Input } from '@byteflow-ui/input';
-import '@byteflow-ui/input/dist/index.css';
+import '@byteflow-ui/input/index.css';
 
 function App() {
   return (
@@ -1190,7 +1190,7 @@ Componente Item base para listas y menús en el kit **Byteflow-UI**.
 ```tsx
 import { Item, ItemPrefix, ItemContent, ItemSuffix } from '@byteflow-ui/item';
 import { Badge } from '@byteflow-ui/badge';
-import '@byteflow-ui/item/dist/index.css';
+import '@byteflow-ui/item/index.css';
 
 function UserItem() {
   return (
@@ -1227,7 +1227,7 @@ Componente Kbd (Teclado) premium para Byteflow UI. Proporciona una representaci�
 
 ```tsx
 import { Kbd } from '@byteflow-ui/kbd';
-import '@byteflow-ui/kbd/dist/index.css';
+import '@byteflow-ui/kbd/index.css';
 
 function Shortcut() {
   return (
@@ -1263,7 +1263,7 @@ Componente de etiqueta accesible para formularios, parte del kit **Byteflow-UI**
 
 ```tsx
 import { Label } from '@byteflow-ui/label';
-import '@byteflow-ui/label/dist/index.css';
+import '@byteflow-ui/label/index.css';
 
 function App() {
   return (
@@ -1305,7 +1305,7 @@ import {
   MenubarSeparator,
   MenubarLabel
 } from '@byteflow-ui/menubar';
-import '@byteflow-ui/menubar/dist/index.css';
+import '@byteflow-ui/menubar/index.css';
 
 function App() {
   return (
@@ -1359,7 +1359,7 @@ function App() {
 
 ```tsx
 import { MoneyInput } from '@byteflow-ui/money-input';
-import '@byteflow-ui/money-input/dist/index.css';
+import '@byteflow-ui/money-input/index.css';
 
 function PaymentForm() {
   const [total, setTotal] = useState(1500); // Equivale a $15.00
@@ -1402,7 +1402,7 @@ import {
   NavigationMenuContent, 
   NavigationMenuLink 
 } from '@byteflow-ui/navigation-menu';
-import '@byteflow-ui/navigation-menu/dist/index.css';
+import '@byteflow-ui/navigation-menu/index.css';
 
 function Navbar() {
   return (
@@ -1448,7 +1448,7 @@ Componente Pagination premium para Byteflow UI. Permite navegar a través de gra
 
 ```tsx
 import { Pagination } from '@byteflow-ui/pagination';
-import '@byteflow-ui/pagination/dist/index.css';
+import '@byteflow-ui/pagination/index.css';
 
 function MyTable() {
   const [page, setPage] = useState(1);
@@ -1537,7 +1537,7 @@ Componente de barra de progreso visual para indicar el avance de una tarea.
 
 ```tsx
 import { Progress } from '@byteflow-ui/progress';
-import '@byteflow-ui/progress/dist/index.css';
+import '@byteflow-ui/progress/index.css';
 
 function Example() {
   return <Progress value={60} />;
@@ -1566,7 +1566,7 @@ Componente Radio premium para selección única dentro de un conjunto de opcione
 
 ```tsx
 import { Radio, RadioGroup } from '@byteflow-ui/radio';
-import '@byteflow-ui/radio/dist/index.css';
+import '@byteflow-ui/radio/index.css';
 
 function App() {
   const [value, setValue] = useState('opcion1');
@@ -1606,7 +1606,7 @@ Componente Resizable (Paneles divisibles) premium para Byteflow UI. Permite crea
 
 ```tsx
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@byteflow-ui/resizable';
-import '@byteflow-ui/resizable/dist/index.css';
+import '@byteflow-ui/resizable/index.css';
 
 function IDE() {
   return (
@@ -1643,7 +1643,7 @@ Componente Scroll Area con barras de desplazamiento personalizadas para el kit *
 
 ```tsx
 import { ScrollArea } from '@byteflow-ui/scroll-area';
-import '@byteflow-ui/scroll-area/dist/index.css';
+import '@byteflow-ui/scroll-area/index.css';
 
 function MyList() {
   return (
@@ -1678,7 +1678,7 @@ Componente de selección premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Select } from '@byteflow-ui/select';
-import '@byteflow-ui/select/dist/index.css';
+import '@byteflow-ui/select/index.css';
 
 const paises = [
   { label: 'México', value: 'mx' },
@@ -1718,7 +1718,7 @@ Componente Separator premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Separator } from '@byteflow-ui/separator';
-import '@byteflow-ui/separator/dist/index.css';
+import '@byteflow-ui/separator/index.css';
 
 function App() {
   return (
@@ -1825,7 +1825,7 @@ import {
   SidebarGroup,
   SidebarToggle 
 } from '@byteflow-ui/sidebar';
-import '@byteflow-ui/sidebar/dist/index.css';
+import '@byteflow-ui/sidebar/index.css';
 
 function DashboardLayout() {
   return (
@@ -1869,7 +1869,7 @@ Componente Skeleton premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Skeleton } from '@byteflow-ui/skeleton';
-import '@byteflow-ui/skeleton/dist/index.css';
+import '@byteflow-ui/skeleton/index.css';
 
 function MyLoadingComponent() {
   return (
@@ -1952,7 +1952,7 @@ Componente Sonner para Byteflow-UI, que proporciona notificaciones apiladas (sta
 
 ```tsx
 import { ToasterProvider } from '@byteflow-ui/sonner';
-import '@byteflow-ui/sonner/dist/index.css';
+import '@byteflow-ui/sonner/index.css';
 
 function App() {
   return (
@@ -1983,7 +1983,7 @@ Componente Spinner premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Spinner } from '@byteflow-ui/spinner';
-import '@byteflow-ui/spinner/dist/index.css';
+import '@byteflow-ui/spinner/index.css';
 
 function LoadingState() {
   return <Spinner size="md" variant="primary" />;
@@ -2010,7 +2010,7 @@ Componente Switch (Toggle) premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Switch } from '@byteflow-ui/switch';
-import '@byteflow-ui/switch/dist/index.css';
+import '@byteflow-ui/switch/index.css';
 
 function App() {
   return (
@@ -2044,7 +2044,7 @@ import {
   TableCell, 
   TableCaption 
 } from '@byteflow-ui/table';
-import '@byteflow-ui/table/dist/index.css';
+import '@byteflow-ui/table/index.css';
 
 const invoices = [
   { id: "INV001", status: "Pagado", method: "Tarjeta Cr", total: "$250.00" },
@@ -2098,7 +2098,7 @@ Componente Tabs modular para navegación por pestañas en el kit **Byteflow-UI**
 
 ```tsx
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@byteflow-ui/tabs';
-import '@byteflow-ui/tabs/dist/index.css';
+import '@byteflow-ui/tabs/index.css';
 
 function ConfigAccount() {
   return (
@@ -2135,7 +2135,7 @@ Componente de entrada de texto multilínea premium para el kit **Byteflow-UI**.
 
 ```tsx
 import { Textarea } from '@byteflow-ui/textarea';
-import '@byteflow-ui/textarea/dist/index.css';
+import '@byteflow-ui/textarea/index.css';
 
 function App() {
   return (
@@ -2172,7 +2172,7 @@ Sistema de notificaciones `Toast` premium para Byteflow-UI, diseñado para propo
 
 ```tsx
 import { ToastProvider } from '@byteflow-ui/toast';
-import '@byteflow-ui/toast/dist/index.css';
+import '@byteflow-ui/toast/index.css';
 
 function App() {
   return (
@@ -2279,7 +2279,7 @@ Componente Tooltip premium para el kit **Byteflow-UI**.
 ```tsx
 import { Tooltip } from '@byteflow-ui/tooltip';
 import { Button } from '@byteflow-ui/button';
-import '@byteflow-ui/tooltip/dist/index.css';
+import '@byteflow-ui/tooltip/index.css';
 
 function App() {
   return (
