@@ -7,7 +7,7 @@
     background-color: var(--bf-surface, #ffffff);
     color: var(--bf-text-primary, #1a202c);
     border-radius: var(--bf-radius-lg, 12px);
-    border: 1px solid var(--bf-surface-border, #e2e8f0);
+    border: none;
 }
 
 .bf-command-input-wrapper {
@@ -18,7 +18,7 @@
 }
 
 .bf-command-search-icon {
-    margin-right: 0.75rem;
+    margin-right: 0.5rem;
     opacity: 0.5;
     flex-shrink: 0;
 }
@@ -41,20 +41,20 @@
     flex: 1;
     overflow-y: auto;
     padding: 0.5rem;
-    max-height: 300px;
+    max-height: 250px;
 }
 
 .bf-command-empty {
     padding: 2rem 1rem;
     text-align: center;
     font-size: 0.875rem;
-    color: var(--bf-text-secondary, #4a5568);
+    color: var(--bf-text-muted, #a0aec0);
 }
 
 .bf-command-group-heading {
     padding: 0.5rem 0.75rem;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--bf-text-muted, #a0aec0);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -64,15 +64,16 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0.625rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
-    border-radius: 6px;
+    border-radius: var(--bf-radius-md, 8px);
     background: transparent;
     border: none;
     cursor: pointer;
     text-align: left;
-    transition: background 0.1s ease;
+    transition: all 0.2s ease;
     color: inherit;
+    margin-bottom: 0.125rem;
 }
 
 .bf-command-item:hover {

@@ -574,30 +574,35 @@ function App() {
 ### 📝 Descripción
 Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina la potencia del componente `Command` con la versatilidad de un `Popover` para ofrecer una experiencia de selección con filtrado fluido.
 
+> [!WARNING]
+> **Importante:** Este componente depende internamente de `Popover` y `Command`. Para que tenga la apariencia correcta "a la primera", debes asegurarte de importar sus respectivos estilos CSS.
+
 ### ⚙️ Propiedades (Props)
 
 | Prop | Tipo | Descripción |
 | :--- | :--- | :--- |
-| `options` | `ComboboxOption[]` | - |
-| `value` | `string` | - |
-| `onValueChange` | `(value: string) => void` | - |
-| `placeholder` | `string` | - |
-| `emptyText` | `string` | - |
-| `className` | `string` | - |
-| `disabled` | `boolean` | - |
+| `options` | `ComboboxOption[]` | Arreglo de opciones en formato `{ value: string, label: string }`. |
+| `value` | `string` | Valor de la opción seleccionada. |
+| `onValueChange` | `(value: string) => void` | Evento emitido al seleccionar una opción. |
+| `placeholder` | `string` | Texto a mostrar cuando no hay selección. |
+| `emptyText` | `string` | Texto mostrado el motor de búsqueda no encuentra resultados. |
+| `disabled` | `boolean` | Deshabilita la interacción con el combobox. |
 
 ### 🚀 Ejemplo de Uso
 
 ```tsx
+import { useState } from 'react';
 import { Combobox } from '@byteflow-ui/combobox';
+
+// ⚠️ Importaciones Críticas de CSS
+import '@byteflow-ui/popover/index.css';
+import '@byteflow-ui/command/index.css';
 import '@byteflow-ui/combobox/index.css';
 
 const frameworks = [
   { value: "next.js", label: "Next.js" },
   { value: "sveltekit", label: "SvelteKit" },
   { value: "nuxt.js", label: "Nuxt.js" },
-  { value: "remix", label: "Remix" },
-  { value: "astro", label: "Astro" },
 ];
 
 function FrameworkSelect() {

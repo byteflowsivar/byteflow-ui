@@ -20,11 +20,11 @@
 }
 
 .bf-combobox-check {
-    margin-right: 0.5rem;
-    width: 1rem;
-    height: 1rem;
+    margin-right: 0.75rem;
+    width: 1.125rem;
+    height: 1.125rem;
     opacity: 0;
-    transition: opacity 0.1s ease;
+    transition: opacity 0.15s ease;
 }
 
 .bf-combobox-check--visible {
