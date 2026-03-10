@@ -24,6 +24,13 @@ import { sheetDoc } from './sheet';
 import { hoverCardDoc } from './hover-card';
 import { tooltipDoc } from './tooltip';
 import { dataTableDoc } from './data-table';
+import { comboboxDoc } from './combobox';
+import { selectDoc } from './select';
+import { accordionDoc } from './accordion';
+import { datePickerDoc } from './date-picker';
+import { skeletonDoc } from './skeleton';
+import { textareaDoc } from './textarea';
+import { alertDialogDoc } from './alert-dialog';
 
 export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'button': buttonDoc,
@@ -51,4 +58,11 @@ export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'hover-card': hoverCardDoc,
     'tooltip': tooltipDoc,
     'data-table': dataTableDoc,
+    'combobox': comboboxDoc,
+    'select': selectDoc,
+    'accordion': accordionDoc,
+    'date-picker': datePickerDoc,
+    'skeleton': skeletonDoc,
+    'textarea': textareaDoc,
+    'alert-dialog': alertDialogDoc,
 };

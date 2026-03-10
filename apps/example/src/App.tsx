@@ -34,13 +34,20 @@ import '@byteflow-ui/tooltip/index.css'
 import '@byteflow-ui/data-table/index.css'
 import '@byteflow-ui/table/index.css'
 import '@byteflow-ui/pagination/index.css'
+import '@byteflow-ui/combobox/index.css'
+import '@byteflow-ui/accordion/index.css'
+import '@byteflow-ui/calendar/index.css'
+import '@byteflow-ui/date-picker/index.css'
+import '@byteflow-ui/skeleton/index.css'
+import '@byteflow-ui/textarea/index.css'
+import '@byteflow-ui/alert-dialog/index.css'
 import './index.css'
 import './theme.css'
 
 const categories = [
   {
     title: 'Fundamentos',
-    components: ['button', 'input', 'checkbox', 'switch', 'slider', 'field']
+    components: ['button', 'input', 'textarea', 'checkbox', 'switch', 'slider', 'field', 'skeleton']
   },
   {
     title: 'Visualización',
@@ -48,11 +55,15 @@ const categories = [
   },
   {
     title: 'Layout & Estructura',
-    components: ['money-input', 'card', 'tabs', 'scroll-area', 'breadcrumb', 'empty', 'item', 'data-table']
+    components: ['money-input', 'card', 'tabs', 'scroll-area', 'breadcrumb', 'empty', 'item', 'data-table', 'accordion']
+  },
+  {
+    title: 'Formularios & Selección',
+    components: ['combobox', 'select', 'date-picker']
   },
   {
     title: 'Overlays & Context',
-    components: ['dialog', 'popover', 'dropdown-menu', 'sheet', 'hover-card', 'tooltip']
+    components: ['dialog', 'alert-dialog', 'popover', 'dropdown-menu', 'sheet', 'hover-card', 'tooltip']
   }
 ];
 
