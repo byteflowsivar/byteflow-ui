@@ -574,8 +574,11 @@ function App() {
 ### 📝 Descripción
 Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina la potencia del componente `Command` con la versatilidad de un `Popover` para ofrecer una experiencia de selección con filtrado fluido.
 
+> [!TIP]
+> **Optimizado para Formularios (v1.0.3):** El componente está diseñado para que su disparador (trigger) no envíe accidentalmente el formulario padre. Además, la tecla <kbd>Enter</kbd> dentro del buscador está interceptada para prevenir el envío del formulario mientras se filtran opciones.
+
 > [!WARNING]
-> **Importante:** Este componente depende internamente de `Popover` y `Command`. Para que tenga la apariencia correcta "a la primera", debes asegurarte de importar sus respectivos estilos CSS.
+> **Estilos Requeridos:** Este componente depende internamente de `Popover` y `Command`. Debes importar sus respectivos estilos CSS para asegurar el renderizado premium.
 
 ### ⚙️ Propiedades (Props)
 

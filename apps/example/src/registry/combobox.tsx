@@ -91,6 +91,49 @@ const [value, setValue] = useState("");
     disabled
     placeholder="Framework deshabilitado"
 />`
+        },
+        {
+            title: 'Dentro de un Formulario',
+            description: 'Verifica que el combobox no envíe el formulario accidentalmente al abrirlo o presionar Enter.',
+            render: () => {
+                const [value, setValue] = useState("");
+                const handleSubmit = (e: React.FormEvent) => {
+                    e.preventDefault();
+                    alert("Formulario enviado con éxito");
+                };
+                return (
+                    <form onSubmit={handleSubmit} style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <Combobox
+                            options={frameworks}
+                            value={value}
+                            onValueChange={setValue}
+                            placeholder="Seleccionar framework..."
+                        />
+                        <button
+                            type="submit"
+                            style={{
+                                padding: '0.5rem',
+                                background: 'var(--bf-accent)',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '8px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Enviar Formulario
+                        </button>
+                    </form>
+                );
+            },
+            code: `<form onSubmit={handleSubmit}>
+    <Combobox
+        options={frameworks}
+        value={value}
+        onValueChange={setValue}
+        placeholder="Seleccionar framework..."
+    />
+    <button type="submit">Enviar Formulario</button>
+</form>`
         }
     ],
     props: [

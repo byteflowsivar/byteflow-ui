@@ -1,7 +1,7 @@
 {
     "name": "@byteflow-ui/button",
-    "version": "1.0.2",
-    "description": "Componente de botón base para el kit Byteflow-UI.",
+    "version": "1.0.3",
+    "description": "Componente Button premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
