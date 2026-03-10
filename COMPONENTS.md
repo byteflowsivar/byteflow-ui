@@ -764,36 +764,60 @@ Componente Data Table (Orquestador) premium para Byteflow UI. A partir de la ver
 
 ### 🚀 Ejemplo de Uso (Avanzado - Composición)
 
+Para un control visual total y que todos los sub-componentes (Tablas y Botones de Paginación) se desplieguen correctamente, asegúrate de **importar también los estilos de sus dependencias**.
+
 ```tsx
 import { DataTable } from '@byteflow-ui/data-table';
 import '@byteflow-ui/data-table/index.css';
+import '@byteflow-ui/table/index.css';      // Necesario para los borders y width 100%
+import '@byteflow-ui/pagination/index.css'; // Necesario para la cuadrícula de botones
 
-const data = [
-  { id: 1, name: "Victor Cornejo", role: "Developer" },
-  { id: 2, name: "Jane Doe", role: "Designer" },
+// 1. Tipar nuestros datos
+type User = { id: number; name: string; email: string; role: string; status: string };
+
+const data: User[] = [
+  { id: 1, name: "Victor Cornejo", email: "victor@example.com", role: "Developer", status: "Activo" },
+  { id: 2, name: "Jane Doe", email: "jane@example.com", role: "Designer", status: "Inactivo" },
 ];
 
+// 2. Configurar las Columnas
 const columns = [
-  { header: "ID", accessorKey: "id", width: "80px", align: "center" },
-  { header: "Nombre", accessorKey: "name", className: "text-blue-600 font-medium" },
-  { header: "Rol", accessorKey: "role", align: "right" },
+  { header: "ID", accessorKey: "id" as const, width: "60px", align: "center" as const },
+  { header: "Usuario", accessorKey: "name" as const, className: "font-medium" },
+  { header: "Email", accessorKey: "email" as const },
+  { header: "Rol", accessorKey: "role" as const },
+  { 
+    header: "Estado", 
+    accessorKey: "status" as const,
+    align: "center" as const,
+    // cell permite renderizar JSX personalizado basado en el valor
+    cell: (val: string) => (
+      <span style={{ 
+        padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: 500,
+        backgroundColor: val === 'Activo' ? '#dcfce7' : '#fee2e2',
+        color: val === 'Activo' ? '#166534' : '#991b1b'
+      }}>
+        {val}
+      </span>
+    ) 
+  },
 ];
 
-function AdvancedTable() {
+function UserManager() {
   return (
     <DataTable 
       data={data} 
       columns={columns} 
       pageSize={5} 
       searchKey="name"
-      classNames={{ th: "bg-slate-50 uppercase tracking-wider text-xs" }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h2>Gestión de Personal</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600 }}>Gestión de Usuarios</h3>
+        {/* El Toolbar se inyectará aquí (input de búsqueda) */}
         <DataTable.Toolbar /> 
       </div>
       
-      <div style={{ border: '1px solid #e2e8f0', borderRadius: '0.5rem' }}>
+      <div style={{ border: '1px solid var(--bf-surface-border, #e2e8f0)', borderRadius: '0.5rem', overflow: 'hidden' }}>
         <DataTable.Table />
       </div>
       
