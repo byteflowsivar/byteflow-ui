@@ -1,4 +1,15 @@
-.bf-combobox {
+.bf-combobox-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.bf-combobox-wrapper-default {
+    width: 100%;
+}
+
+.bf-combobox-wrapper .bf-popover-root {
+    display: block;
+    /* Válido para sobreescribir el inline-block del Popover original */
     width: 100%;
 }
 

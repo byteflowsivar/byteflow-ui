@@ -53,8 +53,26 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
     const selectedLabel = options.find((opt) => opt.value === value)?.label || placeholder;
 
+    // Calcular y sincronizar el ancho del trigger para el contenido desplegable
+    const [contentWidth, setContentWidth] = useState<number | undefined>(undefined);
+
+    const updateContentWidth = useCallback(() => {
+        if (triggerRef.current) {
+            setContentWidth(triggerRef.current.getBoundingClientRect().width);
+        }
+    }, []);
+
+    // Actualizar el ancho cuando se abre el popover o cambia el tamaño de la ventana
+    React.useEffect(() => {
+        if (open) {
+            updateContentWidth();
+            window.addEventListener('resize', updateContentWidth);
+            return () => window.removeEventListener('resize', updateContentWidth);
+        }
+    }, [open, updateContentWidth]);
+
     return (
-        <div className={`bf-combobox ${className}`}>
+        <div className={`bf-combobox-wrapper ${className ? '' : 'bf-combobox-wrapper-default'}`}>
             <Popover>
                 <PopoverTrigger>
                     <Button
@@ -63,7 +81,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
                         variant="secondary"
                         role="combobox"
                         aria-expanded={open}
-                        className="bf-combobox-trigger"
+                        className={`bf-combobox-trigger ${className}`}
                         onClick={handleTriggerClick}
                         disabled={disabled}
                     >
@@ -93,7 +111,10 @@ export const Combobox: React.FC<ComboboxProps> = ({
                     side="bottom"
                     align="start"
                 >
-                    <div onKeyDown={handleKeyDown}>
+                    <div
+                        onKeyDown={handleKeyDown}
+                        style={{ width: contentWidth ? `${contentWidth}px` : 'var(--popover-anchor-width, 200px)' }}
+                    >
                         <Command>
                             <CommandInput placeholder={`Buscar en ${placeholder.toLowerCase()}...`} />
                             <CommandList>

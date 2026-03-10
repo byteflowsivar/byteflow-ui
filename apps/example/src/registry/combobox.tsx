@@ -42,17 +42,18 @@ export const comboboxDoc: ComponentDocDefinition = {
     description: 'El Combobox combina un campo de entrada con un menú desplegable para permitir a los usuarios filtrar y seleccionar opciones de una lista.',
     examples: [
         {
-            title: 'Uso Básico',
-            description: 'Un combobox simple para seleccionar frameworks.',
+            title: 'Ancho Fluido (w-full)',
+            description: 'El combobox se adapta al 100% de su contenedor o puedes darle el tamaño que necesites (e.g. w-64, w-[300px]).',
             render: () => {
                 const [value, setValue] = useState("");
                 return (
-                    <div style={{ width: '300px' }}>
+                    <div className="w-full max-w-sm">
                         <Combobox
                             options={frameworks}
                             value={value}
                             onValueChange={setValue}
                             placeholder="Seleccionar framework..."
+                            className="w-full"
                         />
                     </div>
                 );

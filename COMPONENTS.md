@@ -577,6 +577,9 @@ Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina l
 > [!TIP]
 > **Optimizado para Formularios (v1.0.3):** El componente está diseñado para que su disparador (trigger) no envíe accidentalmente el formulario padre. Además, la tecla <kbd>Enter</kbd> dentro del buscador está interceptada para prevenir el envío del formulario mientras se filtran opciones.
 
+> [!TIP]
+> **Compatibilidad con Tailwind (v1.0.4):** Puedes usar clases de utilidad como `w-full`, `max-w-md`, `h-11`, etc. directamente en el prop `className`. El componente y su menú desplegable se ajustarán automáticamente. 
+
 > [!WARNING]
 > **Estilos Requeridos:** Este componente depende internamente de `Popover` y `Command`. Debes importar sus respectivos estilos CSS para asegurar el renderizado premium.
 
@@ -590,6 +593,7 @@ Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina l
 | `placeholder` | `string` | Texto a mostrar cuando no hay selección. |
 | `emptyText` | `string` | Texto mostrado el motor de búsqueda no encuentra resultados. |
 | `disabled` | `boolean` | Deshabilita la interacción con el combobox. |
+| `className` | `string` | Clases de estilo inyectadas directamente al botón disparador. |
 
 ### 🚀 Ejemplo de Uso
 
@@ -612,12 +616,15 @@ function FrameworkSelect() {
   const [value, setValue] = useState("");
 
   return (
-    <Combobox 
-      options={frameworks} 
-      value={value} 
-      onValueChange={setValue} 
-      placeholder="Seleccionar framework..."
-    />
+    <div className="w-full max-w-sm">
+      <Combobox 
+        options={frameworks} 
+        value={value} 
+        onValueChange={setValue} 
+        placeholder="Seleccionar framework..."
+        className="w-full h-11"
+      />
+    </div>
   );
 }
 ```
