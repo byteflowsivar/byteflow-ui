@@ -23,6 +23,7 @@ import { dropdownMenuDoc } from './dropdown-menu';
 import { sheetDoc } from './sheet';
 import { hoverCardDoc } from './hover-card';
 import { tooltipDoc } from './tooltip';
+import { dataTableDoc } from './data-table';
 
 export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'button': buttonDoc,
@@ -49,4 +50,5 @@ export const componentRegistry: Record<string, ComponentDocDefinition> = {
     'sheet': sheetDoc,
     'hover-card': hoverCardDoc,
     'tooltip': tooltipDoc,
+    'data-table': dataTableDoc,
 };

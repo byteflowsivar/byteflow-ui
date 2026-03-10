@@ -1,12 +1,16 @@
 .bf-data-table {
+    --data-table-gap: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--data-table-gap);
     width: 100%;
 }
 
 .bf-data-table__search-wrapper {
     max-width: 320px;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 .bf-data-table__pagination-wrapper {

@@ -755,36 +755,55 @@ export const MyComponent = () => {
 **Paquete:** `@byteflow-ui/data-table`
 
 ### 📝 Descripción
-Componente Data Table (Orquestador) premium para Byteflow UI. Combina `Table`, `Pagination` e `Input` para ofrecer una solución lista para el despliegue y manejo de colecciones de datos con búsqueda y paginación integradas.
+Componente Data Table (Orquestador) premium para Byteflow UI. A partir de la versión 1.0.2 utiliza arquitectura de componentes compuestos (*Headless UI*) para permitir máxima flexibilidad de layout sin perder su gestión interna del estado (paginación y filtrado).
 
-### 🚀 Ejemplo de Uso
+### ⚙️ Novedades (v1.0.2)
+- **Control de Estilos Variables:** Utiliza CSS Variables para facilitar las variaciones de diseño y propagación de `classNames`.
+- **Columnas Mejoradas:** `DataTableColumn` ahora soporta definiciones de `width`, `align` y `className` individualmente.
+- **Sub-Componentes:** Expone `<DataTable.Toolbar>`, `<DataTable.Table>` y `<DataTable.Pagination>`.
+
+### 🚀 Ejemplo de Uso (Avanzado - Composición)
 
 ```tsx
 import { DataTable } from '@byteflow-ui/data-table';
+import '@byteflow-ui/data-table/index.css';
 
 const data = [
   { id: 1, name: "Victor Cornejo", role: "Developer" },
   { id: 2, name: "Jane Doe", role: "Designer" },
-  // ... más datos
 ];
 
 const columns = [
-  { header: "ID", accessorKey: "id" },
-  { header: "Nombre", accessorKey: "name" },
-  { header: "Rol", accessorKey: "role" },
+  { header: "ID", accessorKey: "id", width: "80px", align: "center" },
+  { header: "Nombre", accessorKey: "name", className: "text-blue-600 font-medium" },
+  { header: "Rol", accessorKey: "role", align: "right" },
 ];
 
-function UserTable() {
+function AdvancedTable() {
   return (
     <DataTable 
       data={data} 
       columns={columns} 
       pageSize={5} 
-      searchKey="name" 
-    />
+      searchKey="name"
+      classNames={{ th: "bg-slate-50 uppercase tracking-wider text-xs" }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+        <h2>Gestión de Personal</h2>
+        <DataTable.Toolbar /> 
+      </div>
+      
+      <div style={{ border: '1px solid #e2e8f0', borderRadius: '0.5rem' }}>
+        <DataTable.Table />
+      </div>
+      
+      <DataTable.Pagination />
+    </DataTable>
   );
 }
 ```
+
+*Nota: El renderizado clásico monolítico (sin definir children) sigue funcionando de forma retrocompatible.*
 
 ---
 

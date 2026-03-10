@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/data-table",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Data Table (Orquestador) premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
