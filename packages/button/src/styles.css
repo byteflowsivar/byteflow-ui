@@ -107,6 +107,27 @@
     animation: bf-spin 0.8s linear infinite;
 }
 
+.bf-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bf-button__icon svg {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.bf-button--sm .bf-button__icon svg {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.bf-button--lg .bf-button__icon svg {
+    width: 1.4em;
+    height: 1.4em;
+}
+
 @keyframes bf-spin {
     from {
         transform: rotate(0deg);

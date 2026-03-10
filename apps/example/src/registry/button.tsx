@@ -48,6 +48,26 @@ export const buttonDoc: ComponentDocDefinition = {
 <Button variant="ghost">Ghost</Button>`
         },
         {
+            title: 'Botones con Iconos',
+            description: 'Añade iconos al inicio o al final del botón para proporcionar contexto visual.',
+            render: () => (
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <Button startIcon={
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                    }>
+                        Enviar mensaje
+                    </Button>
+                    <Button variant="secondary" endIcon={
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                    }>
+                        Descargar
+                    </Button>
+                </div>
+            ),
+            code: `<Button startIcon={<IconSend />}>Enviar mensaje</Button>
+<Button variant="secondary" endIcon={<IconDownload />}>Descargar</Button>`
+        },
+        {
             title: 'Estados de Carga',
             description: 'Muestra un indicador de carga cuando una acción está en proceso.',
             render: () => <Button isLoading>Procesando...</Button>,
@@ -58,6 +78,8 @@ export const buttonDoc: ComponentDocDefinition = {
         { name: 'variant', type: "'primary' | 'secondary' | 'ghost'", defaultValue: "'primary'", description: 'Determina el estilo visual y nivel de jerarquía.' },
         { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: "'md'", description: 'Controla las dimensiones del botón.' },
         { name: 'isLoading', type: 'boolean', defaultValue: 'false', description: 'Muestra un spinner y deshabilita el botón.' },
+        { name: 'startIcon', type: 'ReactNode', defaultValue: '-', description: 'Icono opcional al inicio del texto.' },
+        { name: 'endIcon', type: 'ReactNode', defaultValue: '-', description: 'Icono opcional al final del texto.' },
         { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Deshabilita la interacción.' }
     ],
     cssVars: [

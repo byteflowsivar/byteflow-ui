@@ -11,6 +11,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     size?: 'sm' | 'md' | 'lg';
     /** Cuando es true, muestra un indicador de carga (spinner) y deshabilita la interacción para prevenir clicks duplicados. */
     isLoading?: boolean;
+    /** Icono a mostrar al inicio (izquierda) del texto. */
+    startIcon?: React.ReactNode;
+    /** Icono a mostrar al final (derecha) del texto. */
+    endIcon?: React.ReactNode;
 }
 
 /**
@@ -18,7 +22,20 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * Diseñado internamente para ser accesible y proporcionar feedback visual inmediato, incluyendo estados de carga y deshabilitado.
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className = '', variant = 'primary', size = 'md', isLoading, disabled, children, ...props }, ref) => {
+    (
+        {
+            className = '',
+            variant = 'primary',
+            size = 'md',
+            isLoading,
+            disabled,
+            startIcon,
+            endIcon,
+            children,
+            ...props
+        },
+        ref
+    ) => {
         const baseClass = 'bf-button';
         const variantClass = `${baseClass}--${variant}`;
         const sizeClass = `${baseClass}--${size}`;
@@ -40,14 +57,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 aria-busy={isLoading}
                 {...props}
             >
-                {isLoading && (
+                {isLoading ? (
                     <span className="bf-button__loader" aria-hidden="true">
                         <svg className="bf-button__spinner" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="4" />
                         </svg>
                     </span>
+                ) : (
+                    startIcon && <span className="bf-button__icon bf-button__icon--start">{startIcon}</span>
                 )}
                 <span className="bf-button__content">{children}</span>
+                {endIcon && !isLoading && (
+                    <span className="bf-button__icon bf-button__icon--end">{endIcon}</span>
+                )}
             </button>
         );
     }

@@ -345,20 +345,28 @@ Un componente de botón altamente personalizable, accesible y listo para producc
 
 | Prop | Tipo | Descripción |
 | :--- | :--- | :--- |
-| `variant` | `'primary' | 'secondary' | 'ghost'` | La variante visual del botón que define su nivel de importancia: primary (acción principal), secondary (acción de apoyo) o ghost (acción mínima). |
-| `size` | `'sm' | 'md' | 'lg'` | Tamaño del botón para ajustar su jerarquía visual en diferentes contextos de UI. |
+| `variant` | `'primary' \| 'secondary' \| 'ghost'` | La variante visual del botón que define su nivel de importancia: primary (acción principal), secondary (acción de apoyo) o ghost (acción mínima). |
+| `size` | `'sm' \| 'md' \| 'lg'` | Tamaño del botón para ajustar su jerarquía visual en diferentes contextos de UI. |
 | `isLoading` | `boolean` | Cuando es true, muestra un indicador de carga (spinner) y deshabilita la interacción para prevenir clicks duplicados. |
+| `startIcon` | `React.ReactNode` | Icono a mostrar al inicio (izquierda) del texto. |
+| `endIcon` | `React.ReactNode` | Icono a mostrar al final (derecha) del texto. |
 
 ### 🚀 Ejemplo de Uso
 
+#### Botón con Icono (v1.0.2)
 ```tsx
 import { Button } from '@byteflow-ui/button';
+import { SendIcon } from 'lucide-react'; // O cualquier otra librería
 import '@byteflow-ui/button/index.css';
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => console.log('Click!')}>
-      Mi Botón Premium
+    <Button 
+      variant="primary" 
+      startIcon={<SendIcon size={16} />}
+      onClick={() => console.log('Enviado!')}
+    >
+      Enviar Mensaje
     </Button>
   );
 }
