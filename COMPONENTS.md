@@ -353,7 +353,7 @@ Un componente de botón altamente personalizable, accesible y listo para producc
 
 ### 🚀 Ejemplo de Uso
 
-#### Botón con Icono (v1.0.2)
+#### Botón con Icono (v1.0.3)
 ```tsx
 import { Button } from '@byteflow-ui/button';
 import { SendIcon } from 'lucide-react'; // O cualquier otra librería
@@ -640,7 +640,7 @@ function FrameworkSelect() {
 Componente Command (Paleta de comandos) premium para Byteflow UI. Ideal para búsquedas globales, menús de acciones rápidas (⌘K) o filtrado de colecciones de datos.
 
 > [!TIP]
-> **Filtrado Nativo y Inteligente (v1.0.1):** Los componentes `CommandItem` ahora se filtran automáticamente basándose en el texto escrito en `CommandInput`. Además, `CommandEmpty` solo se renderiza cuando no hay coincidencias y existe una búsqueda activa.
+> **Filtrado Nativo y Inteligente (v1.0.3):** Los componentes `CommandItem` ahora se filtran automáticamente basándose en el texto escrito en `CommandInput`. Además, `CommandEmpty` solo se renderiza cuando no hay coincidencias y existe una búsqueda activa.
 
 ### ⚙️ Propiedades (Props)
 
@@ -784,7 +784,7 @@ export const MyComponent = () => {
 ### 📝 Descripción
 Componente Data Table (Orquestador) premium para Byteflow UI. A partir de la versión 1.0.2 utiliza arquitectura de componentes compuestos (*Headless UI*) para permitir máxima flexibilidad de layout sin perder su gestión interna del estado (paginación y filtrado).
 
-### ⚙️ Novedades (v1.0.2)
+### ⚙️ Novedades (v1.0.3)
 - **Control de Estilos Variables:** Utiliza CSS Variables para facilitar las variaciones de diseño y propagación de `classNames`.
 - **Columnas Mejoradas:** `DataTableColumn` ahora soporta definiciones de `width`, `align` y `className` individualmente.
 - **Sub-Componentes:** Expone `<DataTable.Toolbar>`, `<DataTable.Table>` y `<DataTable.Pagination>`.
