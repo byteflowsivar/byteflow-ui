@@ -12,6 +12,9 @@ export interface CommandProps extends React.HTMLAttributes<HTMLDivElement> {
 interface CommandContextValue {
     search: string;
     setSearch: (value: string) => void;
+    filteredCount: number;
+    registerItem: (id: string, isVisible: boolean) => void;
+    unregisterItem: (id: string) => void;
 }
 
 const CommandContext = createContext<CommandContextValue | undefined>(undefined);
@@ -22,9 +25,36 @@ const CommandContext = createContext<CommandContextValue | undefined>(undefined)
 export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     ({ children, className = '', onKeyDown, ...props }, ref) => {
         const [search, setSearch] = useState('');
+        const [visibleItems, setVisibleItems] = useState<Record<string, boolean>>({});
+
+        const registerItem = useCallback((id: string, isVisible: boolean) => {
+            setVisibleItems(prev => {
+                if (prev[id] === isVisible) return prev;
+                return { ...prev, [id]: isVisible };
+            });
+        }, []);
+
+        const unregisterItem = useCallback((id: string) => {
+            setVisibleItems(prev => {
+                if (!(id in prev)) return prev;
+                const newItems = { ...prev };
+                delete newItems[id];
+                return newItems;
+            });
+        }, []);
+
+        const filteredCount = useMemo(() =>
+            Object.values(visibleItems).filter(visible => visible === true).length
+            , [visibleItems]);
 
         return (
-            <CommandContext.Provider value={{ search, setSearch }}>
+            <CommandContext.Provider value={{
+                search,
+                setSearch,
+                filteredCount,
+                registerItem,
+                unregisterItem
+            }}>
                 <div
                     ref={ref}
                     className={`bf-command ${className}`}
@@ -99,11 +129,21 @@ export const CommandList = React.forwardRef<HTMLDivElement, React.HTMLAttributes
  * CommandEmpty: Mensaje a mostrar cuando no hay resultados de búsqueda.
  */
 export const CommandEmpty = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ children, className = '', ...props }, ref) => (
-        <div ref={ref} className={`bf-command-empty ${className}`} {...props}>
-            {children}
-        </div>
-    )
+    ({ children, className = '', ...props }, ref) => {
+        const context = useContext(CommandContext);
+        if (!context) return null;
+
+        // Solo se muestra si hay una búsqueda activa Y no hay items filtrados
+        if (context.search !== '' && context.filteredCount === 0) {
+            return (
+                <div ref={ref} className={`bf-command-empty ${className}`} {...props}>
+                    {children}
+                </div>
+            );
+        }
+
+        return null;
+    }
 );
 
 /**
@@ -133,10 +173,26 @@ export interface CommandItemProps extends Omit<React.ButtonHTMLAttributes<HTMLBu
  */
 export const CommandItem = React.forwardRef<HTMLButtonElement, CommandItemProps>(
     ({ children, onSelect, value, className = '', ...props }, ref) => {
+        const context = useContext(CommandContext);
+        const id = useRef(Math.random().toString(36).substr(2, 9)).current;
+
+        const itemValue = value || (typeof children === 'string' ? children : '');
+        const isVisible = useMemo(() => {
+            if (!context?.search) return true;
+            return itemValue.toLowerCase().includes(context.search.toLowerCase());
+        }, [context?.search, itemValue]);
+
+        useEffect(() => {
+            context?.registerItem(id, isVisible);
+            return () => context?.unregisterItem(id);
+        }, [id, isVisible, context]);
+
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             onSelect?.(value || '');
             props.onClick?.(e);
         };
+
+        if (!isVisible) return null;
 
         return (
             <button

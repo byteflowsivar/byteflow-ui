@@ -639,6 +639,9 @@ function FrameworkSelect() {
 ### 📝 Descripción
 Componente Command (Paleta de comandos) premium para Byteflow UI. Ideal para búsquedas globales, menús de acciones rápidas (⌘K) o filtrado de colecciones de datos.
 
+> [!TIP]
+> **Filtrado Nativo y Inteligente (v1.0.1):** Los componentes `CommandItem` ahora se filtran automáticamente basándose en el texto escrito en `CommandInput`. Además, `CommandEmpty` solo se renderiza cuando no hay coincidencias y existe una búsqueda activa.
+
 ### ⚙️ Propiedades (Props)
 
 | Prop | Tipo | Descripción |
