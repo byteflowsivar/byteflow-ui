@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/command",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Componente Command (Paleta de comandos) premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

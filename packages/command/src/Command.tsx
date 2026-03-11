@@ -11,13 +11,17 @@ export interface CommandProps extends React.HTMLAttributes<HTMLDivElement> {
 
 interface CommandContextValue {
     search: string;
-    setSearch: (value: string) => void;
     filteredCount: number;
+}
+
+interface CommandActionsContextValue {
+    setSearch: (value: string) => void;
     registerItem: (id: string, isVisible: boolean) => void;
     unregisterItem: (id: string) => void;
 }
 
 const CommandContext = createContext<CommandContextValue | undefined>(undefined);
+const CommandActionsContext = createContext<CommandActionsContextValue | undefined>(undefined);
 
 /**
  * Command: Contenedor principal para una paleta de comandos o buscador.
@@ -47,23 +51,30 @@ export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
             Object.values(visibleItems).filter(visible => visible === true).length
             , [visibleItems]);
 
+        const stateValue = useMemo(() => ({
+            search,
+            filteredCount
+        }), [search, filteredCount]);
+
+        const actionsValue = useMemo(() => ({
+            setSearch,
+            registerItem,
+            unregisterItem
+        }), [registerItem, unregisterItem]);
+
         return (
-            <CommandContext.Provider value={{
-                search,
-                setSearch,
-                filteredCount,
-                registerItem,
-                unregisterItem
-            }}>
-                <div
-                    ref={ref}
-                    className={`bf-command ${className}`}
-                    onKeyDown={onKeyDown}
-                    role="application"
-                    {...props}
-                >
-                    {children}
-                </div>
+            <CommandContext.Provider value={stateValue}>
+                <CommandActionsContext.Provider value={actionsValue}>
+                    <div
+                        ref={ref}
+                        className={`bf-command ${className}`}
+                        onKeyDown={onKeyDown}
+                        role="application"
+                        {...props}
+                    >
+                        {children}
+                    </div>
+                </CommandActionsContext.Provider>
             </CommandContext.Provider>
         );
     }
@@ -80,7 +91,8 @@ export interface CommandInputProps extends React.InputHTMLAttributes<HTMLInputEl
 export const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
     ({ className = '', ...props }, ref) => {
         const context = useContext(CommandContext);
-        if (!context) throw new Error('CommandInput must be used within Command');
+        const actions = useContext(CommandActionsContext);
+        if (!context || !actions) throw new Error('CommandInput must be used within Command');
 
         return (
             <div className="bf-command-input-wrapper">
@@ -103,7 +115,7 @@ export const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps
                     ref={ref}
                     className={`bf-command-input ${className}`}
                     value={context.search}
-                    onChange={(e) => context.setSearch(e.target.value)}
+                    onChange={(e) => actions.setSearch(e.target.value)}
                     autoComplete="off"
                     autoCorrect="off"
                     spellCheck={false}
@@ -174,6 +186,7 @@ export interface CommandItemProps extends Omit<React.ButtonHTMLAttributes<HTMLBu
 export const CommandItem = React.forwardRef<HTMLButtonElement, CommandItemProps>(
     ({ children, onSelect, value, className = '', ...props }, ref) => {
         const context = useContext(CommandContext);
+        const actions = useContext(CommandActionsContext);
         const id = useRef(Math.random().toString(36).substr(2, 9)).current;
 
         const itemValue = value || (typeof children === 'string' ? children : '');
@@ -182,10 +195,14 @@ export const CommandItem = React.forwardRef<HTMLButtonElement, CommandItemProps>
             return itemValue.toLowerCase().includes(context.search.toLowerCase());
         }, [context?.search, itemValue]);
 
+        // Registrar/desregistrar y actualizar visibilidad
+        // Separamos esto en un efecto que NO depende de context (el objeto que cambia mucho)
+        // sino de las acciones estables y el valor de isVisible real.
         useEffect(() => {
-            context?.registerItem(id, isVisible);
-            return () => context?.unregisterItem(id);
-        }, [id, isVisible, context]);
+            if (!actions) return;
+            actions.registerItem(id, isVisible);
+            return () => actions.unregisterItem(id);
+        }, [id, isVisible, actions]);
 
         const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
             onSelect?.(value || '');
