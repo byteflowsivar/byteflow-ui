@@ -16,6 +16,7 @@ export interface ComboboxProps {
     placeholder?: string;
     emptyText?: string;
     className?: string;
+    contentClassName?: string;
     disabled?: boolean;
 }
 
@@ -26,6 +27,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     placeholder = 'Seleccionar opción...',
     emptyText = 'No se encontraron resultados.',
     className = '',
+    contentClassName = '',
     disabled = false,
 }) => {
     const [open, setOpen] = useState(false);
@@ -52,24 +54,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
     };
 
     const selectedLabel = options.find((opt) => opt.value === value)?.label || placeholder;
-
-    // Calcular y sincronizar el ancho del trigger para el contenido desplegable
-    const [contentWidth, setContentWidth] = useState<number | undefined>(undefined);
-
-    const updateContentWidth = useCallback(() => {
-        if (triggerRef.current) {
-            setContentWidth(triggerRef.current.getBoundingClientRect().width);
-        }
-    }, []);
-
-    // Actualizar el ancho cuando se abre el popover o cambia el tamaño de la ventana
-    React.useEffect(() => {
-        if (open) {
-            updateContentWidth();
-            window.addEventListener('resize', updateContentWidth);
-            return () => window.removeEventListener('resize', updateContentWidth);
-        }
-    }, [open, updateContentWidth]);
 
     return (
         <div className={`bf-combobox-wrapper ${className ? '' : 'bf-combobox-wrapper-default'}`}>
@@ -107,14 +91,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
                     isOpen={open}
                     onClose={() => setOpen(false)}
                     anchorRef={triggerRef}
-                    className="bf-combobox-content"
+                    className={`bf-combobox-content ${contentClassName}`}
                     side="bottom"
                     align="start"
                 >
-                    <div
-                        onKeyDown={handleKeyDown}
-                        style={{ width: contentWidth ? `${contentWidth}px` : 'var(--popover-anchor-width, 200px)' }}
-                    >
+                    <div onKeyDown={handleKeyDown}>
                         <Command>
                             <CommandInput placeholder={`Buscar en ${placeholder.toLowerCase()}...`} />
                             <CommandList>

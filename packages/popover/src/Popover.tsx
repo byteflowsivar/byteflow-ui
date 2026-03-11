@@ -41,7 +41,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     sideOffset = 8,
 }) => {
     const contentRef = useRef<HTMLDivElement>(null);
-    const [coords, setCoords] = useState({ top: 0, left: 0 });
+    const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
     const [mounted, setMounted] = useState(false);
 
     const updatePosition = useCallback(() => {
@@ -52,6 +52,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 
         let top = 0;
         let left = 0;
+        const width = anchorRect.width;
 
         const scrollY = window.scrollY;
         const scrollX = window.scrollX;
@@ -99,7 +100,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
             }
         }
 
-        setCoords({ top, left });
+        setCoords({ top, left, width });
     }, [anchorRef, align, side, sideOffset]);
 
     useEffect(() => {
@@ -146,7 +147,9 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
                 top: `${coords.top}px`,
                 left: `${coords.left}px`,
                 zIndex: 1000,
-            }}
+                // Inyectamos el ancho del ancla como variable CSS para que hijos (como Combobox) la usen
+                '--bf-popover-anchor-width': `${coords.width}px`
+            } as React.CSSProperties}
             onClick={(e) => e.stopPropagation()}
         >
             {children}

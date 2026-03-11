@@ -144,6 +144,7 @@ const [value, setValue] = useState("");
         { name: 'placeholder', type: 'string', defaultValue: '"Seleccionar opción..."', description: 'Texto que se muestra cuando no hay una opción seleccionada.' },
         { name: 'emptyText', type: 'string', defaultValue: '"No se encontraron resultados."', description: 'Mensaje que se muestra cuando el filtro no devuelve resultados.' },
         { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Indica si el componente está deshabilitado.' },
+        { name: 'contentClassName', type: 'string', defaultValue: '""', description: 'Clases adicionales para el contenedor del menú desplegable.' },
     ],
     cssVars: [
         { name: '--bf-combobox-width', description: 'Ancho del disparador del combobox.' },

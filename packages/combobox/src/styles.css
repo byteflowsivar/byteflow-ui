@@ -27,7 +27,7 @@
 .bf-combobox-content {
     padding: 0;
     overflow: hidden;
-    width: var(--popover-anchor-width, 200px);
+    width: var(--bf-popover-anchor-width, 200px);
 }
 
 .bf-combobox-check {

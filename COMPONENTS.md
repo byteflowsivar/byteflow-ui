@@ -578,7 +578,7 @@ Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina l
 > **Optimizado para Formularios (v1.0.3):** El componente está diseñado para que su disparador (trigger) no envíe accidentalmente el formulario padre. Además, la tecla <kbd>Enter</kbd> dentro del buscador está interceptada para prevenir el envío del formulario mientras se filtran opciones.
 
 > [!TIP]
-> **Compatibilidad con Tailwind (v1.0.4):** Puedes usar clases de utilidad como `w-full`, `max-w-md`, `h-11`, etc. directamente en el prop `className`. El componente y su menú desplegable se ajustarán automáticamente. 
+> **Compatibilidad Nativa con Tailwind (v1.0.5):** El componente ya no utiliza cálculos JS para su ancho. Ahora utiliza variables CSS inyectadas por el Popover. Puedes usar `w-full` directamente en el `className`.
 
 > [!WARNING]
 > **Estilos Requeridos:** Este componente depende internamente de `Popover` y `Command`. Debes importar sus respectivos estilos CSS para asegurar el renderizado premium.
@@ -594,6 +594,7 @@ Componente Combobox (Búsqueda + Selección) premium para Byteflow UI. Combina l
 | `emptyText` | `string` | Texto mostrado el motor de búsqueda no encuentra resultados. |
 | `disabled` | `boolean` | Deshabilita la interacción con el combobox. |
 | `className` | `string` | Clases de estilo inyectadas directamente al botón disparador. |
+| `contentClassName` | `string` | Clases de estilo opcionales para el contenedor del menú desplegable. |
 
 ### 🚀 Ejemplo de Uso
 
