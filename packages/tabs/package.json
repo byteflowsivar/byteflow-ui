@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/tabs",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Tabs modular para navegación por pestañas en Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

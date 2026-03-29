@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/spinner",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Spinner premium para el kit Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

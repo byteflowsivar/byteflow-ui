@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/dropdown-menu",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Componente Dropdown Menu premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

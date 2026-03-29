@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/label",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente de etiqueta accesible para el kit Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

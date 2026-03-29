@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/input-otp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Input especializado para códigos de verificación (One-Time Password).",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",

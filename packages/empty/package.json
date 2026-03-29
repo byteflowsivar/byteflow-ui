@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/empty",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Empty State premium para gestionar estados vacíos en Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

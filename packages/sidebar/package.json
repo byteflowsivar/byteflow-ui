@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/sidebar",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Sidebar premium para aplicaciones dashboard en Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

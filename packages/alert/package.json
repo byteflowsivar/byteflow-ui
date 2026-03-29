@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/alert",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente de alerta para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

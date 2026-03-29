@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/carousel",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Componente Carousel premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
