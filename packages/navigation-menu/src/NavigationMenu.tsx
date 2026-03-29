@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './styles.css';
 
-export interface NavigationMenuProps {
+export interface NavigationMenuProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const NavigationMenu: React.FC<NavigationMenuProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     return (
-        <nav className={`bf-navigation-menu ${className}`}>
+        <nav className={`bf-navigation-menu ${className}`} {...props}>
             <ul className="bf-navigation-menu-list">
                 {children}
             </ul>
@@ -19,33 +19,33 @@ export const NavigationMenu: React.FC<NavigationMenuProps> = ({
     );
 };
 
-export interface NavigationMenuItemProps {
+export interface NavigationMenuItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const NavigationMenuItem: React.FC<NavigationMenuItemProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     return (
-        <li className={`bf-navigation-menu-item ${className}`}>
+        <li className={`bf-navigation-menu-item ${className}`} {...props}>
             {children}
         </li>
     );
 };
 
-export interface NavigationMenuTriggerProps {
+export interface NavigationMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const NavigationMenuTrigger: React.FC<NavigationMenuTriggerProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     return (
-        <button className={`bf-navigation-menu-trigger ${className}`}>
+        <button className={`bf-navigation-menu-trigger ${className}`} {...props}>
             {children}
             <svg
                 className="bf-navigation-menu-chevron"
@@ -66,28 +66,34 @@ export const NavigationMenuTrigger: React.FC<NavigationMenuTriggerProps> = ({
     );
 };
 
-export interface NavigationMenuContentProps {
+export interface NavigationMenuContentProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const NavigationMenuContent: React.FC<NavigationMenuContentProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     return (
-        <div className={`bf-navigation-menu-content ${className}`}>
+        <div className={`bf-navigation-menu-content ${className}`} {...props}>
             {children}
         </div>
     );
 };
 
-export const NavigationMenuLink: React.FC<{ children: React.ReactNode; href?: string; className?: string }> = ({
+export interface NavigationMenuLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+    children: React.ReactNode;
+}
+
+export const NavigationMenuLink: React.FC<NavigationMenuLinkProps> = ({
     children,
     href = '#',
     className = '',
+    ...props
 }) => (
-    <a href={href} className={`bf-navigation-menu-link ${className}`}>
+    <a href={href} className={`bf-navigation-menu-link ${className}`} {...props}>
         {children}
     </a>
 );
+

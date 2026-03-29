@@ -5,26 +5,15 @@ import './styles.css';
 /**
  * Propiedades del componente Sheet (Panel lateral).
  */
-export interface SheetProps {
-    /** Indica si el panel está abierto. */
+export interface SheetProps extends React.HTMLAttributes<HTMLDivElement> {
     isOpen: boolean;
-    /** Callback para cerrar el panel. */
     onClose: () => void;
-    /** Contenido del panel. */
     children: React.ReactNode;
-    /** Lado por el que aparece el panel. */
     side?: 'top' | 'bottom' | 'left' | 'right';
-    /** Clase CSS adicional para el contenido. */
-    className?: string;
-    /** Si es true, cierra al hacer click fuera. */
     closeOnOutsideClick?: boolean;
-    /** Si es true, cierra al presionar Escape. */
     closeOnEsc?: boolean;
 }
 
-/**
- * Sheet: Componente que extiende los diálogos para mostrar contenido complementario en un lateral de la pantalla.
- */
 export const Sheet: React.FC<SheetProps> = ({
     isOpen,
     onClose,
@@ -33,6 +22,7 @@ export const Sheet: React.FC<SheetProps> = ({
     className = '',
     closeOnOutsideClick = true,
     closeOnEsc = true,
+    ...props
 }) => {
     const [mounted, setMounted] = useState(false);
 
@@ -61,12 +51,17 @@ export const Sheet: React.FC<SheetProps> = ({
     if (!mounted || !isOpen) return null;
 
     return createPortal(
-        <div className="bf-sheet-overlay" onClick={closeOnOutsideClick ? onClose : undefined} role="presentation">
+        <div 
+            className="bf-sheet-overlay" 
+            onClick={closeOnOutsideClick ? onClose : undefined} 
+            role="presentation"
+        >
             <div
                 className={`bf-sheet-content bf-sheet-content--${side} ${className}`}
                 onClick={(e) => e.stopPropagation()}
                 role="dialog"
                 aria-modal="true"
+                {...props}
             >
                 {children}
                 <button className="bf-sheet-close-btn" onClick={onClose} aria-label="Cerrar">
@@ -78,38 +73,23 @@ export const Sheet: React.FC<SheetProps> = ({
     );
 };
 
-/**
- * SheetHeader: Cabecera del panel lateral.
- */
 export const SheetHeader = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div className={`bf-sheet-header ${className}`} {...props}>{children}</div>
 );
 
-/**
- * SheetFooter: Pie del panel lateral para acciones finales.
- */
 export const SheetFooter = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div className={`bf-sheet-footer ${className}`} {...props}>{children}</div>
 );
 
-/**
- * SheetTitle: Título del panel lateral.
- */
 export const SheetTitle = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2 className={`bf-sheet-title ${className}`} {...props}>{children}</h2>
 );
 
-/**
- * SheetDescription: Texto descriptivo del panel lateral.
- */
 export const SheetDescription = ({ children, className = '', ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className={`bf-sheet-description ${className}`} {...props}>{children}</p>
 );
 
-/**
- * Drawer: Variante del Sheet que suele aparecer por la parte inferior, común en dispositivos móviles.
- */
-export const Drawer: React.FC<SheetProps> = (props) => (
-    <Sheet {...props} side={props.side || 'bottom'} />
+export const Drawer: React.FC<SheetProps> = ({ side, ...props }) => (
+    <Sheet {...props} side={side || 'bottom'} />
 );
 

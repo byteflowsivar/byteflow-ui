@@ -5,59 +5,32 @@ import './styles.css';
 /**
  * Propiedades del componente DropdownMenu.
  */
-export interface DropdownMenuProps {
-    /** Contenido del dropdown. */
+export interface DropdownMenuProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
 }
 
-/**
- * DropdownMenu: Contenedor raíz para coordinar el estado de un menú desplegable.
- */
-export const DropdownMenu: React.FC<DropdownMenuProps> = ({ children }) => {
-    return <div className="bf-dropdown-root">{children}</div>;
+export const DropdownMenu: React.FC<DropdownMenuProps> = ({ children, className = '', ...props }) => {
+    return <div className={`bf-dropdown-root ${className}`} {...props}>{children}</div>;
 };
 
-/**
- * Propiedades para el disparador del menú.
- */
 export interface DropdownMenuTriggerProps {
-    /** El elemento (usualmente un botón) que abrirá el menú. */
     children: React.ReactElement;
-    /** Callback opcional al hacer click. */
     onClick?: () => void;
 }
 
-/**
- * DropdownMenuTrigger: Envuelve el elemento que activará el menú.
- */
 export const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({ children }) => {
     return children;
 };
 
-/**
- * Propiedades para el contenido del menú desplegable.
- */
-export interface DropdownMenuContentProps {
-    /** Ítems, etiquetas o separadores del menú. */
+export interface DropdownMenuContentProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    /** Estado controlado de apertura. */
     isOpen: boolean;
-    /** Callback para cerrar el menú. */
     onClose: () => void;
-    /** Referencia al elemento disparador para el posicionamiento. */
     anchorRef: React.RefObject<HTMLElement | null>;
-    /** Clase CSS adicional. */
-    className?: string;
-    /** Alineación horizontal respecto al disparador. */
     align?: 'start' | 'center' | 'end';
-    /** Espaciado respecto al disparador. */
     sideOffset?: number;
 }
 
-/**
- * DropdownMenuContent: El contenedor flotante que muestra los ítems del menú.
- * Utiliza Portals para evitar problemas de stacking context y z-index.
- */
 export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({
     children,
     isOpen,
@@ -66,6 +39,7 @@ export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({
     className = '',
     align = 'start',
     sideOffset = 4,
+    ...props
 }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [coords, setCoords] = useState({ top: 0, left: 0 });
@@ -144,6 +118,7 @@ export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({
                 zIndex: 1000,
             }}
             onClick={(e) => e.stopPropagation()}
+            {...props}
         >
             {children}
         </div>,

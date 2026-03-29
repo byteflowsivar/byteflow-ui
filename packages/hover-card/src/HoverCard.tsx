@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import './styles.css';
 
-export interface HoverCardProps {
+export interface HoverCardProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     openDelay?: number;
     closeDelay?: number;
@@ -11,7 +11,9 @@ export interface HoverCardProps {
 export const HoverCard: React.FC<HoverCardProps> = ({
     children,
     openDelay = 700,
-    closeDelay = 300
+    closeDelay = 300,
+    className = '',
+    ...props
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const openTimerRef = useRef<number | null>(null);
@@ -29,9 +31,10 @@ export const HoverCard: React.FC<HoverCardProps> = ({
 
     return (
         <div
-            className="bf-hover-card-root"
+            className={`bf-hover-card-root ${className}`}
             onMouseEnter={handleOpen}
             onMouseLeave={handleClose}
+            {...props}
         >
             {React.Children.map(children, child => {
                 if (React.isValidElement(child)) {

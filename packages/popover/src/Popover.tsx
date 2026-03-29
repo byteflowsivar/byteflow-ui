@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import './styles.css';
 
-export interface PopoverProps {
+export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
 }
 
-export const Popover: React.FC<PopoverProps> = ({ children }) => {
-    return <div className="bf-popover-root">{children}</div>;
+export const Popover: React.FC<PopoverProps> = ({ children, className = '', ...props }) => {
+    return <div className={`bf-popover-root ${className}`} {...props}>{children}</div>;
 };
 
 export interface PopoverTriggerProps {
@@ -19,12 +19,11 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({ children }) => {
     return children;
 };
 
-export interface PopoverContentProps {
+export interface PopoverContentProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     isOpen: boolean;
     onClose: () => void;
     anchorRef: React.RefObject<HTMLElement | null>;
-    className?: string;
     align?: 'start' | 'center' | 'end';
     side?: 'top' | 'bottom' | 'left' | 'right';
     sideOffset?: number;
@@ -39,6 +38,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     align = 'center',
     side = 'bottom',
     sideOffset = 8,
+    ...props
 }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
@@ -149,8 +149,9 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
                 zIndex: 1000,
                 // Inyectamos el ancho del ancla como variable CSS para que hijos (como Combobox) la usen
                 '--bf-popover-anchor-width': `${coords.width}px`
-            } as React.CSSProperties}
+            } as any}
             onClick={(e) => e.stopPropagation()}
+            {...props}
         >
             {children}
         </div>,

@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import './styles.css';
 
-export interface CollapsibleProps {
+export interface CollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     disabled?: boolean;
-    className?: string;
 }
 
 interface CollapsibleContextValue {
@@ -25,6 +24,7 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
     onOpenChange,
     disabled = false,
     className = '',
+    ...props
 }) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
     const isControlled = controlledOpen !== undefined;
@@ -51,6 +51,7 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
                 className={`bf-collapsible ${isOpen ? 'bf-collapsible--open' : ''} ${disabled ? 'bf-collapsible--disabled' : ''} ${className}`}
                 data-state={isOpen ? 'open' : 'closed'}
                 data-disabled={disabled ? '' : undefined}
+                {...props}
             >
                 {children}
             </div>
@@ -58,14 +59,14 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
     );
 };
 
-export interface CollapsibleTriggerProps {
+export interface CollapsibleTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const CollapsibleTrigger: React.FC<CollapsibleTriggerProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     const context = React.useContext(CollapsibleContext);
     if (!context) throw new Error('CollapsibleTrigger must be used within Collapsible');
@@ -74,25 +75,29 @@ export const CollapsibleTrigger: React.FC<CollapsibleTriggerProps> = ({
         <button
             type="button"
             className={`bf-collapsible-trigger ${className}`}
-            onClick={context.toggle}
+            onClick={(e) => {
+                context.toggle();
+                props.onClick?.(e);
+            }}
             aria-expanded={context.isOpen}
             aria-disabled={context.disabled}
             data-state={context.isOpen ? 'open' : 'closed'}
             disabled={context.disabled}
+            {...props}
         >
             {children}
         </button>
     );
 };
 
-export interface CollapsibleContentProps {
+export interface CollapsibleContentProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    className?: string;
 }
 
 export const CollapsibleContent: React.FC<CollapsibleContentProps> = ({
     children,
     className = '',
+    ...props
 }) => {
     const context = React.useContext(CollapsibleContext);
     if (!context) throw new Error('CollapsibleContent must be used within Collapsible');
@@ -102,6 +107,7 @@ export const CollapsibleContent: React.FC<CollapsibleContentProps> = ({
             className={`bf-collapsible-content ${className}`}
             data-state={context.isOpen ? 'open' : 'closed'}
             hidden={!context.isOpen}
+            {...props}
         >
             <div className="bf-collapsible-content-inner">
                 {children}
@@ -109,3 +115,4 @@ export const CollapsibleContent: React.FC<CollapsibleContentProps> = ({
         </div>
     );
 };
+

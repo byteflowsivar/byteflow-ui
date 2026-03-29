@@ -4,11 +4,10 @@ import { Calendar } from '@byteflow-ui/calendar';
 import { Button } from '@byteflow-ui/button';
 import './styles.css';
 
-export interface DatePickerProps {
+export interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
     value?: Date;
     onValueChange?: (date: Date) => void;
     placeholder?: string;
-    className?: string;
     disabled?: boolean;
 }
 
@@ -18,6 +17,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     placeholder = 'Seleccionar fecha...',
     className = '',
     disabled = false,
+    ...props
 }) => {
     const [open, setOpen] = useState(false);
     const triggerRef = useRef<HTMLButtonElement>(null);
@@ -36,7 +36,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     };
 
     return (
-        <div className={`bf-date-picker ${className}`}>
+        <div className={`bf-date-picker ${className}`} {...props}>
             <Popover>
                 <PopoverTrigger>
                     <Button

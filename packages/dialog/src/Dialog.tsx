@@ -5,24 +5,14 @@ import './styles.css';
 /**
  * Propiedades del componente Dialog.
  */
-export interface DialogProps {
-    /** Indica si el diálogo está abierto. */
+export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
     isOpen: boolean;
-    /** Callback para cerrar el diálogo. */
     onClose: () => void;
-    /** Contenido del diálogo. */
     children: React.ReactNode;
-    /** Clase CSS adicional para el contenido. */
-    className?: string;
-    /** Si es true, cierra el diálogo al hacer click fuera del contenido. */
     closeOnOutsideClick?: boolean;
-    /** Si es true, cierra el diálogo al presionar la tecla Escape. */
     closeOnEsc?: boolean;
 }
 
-/**
- * Dialog: Ventana modal que interrumpe al usuario para mostrar información crítica o tareas.
- */
 export const Dialog: React.FC<DialogProps> = ({
     isOpen,
     onClose,
@@ -30,6 +20,7 @@ export const Dialog: React.FC<DialogProps> = ({
     className = '',
     closeOnOutsideClick = true,
     closeOnEsc = true,
+    ...props
 }) => {
     const [mounted, setMounted] = useState(false);
 
@@ -58,12 +49,17 @@ export const Dialog: React.FC<DialogProps> = ({
     if (!mounted || !isOpen) return null;
 
     return createPortal(
-        <div className="bf-dialog-overlay" onClick={closeOnOutsideClick ? onClose : undefined} role="presentation">
+        <div 
+            className="bf-dialog-overlay" 
+            onClick={closeOnOutsideClick ? onClose : undefined} 
+            role="presentation"
+        >
             <div
                 className={`bf-dialog-content-wrapper ${className}`}
                 onClick={(e) => e.stopPropagation()}
                 role="dialog"
                 aria-modal="true"
+                {...props}
             >
                 {children}
                 <button className="bf-dialog-close-btn" onClick={onClose} aria-label="Cerrar">

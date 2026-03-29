@@ -1,11 +1,10 @@
 import React from 'react';
 import './styles.css';
 
-export interface TooltipProps {
+export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
     content: React.ReactNode;
     children: React.ReactNode;
     position?: 'top' | 'bottom' | 'left' | 'right';
-    className?: string;
     delay?: number;
 }
 
@@ -14,9 +13,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
     children,
     position = 'top',
     className = '',
+    ...props
 }) => {
     return (
-        <div className={`bf-tooltip-container ${className}`} tabIndex={0}>
+        <div className={`bf-tooltip-container ${className}`} tabIndex={0} {...props}>
             {children}
             <div
                 className={`bf-tooltip bf-tooltip--${position}`}

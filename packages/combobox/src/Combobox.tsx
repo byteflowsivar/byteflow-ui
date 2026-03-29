@@ -9,13 +9,12 @@ export interface ComboboxOption {
     label: string;
 }
 
-export interface ComboboxProps {
+export interface ComboboxProps extends React.HTMLAttributes<HTMLDivElement> {
     options: ComboboxOption[];
     value?: string;
     onValueChange?: (value: string) => void;
     placeholder?: string;
     emptyText?: string;
-    className?: string;
     contentClassName?: string;
     disabled?: boolean;
 }
@@ -29,6 +28,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     className = '',
     contentClassName = '',
     disabled = false,
+    ...props
 }) => {
     const [open, setOpen] = useState(false);
     const triggerRef = useRef<HTMLButtonElement>(null);
@@ -56,7 +56,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     const selectedLabel = options.find((opt) => opt.value === value)?.label || placeholder;
 
     return (
-        <div className={`bf-combobox-wrapper ${className ? '' : 'bf-combobox-wrapper-default'}`}>
+        <div className={`bf-combobox-wrapper ${className ? '' : 'bf-combobox-wrapper-default'}`} {...props}>
             <Popover>
                 <PopoverTrigger>
                     <Button
