@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/tooltip",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Tooltip premium para el kit Byteflow-UI.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

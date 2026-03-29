@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/resizable",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Resizable (Paneles divisibles) premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

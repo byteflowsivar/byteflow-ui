@@ -1,6 +1,6 @@
 {
     "name": "@byteflow-ui/hover-card",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Componente Hover Card premium para Byteflow UI",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
