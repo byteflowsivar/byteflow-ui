@@ -96,6 +96,27 @@ Byteflow-UI utiliza espacios de trabajo (`workspaces`) para mantener una arquite
 
 ---
 
+## 9. Flujos de Trabajo Asistidos por IA (Agentes)
+
+Para garantizar la calidad continua de Byteflow-UI, el desarrollo y mantenimiento se apoya en los siguientes agentes o perfiles automatizados:
+
+### 9.1. Agente de QA de Accesibilidad y Atributos
+Actúa como un revisor enfocado específicamente en la estructura del DOM.
+*   **Misión:** Asegurar que ningún componente nuevo o modificado carezca de los atributos necesarios para testing E2E y accesibilidad universal.
+*   **Reglas de Acción:**
+    *   **Auto-Inyección de `data-testid`:** Analiza el componente y auto-completa o propone un ID basado en el nombre y estructura del componente (ej. `byteflow-datatable-root`) si el desarrollador lo omitió.
+    *   **Auditoría ARIA:** Verifica que los componentes interactivos (botones, modales, menús) cuenten con los atributos `aria-label`, estados de foco y `role` correctos.
+    *   **Reporte de Selectores (Playwright/Cypress):** Genera automáticamente un mapa o reporte estructurado (ej. `.json`) con todos los selectores `data-testid` disponibles en la versión actual.
+
+### 9.2. Agente de Regresión Visual (Visual Regression & Storybook)
+Como librería de UI, es fundamental prevenir discrepancias visuales indeseadas.
+*   **Misión:** Detectar cambios visuales imperceptibles para el ser humano y mantener viva la documentación funcional del diseño.
+*   **Reglas de Acción:**
+    *   **Snapshot Testing:** Exigir o acompañar un análisis de comparación visual (e.g. Chromatic, Lost Pixel, o tests visuales nativos) en cada cambio sustancial o nueva versión para detectar artefactos o roturas de estilos.
+    *   **Generador de Stories y Documentación:** Lee los archivos `.tsx` y las interfaces de TypeScript para generar y actualizar automáticamente los ejemplos de componentes (`*.stories.tsx`) destinados a Storybook, cubriendo todas las variables (props).
+
+---
+
 ## Resumen de Comandos del Proyecto
 
 *   `npm run build`: Construye todos los paquetes y aplicaciones del monorepo (`--workspaces`).
